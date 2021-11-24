@@ -8,7 +8,7 @@ class Weather {
   * @param {string} zip - A zip code.
   */
   getWeatherFromZip = async zip => {
-    const API_KEY = 'f136c24d087d4390a933db6a89e244c8';
+    const API_KEY = config.API_KEY;
     const URL = `https://api.weatherbit.io/v2.0/current?postal_code=${zip}&country=US&key=${API_KEY}`;
   
     const requestOptions = {
