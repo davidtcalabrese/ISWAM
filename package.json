@@ -1,0 +1,22 @@
+{
+  "name": "iswam",
+  "version": "1.0.0",
+  "description": "IoT Severe Weather Alert Monitor",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davidtcalabrese/ISWAM.git"
+  },
+  "author": "David Calabrese <david.thomas.calabrese@gmail.com> (http://davidcalabrese.org/)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/davidtcalabrese/ISWAM/issues"
+  },
+  "homepage": "https://github.com/davidtcalabrese/ISWAM#readme",
+  "devDependencies": {
+    "json-server": "^0.17.0"
+  }
+}
