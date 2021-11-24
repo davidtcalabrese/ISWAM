@@ -2,3 +2,5 @@
 .vscode
 .vscode-test
 config.js
+
+node_modules 
