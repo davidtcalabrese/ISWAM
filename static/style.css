@@ -7,12 +7,8 @@ body {
   height: 100vh;
 }
 
-#admin-console {
-  background: linear-gradient(180deg, hsla(0, 0%, 100%, 1) 99%, hsla(0, 0%, 97%, 1) 50%, hsla(23, 24%, 94%, 1) 1%);
-  border-radius: 5px;
-}
 
-#admin-console *:not(h2) {font-family: 'Copse', serif; }
+#zipcode-input {font-family: 'Copse', serif; }
 
 h1 {
   color: var(--root-blue);
@@ -21,12 +17,12 @@ h1 {
 
 h2, h3 {font-family: 'Raleway', sans-serif; }
 
-.row, #admin-console {
+.row, #zipcode-input {
   max-width: 900px;
   margin: 0 auto;
 }
 
-#admin-console {
+#zipcode-input {
   width: 65%;
   margin: 1rem auto 1rem;
   position: absolute;
@@ -73,7 +69,7 @@ h2, h3 {font-family: 'Raleway', sans-serif; }
 }
 
 @media screen and (max-width: 800px) {
-  #admin-console {
+  #zipcode-input {
     width: 90%;
     position: relative;
     margin: .5rem auto .5rem;
