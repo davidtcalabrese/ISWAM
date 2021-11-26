@@ -62,7 +62,7 @@ class Weather {
   
     const iconPath = getIconFromDescription(this._description);
     const weatherDisplay = `
-        <div class="card mt-2 bg-light" id="weather-card" style="width: 19rem;">
+        <div class="card mt-2 p-2" id="weather-card" style="width: 19rem;">
           <img src="${iconPath}" class="card-img-top" alt="">
           <div class="card-body">
             <h5 class="card-title">${this._city}, ${this._state}</h5>
