@@ -81,15 +81,10 @@ const getDayOrNightIcon = iconArray => {
  * 
  * @returns {Array} The items from form in format [zip, severity].
  */
-const getFormInfo = () => {
-  const result = [];
+const getZip = () => {
   const zip = document.querySelector("#zip").value;
-  const severity = document.querySelector("#severity").value;
 
-  result.push(zip);
-  result.push(severity);
-
-  return result;
+  return zip;
 }
 
 
