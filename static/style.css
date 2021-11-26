@@ -7,8 +7,15 @@ body {
   height: 100vh;
 }
 
+.row, #zipcode-input {
+  max-width: 900px;
+  margin: 0 auto;
+}
 
-#zipcode-input {font-family: 'Copse', serif; }
+#zipcode-input {
+  margin: 1rem auto 1rem;
+  font-family: 'Copse', serif;
+}
 
 h1 {
   color: var(--root-blue);
@@ -16,22 +23,6 @@ h1 {
 }
 
 h2, h3 {font-family: 'Raleway', sans-serif; }
-
-.row, #zipcode-input {
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-#zipcode-input {
-  width: 65%;
-  margin: 1rem auto 1rem;
-  position: absolute;
-  max-width: 600px;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  padding: 15px;
-}
 
 .card {
   background: linear-gradient(180deg, hsla(51, 4%, 98%, 1) 0%, hsla(0, 0%, 98.5%, 1) 50%, hsla(0, 0%, 100%, 1) 99%);
@@ -62,21 +53,11 @@ h2, h3 {font-family: 'Raleway', sans-serif; }
 
 @media screen and (max-width: 576px) {
   #filler {display: none; }
-  #submit {width: 60%; }
   body {
     background-color: #fff;
   }
 }
 
-@media screen and (max-width: 800px) {
-  #zipcode-input {
-    width: 90%;
-    position: relative;
-    margin: .5rem auto .5rem;
-  }
-}
-
 @media screen and (min-width: 1000px) {
   #weather-header, #alert-header {font-size: 2rem; }
-  #console-header {font-size: 1.8rem; }
 }
