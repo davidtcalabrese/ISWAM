@@ -204,9 +204,8 @@ const iconArray = [
  */
 const getIconFromDescription = desc => {
   const iconPaths = [];
-
   iconArray.forEach(item => {
-    if (desc === item.Description) {
+    if (desc.toLowerCase() === item.Description.toLowerCase()) {
       const icons = item.Icons.split(', ');
 
       icons.forEach(icon => {
@@ -218,5 +217,6 @@ const getIconFromDescription = desc => {
   });
 
   const iconPath = getDayOrNightIcon(iconPaths)
+  console.log(iconPath);
   return iconPath;
 }
