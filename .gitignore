@@ -3,4 +3,6 @@
 .vscode-test
 config.js
 
+#testing
 node_modules 
+db.json
