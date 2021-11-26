@@ -89,33 +89,17 @@ Date: 11/22/2021         "") `"` DC  \  ((`"`
       </div> <!-- end col-12 -->
     </div> <!-- end row -->
 
-    <div class="text-center" id="admin-console">
-      <h2 class="display-6 text-center mb-3" id="console-header">Admin Console</h2>
-      <div class="row w-100">
-
-        <div class="col-6 mt-auto">
-          <label for="ugc">ZIP Code</label>
-          <input type="text" class="form-control" id="zip" placeholder="enter zip code" />
-        </div> <!-- end col -->
-
-        <div class="col-6" title="The minimum severity level for which you would like to receive alerts">
-          <label for="severity" >Minimum Severity <span class="fw-light">(Optional)</span> </label>
-          <select class="form-control" id="severity" name="severity">
-            <option value="" selected disabled>--choose level--</option>
-            <option value="1">All</option>
-            <option value="2">Minor</option>
-            <option value="3">Moderate</option>
-            <option value="4">Extreme</option>
-            <option value="5">Severe</option>
-          </select>
-        </div> <!-- end col -->
+    <div id="zipcode-input" class="d-flex justify-content-center">
+      <div class="row">
+        <div class="col-auto">
+          <input type="text" class="form-control" id="zip" placeholder="ZIP code" />
+        </div> <!-- end col-auto -->
+        <div class="col-auto">
+          <button class="btn btn-primary" id="submit">Check Weather and Alerts</button>
+        </div> <!-- end col-auto -->
       </div> <!-- end row -->
-      <div class="row w-100"> 
-        <div class="col">
-          <button class="btn btn-primary mt-3" id="submit">Check Weather and Alerts</button>
-        </div> <!-- end col -->
-      </div>
-    </div> <!-- end admin console -->
+    </div> <!-- end zipcode-input -->
+
     <div id="alert-modal"></div>
   </body>
 </html>
