@@ -60,6 +60,17 @@ Date: 11/22/2021         "") `"` DC  \  ((`"`
       <p class="text-center small">IoT Severe Weather Alert Monitor</p>
     </div> <!-- end bg-light -->
 
+    <div id="zipcode-input" class="d-flex justify-content-center">
+      <div class="row">
+        <div class="col-6 col-sm-auto">
+          <input type="text" class="form-control" id="zip" placeholder="ZIP code" />
+        </div> <!-- end col-auto -->
+        <div class="col-6 col-sm-auto">
+          <button class="btn btn-primary" id="submit">Check Weather and Alerts</button>
+        </div> <!-- end col-auto -->
+      </div> <!-- end row -->
+    </div> <!-- end zipcode-input -->
+
     <div class="row">
 
       <div class="col-12 col-sm-6 mt-4">
@@ -88,17 +99,6 @@ Date: 11/22/2021         "") `"` DC  \  ((`"`
         </div> <!-- end container d-flex... -->
       </div> <!-- end col-12 -->
     </div> <!-- end row -->
-
-    <div id="zipcode-input" class="d-flex justify-content-center">
-      <div class="row">
-        <div class="col-auto">
-          <input type="text" class="form-control" id="zip" placeholder="ZIP code" />
-        </div> <!-- end col-auto -->
-        <div class="col-auto">
-          <button class="btn btn-primary" id="submit">Check Weather and Alerts</button>
-        </div> <!-- end col-auto -->
-      </div> <!-- end row -->
-    </div> <!-- end zipcode-input -->
 
     <div id="alert-modal"></div>
   </body>
