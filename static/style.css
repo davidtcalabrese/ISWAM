@@ -22,8 +22,8 @@ h1 {
 h2, h3 {font-family: 'Raleway', sans-serif; }
 
 .card {
-  background: linear-gradient(180deg, hsla(51, 4%, 98%, 1) 0%, hsla(0, 0%, 98.5%, 1) 50%, hsla(0, 0%, 100%, 1) 99%);
-  height: 400px;
+  background: linear-gradient(180deg, hsla(51, 4%, 97%, 1) 0%, hsla(0, 0%, 98.5%, 1) 50%, hsla(0, 0%, 100%, 1) 99%);
+  height: 420px;
 }
 
 #weather-card {margin-left: 1em; }
