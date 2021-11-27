@@ -79,7 +79,7 @@ const getDayOrNightIcon = iconArray => {
 /**
  * Fetches form data and returns as array.
  * 
- * @returns {Array} The items from form in format [zip, severity].
+ * @returns {string} The entered zip code.
  */
 const getZip = () => {
   const zip = document.querySelector("#zip").value;
