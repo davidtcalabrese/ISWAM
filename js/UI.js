@@ -1,10 +1,9 @@
-class UI {
-  /**
-   * Accesses weather object properties and inserts them into HTML template to display to DOM.
-   */
-  displayWeather = (description, city, state, temperature, humidity) => {
-    const iconPath = getIconFromDescription(description);
-    const weatherDisplay = `
+/**
+ * Accesses weather object properties and inserts them into HTML template to display to DOM.
+ */
+const displayWeather = (description, city, state, temperature, humidity) => {
+  const iconPath = getIconFromDescription(description.toLowerCase());
+  const weatherDisplay = `
       <h2 class="display-5 text-center small" id="weather-header">Weather</h2>
       <div class="container d-flex align-items-center justify-content-center flex-column">
         <div class="card mt-2 p-2" id="weather-card" style="width: 19rem;">
@@ -18,15 +17,14 @@ class UI {
         </div>
       </div>
     `;
+  document.querySelector('#weather-output').innerHTML = weatherDisplay;
+};
 
-    document.querySelector('#weather-output').innerHTML = weatherDisplay;
-  };
-
-  /**
-   * Accesses alert object properties and inserts them into HTML template to display to DOM.
-   */
-  displayAlert = (description, event, severity, starts, ends) => {
-    const alertDisplay = `
+/**
+ * Accesses alert object properties and inserts them into HTML template to display to DOM.
+ */
+const displayAlert = (description, event, severity, starts, ends) => {
+  const alertDisplay = `
       <h2 class="display-5 text-center small" id="alert-header">Alerts</h2>
       <div class="container d-flex align-items-center justify-content-center flex-column">
           <div class="card mt-2" id="alert-card"  style="width: 19rem;">
@@ -41,15 +39,14 @@ class UI {
           </div>
         </div>
       `;
+  document.querySelector('#alert-output').innerHTML = alertDisplay;
+};
 
-    document.querySelector('#alert-output').innerHTML = alertDisplay;
-  };
-
-  /**
-   * Displays an "all good" HTML template element to DOM.
-   */
-  displayNoAlert = () => {
-    const noAlertDisplay = `
+/**
+ * Displays an "all good" HTML template element to DOM.
+ */
+const displayNoAlert = () => {
+  const noAlertDisplay = `
         <div class="mt-5" id="alert-card"   style="width: 19rem;">
           <img src="../static/images/like.png" id="all-good" class="card-img-top" alt="alert">
           <div class="card-body">
@@ -57,41 +54,16 @@ class UI {
           </div>
         </div>
       `;
+  document.querySelector('#alert-output').innerHTML = noAlertDisplay;
+};
 
-    document.querySelector('#alert-output').innerHTML = noAlertDisplay;
-  };
+/**
+ * Fetches zip from form data and returns.
+ *
+ * @returns {string} The entered zip code.
+ */
+const getZip = () => {
+  const zip = document.querySelector('#zip').value;
 
-  /**
-   * Gets the user input for severity and color on settings page
-   * and sets or resets these variables in session storage.
-   */
-  updateUserSettings = () => {
-    const severity = document.querySelector('#severity').value;
-    const color = document.querySelector('#light-color').value;
-
-    sessionStorage.setItem('severity', severity);
-    sessionStorage.setItem('color', color);
-
-    const confirmationMsg = `
-      <div class="col">
-        <p class="text-center text-success">Your settings have been saved.</p>
-      </div>
-    `;
-
-    document.querySelector('#confirmation').innerHTML = confirmationMsg;
-  };
-
-  /**
-   * Fetches zip from form data and returns.
-   *
-   * @returns {string} The entered zip code.
-   */
-  getZip = () => {
-    const zip = document.querySelector('#zip').value;
-
-    return zip;
-  };
-}
-
-document.querySelector('#save').addEventListener('click', updateUserSettings);
-document.querySelector('#submit').addEventListener('click', init);
+  return zip;
+};
