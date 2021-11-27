@@ -205,7 +205,7 @@ const iconArray = [
 const getIconFromDescription = desc => {
   const iconPaths = [];
   iconArray.forEach(item => {
-    if (desc.toLowerCase() === item.Description.toLowerCase()) {
+    if (desc === item.Description.toLowerCase()) {
       const icons = item.Icons.split(', ');
 
       icons.forEach(icon => {
