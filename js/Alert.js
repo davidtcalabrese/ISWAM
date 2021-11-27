@@ -28,7 +28,6 @@ class Alert {
     return alert;
   };
 
-
   /**
    * Sets Alert object properties from JSON response.
    * 
@@ -44,7 +43,6 @@ class Alert {
     this._starts = formatDateTime(new Date(startTime));
     this._ends = formatDateTime(new Date(endTime));
   };
-
 
   /**
    * Gets geographic coordinates from a zip code.
@@ -74,7 +72,6 @@ class Alert {
     return coords;
   };
 
-
   /**
    * Gets universal geographic code (UGC) from coordinates.
    * 
@@ -97,7 +94,6 @@ class Alert {
     const code = forecastZone.substr(forecastZone.length - 6);
     return code;
   };
-
 
   /**
    * Prepares for alert API call by making some preliminary API calls, exchanging zip 
@@ -125,7 +121,6 @@ class Alert {
     }
   };
 
-  
   /**
    * Determines if alert should be displayed by checking severity level against severity threshold.
    * 
@@ -158,7 +153,6 @@ class Alert {
     return eventSeverityAsNumber >= severityThreshold;
   };
 
-
   /**
    * Accesses alert object properties and inserts them into HTML template to display to DOM.
    */
@@ -177,7 +171,6 @@ class Alert {
 
     document.querySelector('#alert-output').innerHTML = alertDisplay;
   };
-
 
   /**
    * Displays an "all good" HTML template element to DOM.
