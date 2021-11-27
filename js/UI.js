@@ -23,7 +23,7 @@ const displayWeather = (description, city, state, temperature, humidity) => {
 /**
  * Accesses alert object properties and inserts them into HTML template to display to DOM.
  */
-const displayAlert = (description, event, severity, starts, ends) => {
+const displayAlert = (event, severity, description, starts, ends) => {
   const alertDisplay = `
       <h2 class="display-5 text-center small" id="alert-header">Alerts</h2>
       <div class="container d-flex align-items-center justify-content-center flex-column">
