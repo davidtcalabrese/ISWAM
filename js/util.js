@@ -75,13 +75,11 @@ const getDayOrNightIcon = iconArray => {
 /**
  *  Checks if a severity threshold level has been saved to session storage.
  *  If it has it returns the value, otherwise returns a 1 for "all levels".
- * 
+ *
  * @returns {number} Severity level as an integer between 1 and 5.
  */
 const getSeverity = () => {
   const severity = sessionStorage.getItem('severity') || 1;
-
-  console.log(`In getSeverity. Severity: ${severity}`);
 
   return severity;
 };
@@ -99,4 +97,15 @@ const checkWeatherAndAlerts = async function (zip, severity) {
   alert.processAlert(zip, severity);
 };
 
+/**
+ * Initializes app by accessing form fields and passing them to checkWeatherAndAlerts.
+ *
+ * @author David Calabrese <david.thomas.calabrese@gmail.com>
+ */
+const init = function () {
+  const zip = getZip();
+  const severity = getSeverity();
+  checkWeatherAndAlerts(zip, severity);
+};
 
+document.querySelector('#submit').addEventListener('click', init);
