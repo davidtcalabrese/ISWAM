@@ -57,6 +57,8 @@ class Weather {
   
     const iconPath = getIconFromDescription(this._description);
     const weatherDisplay = `
+      <h2 class="display-5 text-center small" id="weather-header">Weather</h2>
+      <div class="container d-flex align-items-center justify-content-center flex-column">
         <div class="card mt-2 p-2" id="weather-card" style="width: 19rem;">
           <img src="${iconPath}" class="card-img-top" alt="">
           <div class="card-body">
@@ -66,6 +68,7 @@ class Weather {
             <p class="card-text">${this._description}</p>
           </div>
         </div>
+      </div>
     `;
     
     document.querySelector("#filler").classList.add("d-none");

@@ -159,6 +159,8 @@ class Alert {
    */
   displayAlert = () => {
     const alertDisplay = `
+    <h2 class="display-5 text-center small" id="alert-header">Alerts</h2>
+    <div class="container d-flex align-items-center justify-content-center flex-column">
         <div class="card mt-2" id="alert-card"  style="width: 19rem;">
           <img src="../static/images/alert-icon.png" id="triangle" class="card-img-top" alt="alert">
           <div class="card-body">
@@ -169,6 +171,7 @@ class Alert {
             <p class="card-text">Ends: ${this._ends}</p>
           </div>
         </div>
+      </div>
     `;
 
     document.querySelector('#alert-output').innerHTML = alertDisplay;
