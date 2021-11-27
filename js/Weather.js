@@ -20,7 +20,6 @@ class Weather {
     const data = await response.json();
     const weatherData = data.data[0];
 
-    console.log(weatherData);
     return weatherData;
   }
 
