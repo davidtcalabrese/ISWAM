@@ -1,0 +1,34 @@
+
+GitHub repo for ESP32 + Display board:
+https://github.com/Xinyuan-LilyGO/TTGO-T-Display
+
+Product page for EPS32 + Display board:
+http://www.lilygo.cn/prod_view.aspx?TypeId=50033&Id=1126&FId=t3:50033:3
+
+Amazon linke for ESP32 + Display board:
+https://www.amazon.com/gp/product/B099MPFJ9M/ref=ppx_yo_dt_b_asin_title_o09_s01?ie=UTF8&psc=1
+
+LCD library:
+https://github.com/Bodmer/TFT_eSPI
+
+Weather graphics from : https://www.weatherbit.io/api/codes
+Using this image converter to get to C arrays: http://www.rinkydinkelectronics.com/_t_doimageconverter565.php
+
+Code roughly based on this starting point for a REST API ESP32 server:
+https://www.survivingwithandroid.com/esp32-rest-api-esp32-api-server/
+
+Temp/Pressure/Humdity sensor:
+https://www.amazon.com/gp/product/B07V5CL3L8/ref=ppx_yo_dt_b_asin_title_o08_s00?ie=UTF8&psc=1
+
+LED Ring:
+https://www.amazon.com/gp/product/B08LMZZK2Z/ref=ppx_yo_dt_b_asin_title_o09_s00?ie=UTF8&psc=1
+
+DC-DC step up converter:
+https://www.amazon.com/gp/product/B089JYBF25/ref=ppx_yo_dt_b_asin_title_o00_s01?ie=UTF8&psc=1
+
+Level Shifter:
+https://www.digikey.com/en/products/detail/texas-instruments/SN74LV1T125DBVR/4555571
+
+Power switch:
+https://www.amazon.com/gp/product/B086L2GPGX/ref=ppx_yo_dt_b_asin_title_o00_s01?ie=UTF8&psc=1
+
