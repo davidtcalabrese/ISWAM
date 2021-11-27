@@ -56,7 +56,6 @@ class Alert {
     const requestOptions = {
       method: 'GET',
       redirect: 'follow',
-      mode: 'no-cors',
     };
 
     const response = await fetch(URL, requestOptions).catch(e => { console.log(e); });
