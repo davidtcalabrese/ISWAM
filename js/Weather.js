@@ -47,6 +47,6 @@ class Weather {
     const UI = new UI();
     const weatherData = await weather.getWeatherFromZip(zip);
     weather.setWeatherFields(weatherData);
-    UI.displayWeather(this._description, this._event, this._severity, this._starts, this._ends);
+    UI.displayWeather(this._description, this._city, this._state, this._temperature, this._humidity);
   }
 }
