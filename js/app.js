@@ -7,5 +7,6 @@
  */
 const init = async function () {
   const zip = getZip();
-  checkWeatherAndAlerts(zip, 1);
+  const severity = getSeverity();
+  checkWeatherAndAlerts(zip, severity);
 };
