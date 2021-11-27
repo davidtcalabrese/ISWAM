@@ -28,7 +28,7 @@ class Weather {
    * 
    * @param {object} properties - Corresponds to response.data. 
    */
-  setWeatherFields = properties => {
+  getWeatherFields = properties => {
     const propArr = [];
     propArr.push(properties.weather.description);
     propArr.push(properties.city_name);
@@ -49,7 +49,7 @@ class Weather {
     const weather = new Weather();
     const weatherData = await weather.getWeatherFromZip(zip);
 
-    const [description, city, state, temp, rh] = weather.setWeatherFields(weatherData);
+    const [description, city, state, temp, rh] = weather.getWeatherFields(weatherData);
 
     displayWeather(description, city, state, temp, rh);
   }

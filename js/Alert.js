@@ -33,15 +33,18 @@ class Alert {
    *
    * @param {object} alertProperties - Object from API correspond to response.features.
    */
-  setAlertFields = alertProperties => {
-    this._event = alertProperties.properties.event;
-    this._severity = alertProperties.properties.severity;
-    this._description = alertProperties.properties.description;
+  getAlertFields = alertProperties => {
+    const alertProps = [];
+    alertProps.push(alertProperties.properties.event);
+    alertProps.push(alertProperties.properties.severity);
+    alertProps.push(alertProperties.properties.description);
     const startTime = alertProperties.properties.onset;
     const endTime = alertProperties.properties.ends;
     // format date and time nicer
-    this._starts = formatDateTime(new Date(startTime));
-    this._ends = formatDateTime(new Date(endTime));
+    alertProps.push(formatDateTime(new Date(startTime)));
+    alertProps.push(formatDateTime(new Date(endTime)));
+
+    return alertProps;
   };
 
   /**
@@ -107,19 +110,19 @@ class Alert {
    */
   processAlert = async (zip, severityThreshold) => {
     const alert = new Alert();
-    const UI = new UI();
+    console.log(alert);
 
-    console.log(`In processAlert. Severity: ${severityThreshold}`);
     // get data needed for requests
     const [lat, long] = await alert.getCoordsFromZip(zip);
     const code = await alert.getCodeFromCoords(lat, long);
 
     const alertData = await alert.getAlertFromCode(code);
+
     if (alertData !== -1 && alert.isSevereEnough(severityThreshold)) {
-      alert.setAlertFields(alertData);
-      UI.displayAlert(this._description, this._event, this._severity, this._starts, this._ends);
+      const [event, severity, description, starts, ends] = alert.getAlertFields(alertData);
+      displayAlert(event, severity, description, starts, ends);
     } else {
-      UI.displayNoAlert();
+      displayNoAlert();
     }
   };
 
