@@ -50,6 +50,9 @@ h2, h3 {font-family: 'Raleway', sans-serif; }
 }
 
 #submit {background-color: var(--root-blue); }
+#submit:active {transform: scale(.95); }
+#save {background-color: var(--root-blue); }
+#save:active {transform: scale(.95); }
 
 #settings-link {
   position: absolute;
