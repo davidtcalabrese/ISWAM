@@ -4,8 +4,8 @@
 class Alert {
   /**
    * Accesses the NWS API, retrieves alert for area or -1 if no alert.
-   * 
-   * @param {string} code a universal geographic code (UGC) identifying a region 
+   *
+   * @param {string} code a universal geographic code (UGC) identifying a region
    * @returns alert object from api or -1 if no alert
    */
   getAlertFromCode = async code => {
@@ -30,8 +30,8 @@ class Alert {
 
   /**
    * Sets Alert object properties from JSON response.
-   * 
-   * @param {object} alertProperties - Object from API correspond to response.features. 
+   *
+   * @param {object} alertProperties - Object from API correspond to response.features.
    */
   setAlertFields = alertProperties => {
     this._event = alertProperties.properties.event;
@@ -46,7 +46,7 @@ class Alert {
 
   /**
    * Gets geographic coordinates from a zip code.
-   * 
+   *
    * @param {string} zip - A zip code.
    * @returns {Array} in format [latitude, longitude].
    */
@@ -58,7 +58,9 @@ class Alert {
       redirect: 'follow',
     };
 
-    const response = await fetch(URL, requestOptions).catch(e => { console.log(e); });
+    const response = await fetch(URL, requestOptions).catch(e => {
+      console.log(e);
+    });
 
     const data = await response.json();
     const lat = data.places[0].latitude;
@@ -72,7 +74,7 @@ class Alert {
 
   /**
    * Gets universal geographic code (UGC) from coordinates.
-   * 
+   *
    * @param {string or number} lat - the latitude of the user's zip code.
    * @param {string or number} long - the longitude of the user's zip code.
    * @returns {string} a universal geographic code (UGC).
@@ -94,13 +96,13 @@ class Alert {
   };
 
   /**
-   * Prepares for alert API call by making some preliminary API calls, exchanging zip 
-   * code for coordinates and coordinates for a UGC code, then gets alert with code, 
+   * Prepares for alert API call by making some preliminary API calls, exchanging zip
+   * code for coordinates and coordinates for a UGC code, then gets alert with code,
    * checks if there is an alert and that the alert's severity surpasses severity threshold
-   * set by user, if it does it calls displayAlert to add alert to DOM, otherwise, calls 
-   * displayNoAlert, which adds thumbs up sign to DOM. 
-   * 
-   * @param {string} zip - The zip code of user. 
+   * set by user, if it does it calls displayAlert to add alert to DOM, otherwise, calls
+   * displayNoAlert, which adds thumbs up sign to DOM.
+   *
+   * @param {string} zip - The zip code of user.
    * @param {string} severityThreshold desired severity threshold (default is all levels).
    */
   processAlert = async (zip, severityThreshold) => {
@@ -112,17 +114,17 @@ class Alert {
     const code = await alert.getCodeFromCoords(lat, long);
 
     const alertData = await alert.getAlertFromCode(code);
-    if ((alertData !== -1) && (alert.isSevereEnough(severityThreshold))) {
+    if (alertData !== -1 && alert.isSevereEnough(severityThreshold)) {
       alert.setAlertFields(alertData);
       alert.displayAlert();
     } else {
-      alert.displayNoAlert(); 
+      alert.displayNoAlert();
     }
   };
 
   /**
    * Determines if alert should be displayed by checking severity level against severity threshold.
-   * 
+   *
    * @param {string} severityThreshold - One of five levels of severity NWS ranks their alerts.
    * @returns {boolean} If alert if as severe or more severe than threshold returns true, else false.
    */
@@ -185,6 +187,6 @@ class Alert {
       </div>
     `;
 
-    document.querySelector('#alert-output').innerHTML = noAlertDisplay
-  }
+    document.querySelector('#alert-output').innerHTML = noAlertDisplay;
+  };
 }
