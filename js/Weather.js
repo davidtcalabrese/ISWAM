@@ -29,11 +29,14 @@ class Weather {
    * @param {object} properties - Corresponds to response.data. 
    */
   setWeatherFields = properties => {
-    this._city = properties.city_name;
-    this._state = properties.state_code;
-    this._temperature = +((properties.temp * 9) / 5 + 32).toFixed(0);
-    this._humidity = properties.rh;
-    this._description = properties.weather.description;
+    const propArr = [];
+    propArr.push(properties.weather.description);
+    propArr.push(properties.city_name);
+    propArr.push(properties.state_code);
+    propArr.push(+((properties.temp * 9) / 5 + 32).toFixed(0));
+    propArr.push(properties.rh);
+
+    return propArr;
   }
 
   /**
@@ -44,9 +47,10 @@ class Weather {
    */
   processWeather = async zip => {
     const weather = new Weather();
-    const UI = new UI();
     const weatherData = await weather.getWeatherFromZip(zip);
-    weather.setWeatherFields(weatherData);
-    UI.displayWeather(this._description, this._city, this._state, this._temperature, this._humidity);
+
+    const [description, city, state, temp, rh] = weather.setWeatherFields(weatherData);
+
+    displayWeather(description, city, state, temp, rh);
   }
 }
