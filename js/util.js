@@ -72,20 +72,11 @@ const getDayOrNightIcon = iconArray => {
   }
 };
 
-/**
- * Gets the user input for severity on settings page and sets in session storage
- */
-const setSeverity = () => {
-  const severity = document.querySelector('#severity');
-
-  sessionStorage.setItem('severity', severity);
-};
-
-// document.querySelector('#save').addEventListener('click', setSeverity);
-
 
 const getSeverity = () => {
   const severity = sessionStorage.getItem('severity') || 1;
+
+  console.log(`In getSeverity. Severity: ${severity}`);
 
   return severity;
 };
