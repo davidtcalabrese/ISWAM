@@ -110,7 +110,6 @@ class Alert {
    */
   processAlert = async (zip, severityThreshold) => {
     const alert = new Alert();
-    console.log(alert);
 
     // get data needed for requests
     const [lat, long] = await alert.getCoordsFromZip(zip);
