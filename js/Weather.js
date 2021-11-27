@@ -64,7 +64,8 @@ class Weather {
           <img src="${iconPath}" class="card-img-top" alt="">
           <div class="card-body">
             <h5 class="card-title">${this._city}, ${this._state}</h5>
-            <p class="card-text">${this._temperature}°F - ${this._humidity}% humidity</p>
+            <p class="card-text">${this._temperature}°F </p>
+            <p class="card-text">${this._humidity}% humidity</p>
             <p class="card-text">${this._description}</p>
           </div>
         </div>
