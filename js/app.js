@@ -6,6 +6,7 @@
  * @author David Calabrese <david.thomas.calabrese@gmail.com>
  */
 const init = async function () {
-  const [zip, severity] = getFormInfo();
+  const zip = getZip();
+  const severity = getSeverity();
   checkWeatherAndAlerts(zip, severity);
 };

@@ -44,13 +44,14 @@ Date: 11/22/2021         "") `"` DC  \  ((`"`
       defer
     ></script>
     <link rel="stylesheet" href="static/style.css" />
+    <script src="/js/sessionSettings.js" defer></script>
     <script src="/js/config.js" defer></script>
     <script src="/js/Alert.js" defer></script>
     <script src="/js/Weather.js" defer></script>
     <script src="/js/app.js" defer></script>
-    <script src="/js/util.js" defer></script>
     <script src="/js/icons.js" defer></script>
     <script src="/js/PostRequest.js" defer></script>
+
     <title>ISWAM | IoT Severe Weather Alert Monitor</title>
   </head>
   <body>    
@@ -59,42 +60,54 @@ Date: 11/22/2021         "") `"` DC  \  ((`"`
       <p class="text-center small">IoT Severe Weather Alert Monitor</p>
     </div> <!-- end bg-light -->
 
-    <div id="zipcode-input" class="d-flex justify-content-center">
-      <div class="row">
-        <div class="col-6 col-sm-auto">
-          <input type="text" class="form-control" id="zip" placeholder="ZIP code" />
-        </div> <!-- end col-auto -->
-        <div class="col-6 col-sm-auto">
-          <button class="btn btn-primary" id="submit">Check Weather and Alerts</button>
-        </div> <!-- end col-auto -->
-      </div> <!-- end row -->
-    </div> <!-- end zipcode-input -->
-
     <div class="row">
 
-      <div class="col-12 col-sm-6 mt-4">
-        <h2 class="display-5 text-center small" id="weather-header">Weather</h2>
-        <div class="container d-flex align-items-center justify-content-center flex-column">
-          <div id="weather-output"></div>
-          <div class="card mt-2 bg-light" id="filler" style="width: 18rem;">
-            <img src="/static/images/a01d.png" class="card-img-top" alt="">
-            <div class="card-body">
-            </div> <!-- end card-body -->
-          </div> <!-- end card -->
-        </div> <!-- end container -->
-      </div> <!-- end col-12 -->
+      <div class="text-center" id="admin-console">
+        <h2 class="display-6 text-center m-3" id="console-header">Admin Console</h2>
 
-      <div class="col-12 col-sm-6 mt-4">
-        <h2 class="display-5 text-center small" id="alert-header">Alerts</h2>
-        <div class="container d-flex align-items-center justify-content-center flex-column">
-          <div id="alert-output"></div>
-        </div> <!-- end container d-flex... -->
-      </div> <!-- end col-12 -->
-    </div> <!-- end row -->
+        <div class="row">
+          <div class="offset-4 col-4" title="The minimum severity level for which you would like to receive alerts">
+            <label for="severity" >Minimum Severity <span class="fw-light">(Optional)</span> </label>
+            <select class="form-control" id="severity" name="severity">
+              <option value="" selected disabled></option>
+              <option value="1">All</option>
+              <option value="2">Minor</option>
+              <option value="3">Moderate</option>
+              <option value="4">Extreme</option>
+              <option value="5">Severe</option>
+            </select>
+          </div> <!-- end col -->
+        </div> <!-- end row -->
 
-    <div id="alert-modal"></div>
+        <div class="row mt-3">
+          <div class="offset-4 col-4" title="The color LEDs will flash for alerts">
+            <label for="light-color" >LED Alert Light Color<span class="fw-light">(Optional)</span> </label>
+            <select class="form-control" id="light-color" name="light-color">
+              <option value="" selected disabled></option>
+              <option value="red">Red</option>
+              <option value="yellow">Yellow</option>
+              <option value="green">Green</option>
+              <option value="blue">Blue</option>
+              <option value="orange">Orange</option>
+              <option value="purple">Purple</option>
+              <option value="pink">Pink</option>
+            </select>
+          </div> <!-- end col -->
+        </div> <!-- end row -->
+
+        <div class="row"> 
+          <div class="col">
+            <button class="btn btn-primary mt-3" id="save">Save</button>
+          </div> <!-- end col -->
+        </div>
+      </div> <!-- end admin console -->
+
+      <div class="row mt-3" id="confirmation"></div>
+
     <div id="settings-link" class="d-flex justify-content-center">
-        <a href="../settings.html">Configure Settings</a>
+      <a href="../index.html">Home</a>
     </div>
+
   </body>
 </html>
+

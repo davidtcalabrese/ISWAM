@@ -20,10 +20,8 @@ class Weather {
     const data = await response.json();
     const weatherData = data.data[0];
 
-    console.log(weatherData);
     return weatherData;
   }
-
 
   /**
    * Sets Weather object properties from JSON response.
@@ -31,14 +29,12 @@ class Weather {
    * @param {object} properties - Corresponds to response.data. 
    */
   setWeatherFields = properties => {
-    console.log(properties);
     this._city = properties.city_name;
     this._state = properties.state_code;
     this._temperature = +((properties.temp * 9) / 5 + 32).toFixed(0);
     this._humidity = properties.rh;
     this._description = properties.weather.description;
   }
-
 
   /**
    * Accesses weather data from weatherbit.io API, creates weather object
@@ -53,7 +49,6 @@ class Weather {
     weather.displayWeather();
   }
 
-
   /**
    * Accesses weather object properties and inserts them into HTML template to display to DOM.
    */
@@ -62,11 +57,12 @@ class Weather {
   
     const iconPath = getIconFromDescription(this._description);
     const weatherDisplay = `
-        <div class="card mt-2 bg-light" id="weather-card" style="width: 19rem;">
+        <div class="card mt-2 p-2" id="weather-card" style="width: 19rem;">
           <img src="${iconPath}" class="card-img-top" alt="">
           <div class="card-body">
             <h5 class="card-title">${this._city}, ${this._state}</h5>
-            <p class="card-text">${this._temperature}°F - ${this._humidity}% humidity</p>
+            <p class="card-text">${this._temperature}°F </p>
+            <p class="card-text">${this._humidity}% humidity</p>
             <p class="card-text">${this._description}</p>
           </div>
         </div>
