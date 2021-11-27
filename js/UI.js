@@ -2,7 +2,7 @@ class UI {
   /**
    * Accesses weather object properties and inserts them into HTML template to display to DOM.
    */
-  displayWeather = (description, city, state, temperature, humidity, description) => {
+  displayWeather = (description, city, state, temperature, humidity) => {
     const iconPath = getIconFromDescription(description);
     const weatherDisplay = `
       <h2 class="display-5 text-center small" id="weather-header">Weather</h2>
