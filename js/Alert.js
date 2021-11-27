@@ -164,7 +164,7 @@ class Alert {
    */
   displayAlert = () => {
     const alertDisplay = `
-        <div class="card mt-2 bg-light" id="alert-card"  style="width: 18rem;">
+        <div class="card mt-2 bg-light" id="alert-card"  style="width: 19rem;">
           <img src="../static/images/alert-icon.png" id="triangle" class="card-img-top" alt="alert">
           <div class="card-body">
             <h5 class="card-title text-danger" id="alert-title" 
