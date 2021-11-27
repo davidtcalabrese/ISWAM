@@ -217,6 +217,6 @@ const getIconFromDescription = desc => {
   });
 
   const iconPath = getDayOrNightIcon(iconPaths)
-  console.log(iconPath);
+
   return iconPath;
 }
