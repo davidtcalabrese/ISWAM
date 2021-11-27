@@ -56,11 +56,10 @@ class Alert {
     const requestOptions = {
       method: 'GET',
       redirect: 'follow',
+      mode: 'no-cors',
     };
 
-    const response = await fetch(URL, requestOptions).catch(e => {
-      console.log(e);
-    });
+    const response = await fetch(URL, requestOptions).catch(e => { console.log(e); });
 
     const data = await response.json();
     const lat = data.places[0].latitude;
@@ -108,6 +107,7 @@ class Alert {
   processAlert = async (zip, severityThreshold) => {
     const alert = new Alert();
 
+    console.log(`In processAlert. Severity: ${severityThreshold}`);
     // get data needed for requests
     const [lat, long] = await alert.getCoordsFromZip(zip);
     const code = await alert.getCodeFromCoords(lat, long);
