@@ -72,7 +72,12 @@ const getDayOrNightIcon = iconArray => {
   }
 };
 
-
+/**
+ *  Checks if a severity threshold level has been saved to session storage.
+ *  If it has it returns the value, otherwise returns a 1 for "all levels".
+ * 
+ * @returns {number} Severity level as an integer between 1 and 5.
+ */
 const getSeverity = () => {
   const severity = sessionStorage.getItem('severity') || 1;
 
