@@ -87,17 +87,6 @@ const getSeverity = () => {
 };
 
 /**
- * Fetches form data and returns as array.
- *
- * @returns {string} The entered zip code.
- */
-const getZip = () => {
-  const zip = document.querySelector('#zip').value;
-
-  return zip;
-};
-
-/**
  * Initializes the XHR process for alert and weather data.
  *
  * @param {string} zip zip code fetched from form.
@@ -110,4 +99,4 @@ const checkWeatherAndAlerts = async function (zip, severity) {
   alert.processAlert(zip, severity);
 };
 
-document.querySelector('#submit').addEventListener('click', init);
+

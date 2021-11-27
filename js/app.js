@@ -6,7 +6,8 @@
  * @author David Calabrese <david.thomas.calabrese@gmail.com>
  */
 const init = async function () {
-  const zip = getZip();
+  const UI = new UI();
+  const zip = UI.getZip();
   const severity = getSeverity();
   checkWeatherAndAlerts(zip, severity);
 };

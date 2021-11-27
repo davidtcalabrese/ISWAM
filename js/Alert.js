@@ -107,6 +107,7 @@ class Alert {
    */
   processAlert = async (zip, severityThreshold) => {
     const alert = new Alert();
+    const UI = new UI();
 
     console.log(`In processAlert. Severity: ${severityThreshold}`);
     // get data needed for requests
@@ -116,9 +117,9 @@ class Alert {
     const alertData = await alert.getAlertFromCode(code);
     if (alertData !== -1 && alert.isSevereEnough(severityThreshold)) {
       alert.setAlertFields(alertData);
-      alert.displayAlert();
+      UI.displayAlert(this._description, this._event, this._severity, this._starts, this._ends);
     } else {
-      alert.displayNoAlert();
+      UI.displayNoAlert();
     }
   };
 
@@ -152,44 +153,5 @@ class Alert {
         eventSeverityAsNumber = 1;
     }
     return eventSeverityAsNumber >= severityThreshold;
-  };
-
-  /**
-   * Accesses alert object properties and inserts them into HTML template to display to DOM.
-   */
-  displayAlert = () => {
-    const alertDisplay = `
-    <h2 class="display-5 text-center small" id="alert-header">Alerts</h2>
-    <div class="container d-flex align-items-center justify-content-center flex-column">
-        <div class="card mt-2" id="alert-card"  style="width: 19rem;">
-          <img src="../static/images/alert-icon.png" id="triangle" class="card-img-top" alt="alert">
-          <div class="card-body">
-            <h5 class="card-title text-danger" id="alert-title" 
-                title="${this._description}"> ${this._event} <i class="fas fa-mouse-pointer"></i></h5>
-            <p class="card-text mb-0">Severity: ${this._severity}</p>
-            <p class="card-text mb-0">Starts: ${this._starts}</p>
-            <p class="card-text">Ends: ${this._ends}</p>
-          </div>
-        </div>
-      </div>
-    `;
-
-    document.querySelector('#alert-output').innerHTML = alertDisplay;
-  };
-
-  /**
-   * Displays an "all good" HTML template element to DOM.
-   */
-  displayNoAlert = () => {
-    const noAlertDisplay = `
-      <div class="mt-5" id="alert-card"   style="width: 18rem;">
-        <img src="../static/images/like.png" id="all-good" class="card-img-top" alt="alert">
-        <div class="card-body">
-          <h5 class="card-title">No alerts for your area at your selected severity level</h5>
-        </div>
-      </div>
-    `;
-
-    document.querySelector('#alert-output').innerHTML = noAlertDisplay;
   };
 }

@@ -44,34 +44,9 @@ class Weather {
    */
   processWeather = async zip => {
     const weather = new Weather();
+    const UI = new UI();
     const weatherData = await weather.getWeatherFromZip(zip);
     weather.setWeatherFields(weatherData);
-    weather.displayWeather();
+    UI.displayWeather(this._description, this._event, this._severity, this._starts, this._ends);
   }
-
-  /**
-   * Accesses weather object properties and inserts them into HTML template to display to DOM.
-   */
-  displayWeather = () => {
-    const output = document.querySelector('#weather-output');
-  
-    const iconPath = getIconFromDescription(this._description);
-    const weatherDisplay = `
-      <h2 class="display-5 text-center small" id="weather-header">Weather</h2>
-      <div class="container d-flex align-items-center justify-content-center flex-column">
-        <div class="card mt-2 p-2" id="weather-card" style="width: 19rem;">
-          <img src="${iconPath}" class="card-img-top" alt="">
-          <div class="card-body">
-            <h5 class="card-title">${this._city}, ${this._state}</h5>
-            <p class="card-text">${this._temperature}°F </p>
-            <p class="card-text">${this._humidity}% humidity</p>
-            <p class="card-text">${this._description}</p>
-          </div>
-        </div>
-      </div>
-    `;
-    
-    document.querySelector("#filler").classList.add("d-none");
-    output.innerHTML = weatherDisplay;
-  };
 }
