@@ -23,7 +23,6 @@ class Weather {
     return weatherData;
   }
 
-
   /**
    * Sets Weather object properties from JSON response.
    * 
@@ -37,7 +36,6 @@ class Weather {
     this._description = properties.weather.description;
   }
 
-
   /**
    * Accesses weather data from weatherbit.io API, creates weather object
    * and sets its fields and displays weather summary to DOM.
@@ -50,7 +48,6 @@ class Weather {
     weather.setWeatherFields(weatherData);
     weather.displayWeather();
   }
-
 
   /**
    * Accesses weather object properties and inserts them into HTML template to display to DOM.
