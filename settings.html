@@ -69,7 +69,7 @@ Date: 11/22/2021         "") `"` DC  \  ((`"`
           <div class="offset-4 col-4" title="The minimum severity level for which you would like to receive alerts">
             <label for="severity" >Minimum Severity <span class="fw-light">(Optional)</span> </label>
             <select class="form-control" id="severity" name="severity">
-              <option value="" selected disabled>--choose level--</option>
+              <option value="" selected disabled></option>
               <option value="1">All</option>
               <option value="2">Minor</option>
               <option value="3">Moderate</option>
@@ -78,6 +78,23 @@ Date: 11/22/2021         "") `"` DC  \  ((`"`
             </select>
           </div> <!-- end col -->
         </div> <!-- end row -->
+
+        <div class="row mt-3">
+          <div class="offset-4 col-4" title="The color LEDs will flash for alerts">
+            <label for="severity" >LED Alert Light Color<span class="fw-light">(Optional)</span> </label>
+            <select class="form-control" id="severity" name="severity">
+              <option value="" selected disabled></option>
+              <option value="red">Red</option>
+              <option value="yellow">Yellow</option>
+              <option value="green">Green</option>
+              <option value="blue">Blue</option>
+              <option value="orange">Orange</option>
+              <option value="purple">Purple</option>
+              <option value="pink">Pink</option>
+            </select>
+          </div> <!-- end col -->
+        </div> <!-- end row -->
+
         <div class="row"> 
           <div class="col">
             <button class="btn btn-primary mt-3" id="save">Save</button>
