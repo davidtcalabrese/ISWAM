@@ -30,7 +30,6 @@ class Weather {
    * @param {object} properties - Corresponds to response.data. 
    */
   setWeatherFields = properties => {
-    console.log(properties);
     this._city = properties.city_name;
     this._state = properties.state_code;
     this._temperature = +((properties.temp * 9) / 5 + 32).toFixed(0);
