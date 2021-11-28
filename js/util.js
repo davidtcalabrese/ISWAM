@@ -42,7 +42,7 @@ const buildAlertPost = (event, start, end) => {
  */
 const formatDateTime = datetime => {
   const day = datetime.getDate();
-  const month = datetime.getMonth();
+  const month = datetime.getMonth() + 1;
   const hours24 = datetime.getHours();
   const minutes = datetime.getMinutes();
 
