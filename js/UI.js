@@ -47,12 +47,17 @@ const displayAlert = (event, severity, description, starts, ends) => {
  */
 const displayNoAlert = () => {
   const noAlertDisplay = `
-        <div class="mt-5" id="alert-card"   style="width: 19rem;">
-          <img src="../static/images/like.png" id="all-good" class="card-img-top" alt="alert">
-          <div class="card-body">
-            <h5 class="card-title">No alerts for your area at your selected severity level</h5>
-          </div>
+  <h2 class="display-5 text-center small" id="alert-header">No Alerts</h2>
+  <div class="container d-flex align-items-center justify-content-center flex-column">
+      <div class="card mt-2 d-flex align-items-center justify-content-center flex-column" id="alert-card" style="width: 19rem;">
+      <img src="../static/images/checked.png" id="all-good" class="card-img-top" alt="check mark">
+        <div class="card-body">
+        <h5 class="card-title" id="no-alert-body">No alerts for your area at your selected severity level</h5>
         </div>
+      </div>
+    </div>
+
+  
       `;
   document.querySelector('#alert-output').innerHTML = noAlertDisplay;
 };
