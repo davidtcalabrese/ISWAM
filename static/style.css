@@ -35,7 +35,14 @@ h2, h3 {font-family: 'Raleway', sans-serif; }
 
 .card-text {margin-bottom: 0px; }
 
-#all-good {width: 80%; }
+#all-good { 
+  width: 60%; 
+  margin-top: 5rem;
+}
+
+#no-alert-body {
+  margin-top: 6rem;
+}
 
 #triangle {
   width: 70%;
