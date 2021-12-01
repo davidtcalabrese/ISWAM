@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<!--                         ___
+                         __/_  `.  .-"'"-.
+Author: David Calabrese \_,` | \-'  /   )`-')
+Date: 11/22/2021         "") `"` DC  \  ((`"`
+                       ___Y  ,    .'7 /|
+                     (_,___/...-` (_/_/        -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- font awesome -->
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css' integrity='sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==' crossorigin='anonymous' referrerpolicy='no-referrer' />
+    <!-- raleway, copse google font -->
+    <link href="https://fonts.googleapis.com/css2?family=Copse&family=Nova+Flat&family=Raleway:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poly&display=swap" rel="stylesheet">
+    <!-- bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+      crossorigin="anonymous"
+    />
+    <!-- jquery -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+      defer
+    ></script>
+    <!-- popper plugin -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+      integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+      crossorigin="anonymous"
+      defer
+    ></script>
+    <!-- bootstrap's js plugins -->
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+      integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+      crossorigin="anonymous"
+      defer
+    ></script>
+    <style>
+        :root {--root-blue: #0396da; }
+
+        * {box-sizing: border-box; }
+
+        body { 
+        height: 100vh; 
+        background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(245,249,248,1) 100%);
+        }
+
+        .row, #zipcode-input {
+        max-width: 900px;
+        margin: 0 auto;
+        }
+
+        #zipcode-input {
+        margin: 1rem auto 1rem;
+        font-family: 'Copse', serif;
+        }
+
+        h1 {
+        color: var(--root-blue);
+        font-family: 'Raleway', sans-serif;
+        }
+
+        h2, h3 {font-family: 'Raleway', sans-serif; }
+
+        .card {
+        background: linear-gradient(180deg, rgb(239, 239, 240) 0%, rgba(255,255,255,1) 100%);
+        height: 420px;
+        }
+
+        #weather-card {margin-left: 1em; }
+
+        #alert-card {margin-right: 1em; }
+
+        .card-text {margin-bottom: 0px; }
+
+        #all-good { 
+        width: 60%; 
+        margin-top: 5rem;
+        }
+
+        #no-alert-body {
+        margin-top: 6rem;
+        }
+
+        #triangle {
+        width: 70%;
+        margin: 2.5rem auto;
+        }
+
+        .fa-mouse-pointer { color: #000; }
+
+        #filler {
+        opacity: 0;
+        width: 10px;
+        }
+
+        #submit {background-color: var(--root-blue); }
+        #submit:active {transform: scale(.95); }
+        #save {background-color: var(--root-blue); }
+        #save:active {transform: scale(.95); }
+
+        #settings-link {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 5px;
+        margin: 1rem;
+        }
+
+        @media screen and (max-width: 576px) {
+        #filler {display: none; }
+        body { background-color: #fff; }
+        #settings-link { 
+            position: relative;
+            margin-top: 1rem;
+        }
+        #alert-card, #weather-card {
+            margin-left: 0;
+            margin-right: 0;
+        }
+        }
+
+        @media screen and (min-width: 1000px) {
+        #weather-header, #alert-header {font-size: 2rem; }
+        }
+
+    </style>
+    <link rel="icon" href="/thunderstorm.png">
+    <script src="/js/app.js" defer></script>
+    <script src="/js/config.js" defer></script>
+    <script src="/js/Alert.js" defer></script>
+    <script src="/js/Weather.js" defer></script>
+    <script src="/js/UI.js" defer></script>
+    <script src="/js/util.js" defer></script>
+    <script src="/js/icons.js" defer></script>
+    <script src="/js/PostRequest.js" defer></script>
+    <title>ISWAM | IoT Severe Weather Alert Monitor</title>
+  </head>
+  <body>    
+    <div class="bg-light p-2 border-bottom">
+      <h1 class="text-center display-1">ISWAM</h1>
+      <p class="text-center small">IoT Severe Weather Alert Monitor</p>
+    </div> <!-- end bg-light -->
+
+    <form method="post" action="/submit-zip">
+      <div id="zipcode-input" class="d-flex justify-content-center">
+        <div class="row">
+          <div class="col-6 col-sm-auto">
+            <input type="text" class="form-control" id="zip" name="zip" placeholder="ZIP code" />
+          </div> <!-- end col-auto -->
+          <div class="col-6 col-sm-auto">
+            <button class="btn btn-primary" id="submit">Check Weather and Alerts</button>
+          </div> <!-- end col-auto -->
+        </div> <!-- end row -->
+      </div> <!-- end zipcode-input -->
+    </form>
+
+    <div class="row">
+
+      <div class="col-12 col-sm-6 mt-4" id="weather-output">
+
+      </div> <!-- end col-12 -->
+
+      <div class="col-12 col-sm-6 mt-4" id="alert-output">
+        <div class="container d-flex align-items-center justify-content-center flex-column">
+        </div> <!-- end container d-flex... -->
+      </div> <!-- end col-12 -->
+    </div> <!-- end row -->
+
+    <div id="alert-modal"></div>
+    <div id="settings-link" class="d-flex justify-content-center">
+        <a href="../settings.html">Configure Settings</a>
+    </div>
+  </body>
+</html>

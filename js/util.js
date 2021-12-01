@@ -108,4 +108,4 @@ const init = function () {
   checkWeatherAndAlerts(zip, severity);
 };
 
-document.querySelector('#submit').addEventListener('click', init);
+// document.querySelector('#submit').addEventListener('click', init);

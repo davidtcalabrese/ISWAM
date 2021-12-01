@@ -2,7 +2,7 @@
   "name": "iswam",
   "version": "1.0.0",
   "description": "IoT Severe Weather Alert Monitor",
-  "main": "app.js",
+  "main": "node/server.js",
   "scripts": {
     "json-server": "json-server --watch db.json"
   },
