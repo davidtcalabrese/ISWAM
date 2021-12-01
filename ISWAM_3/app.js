@@ -34,7 +34,7 @@ app.post('/', async (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   // grab zip code
   const zip = req.body.zip;
-  // pass to individual controller functions for alert 
+  // pass to individual controller functions for alert and weather
   let weatherData = await util.getWeather(zip);
   let alertData = await util.getAlerts(zip, 1);
 
@@ -58,6 +58,13 @@ app.post('/', async (req, res) => {
   });
 });
 
+/**
+ * Initial values for variables used in view before the API calls
+ * Really I don't want anything to be on the screen at all until user makes a request - 
+ * I don't want two empty cards sitting there. 
+ * 
+ * Haven't figured out how to do this yet. 
+ */
 app.get('/', (req, res) => {
   res.render('index', {
     event: '',
