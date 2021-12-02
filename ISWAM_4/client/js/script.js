@@ -1,5 +1,10 @@
 /**
- * Initializes app by accessing form fields and passing them to checkWeatherAndAlerts.
+ * Initializes app by accessing form fields and passing them to
+ * node app through a post request.
+ * 
+ * It receives back the variables that are interpolated in HTML
+ * elements and pushed to DOM.
+ * 
  *
  * @author David Calabrese <david.thomas.calabrese@gmail.com>
  */
