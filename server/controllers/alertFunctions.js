@@ -22,16 +22,10 @@ const axios = require('axios');
     return -1;
   } 
   // const severity = alertData.properties.severity;
+  // todo: make sure alert exceeds severity threshold
+  
   const data = getAlertFields(alertData);
   return data;
- 
-  
-  
-  // if (isSevereEnough(severity, severityThreshold)) {
-  //   return data;
-  // } else {
-  //   return -1;
-  // }
 };
 
 /**
