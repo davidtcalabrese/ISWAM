@@ -1,9 +1,8 @@
 const axios = require('axios');
+const config = require('../config.js').config;
 
 /**
- * Prepares for alert API call by making some preliminary API calls, exchanging zip
- * code for coordinates and coordinates for a UGC code, then gets alert with code,
- * checks if there is an alert and that the alert's severity surpasses severity threshold
+ * Checks if there is an alert for entered zip code and that the alert's severity surpasses severity threshold
  * set by user, if it does it calls displayAlert to add alert to DOM, otherwise, calls
  * displayNoAlert, which adds thumbs up sign to DOM.
  *
@@ -12,39 +11,36 @@ const axios = require('axios');
  */
  const processAlert = async (zip, severityThreshold) => {
   // get data needed for requests
-
-  const [lat, long] = await getCoordsFromZip(zip);
-  const code = await getCodeFromCoords(lat, long);
-  const alertData = await getAlertFromCode(code);
+  const alertData = await getAlertFromZip(zip);
 
   if (alertData == -1  ) {
-    console.log("-1");
     return -1;
   } 
-  // const severity = alertData.properties.severity;
-  // todo: make sure alert exceeds severity threshold
+  const severity = alertData.severity;
+  if (!isSevereEnough(severity, severityThreshold)) {
+    return -1;
+  }
   
   const data = getAlertFields(alertData);
   return data;
 };
 
 /**
- * Accesses the NWS API, retrieves alert for area or -1 if no alert.
+ * Accesses the Weatherbit API, retrieves alert for area or -1 if no alert.
  *
- * @param {string} code a universal geographic code (UGC) identifying a region
+ * @param {string} zip a zip code identifying a region
  * @returns alert object from api or -1 if no alert
  */
-const getAlertFromCode = async code => {
-  const resp = await axios.get(`https://api.weather.gov/alerts/active/?status=actual&zone=${code}`);
+const getAlertFromZip = async zip => {
+  const API_KEY = config.API_KEY;
+  const resp = await axios.get(`https://api.weatherbit.io/v2.0/alerts?country=US&postal_code=${zip}&key=${API_KEY}`);
   const data = await resp.data;
+  const alert = data.alerts[0];
 
-  const alert = data.features[0];
-
-  // return -1 if no alert for UGC
+  // return -1 if no alert for zip
   if (typeof alert === 'undefined') {
     return -1;
-  }
-  // otherwise return the alert
+  } // otherwise return the alert
   return alert;
 };
 
@@ -55,11 +51,13 @@ const getAlertFromCode = async code => {
  */
 const getAlertFields = alertProperties => {
   const alertProps = [];
-  alertProps.push(alertProperties.properties.event);
-  alertProps.push(alertProperties.properties.severity);
-  alertProps.push(alertProperties.properties.description);
-  const startTime = alertProperties.properties.onset;
-  const endTime = alertProperties.properties.ends;
+  const event = alertProperties.title;
+  const eventParsed = parseEvent(event);
+  alertProps.push(eventParsed);
+  alertProps.push(alertProperties.severity);
+  alertProps.push(alertProperties.description);
+  const startTime = alertProperties.onset_local;
+  const endTime = alertProperties.expires_local;
   // format date and time nicer
   alertProps.push(formatDateTime(new Date(startTime)));
   alertProps.push(formatDateTime(new Date(endTime)));
@@ -68,38 +66,15 @@ const getAlertFields = alertProperties => {
 };
 
 /**
- * Gets geographic coordinates from a zip code.
- *
- * @param {string} zip - A zip code.
- * @returns {Array} in format [latitude, longitude].
+ * Takes a long string containing event title and grabs just the title.
+ * 
+ * @param {string} event - Type of alert, corresponds to reponse.alerts.title .
+ * @returns {string} - The title of the event.
  */
-const getCoordsFromZip = async function (zip) {
-  const resp = await axios.get(`http://api.zippopotam.us/us/${zip}`);
-  const data = await resp.data;
-
-  const lat = data.places[0].latitude;
-  const long = data.places[0].longitude;
-
-  const coords = [];
-  coords.push(lat);
-  coords.push(long);
-  return coords;
-};
-
-/**
- * Gets universal geographic code (UGC) from coordinates.
- *
- * @param {string or number} lat - the latitude of the user's zip code.
- * @param {string or number} long - the longitude of the user's zip code.
- * @returns {string} a universal geographic code (UGC).
- */
-const getCodeFromCoords = async function (lat, long) {
-  const resp = await axios.get(`https://api.weather.gov/points/${lat},${long}`);
-  const data = await resp.data;
-  const forecastZone = data.properties.forecastZone;
-  const code = forecastZone.substr(forecastZone.length - 6);
-  return code;
-};
+const parseEvent = event => {
+    const endIndex = event.indexOf('issued');
+    return event.substr(0, endIndex - 1);
+}
 
 /**
  * Determines if alert should be displayed by checking severity level against severity threshold.
@@ -109,22 +84,16 @@ const getCodeFromCoords = async function (lat, long) {
  */
 const isSevereEnough = (severity, severityThreshold) => {
   // default is 1 in case severity doens't come back so alert will display
-  let eventSeverityAsNumber = 1;
+  let eventSeverityAsNumber;
   switch (severity) {
-    case 'Unknown':
+    case 'Watch':
       eventSeverityAsNumber = 1;
       break;
-    case 'Minor':
+    case 'Advisory':
       eventSeverityAsNumber = 2;
       break;
-    case 'Moderate':
+    case 'Warning':
       eventSeverityAsNumber = 3;
-      break;
-    case 'Severe':
-      eventSeverityAsNumber = 4;
-      break;
-    case 'Extrene':
-      eventSeverityAsNumber = 5;
       break;
     default:
       eventSeverityAsNumber = 1;
@@ -147,15 +116,13 @@ const isSevereEnough = (severity, severityThreshold) => {
   const ampm = hours24 >= 12 ? 'pm' : 'am';
   const hours12 = hours24 % 12;
   const hoursFormatted = hours12 ? hours12 : 12; // if hours evaluates to 0 it should be 12
-  const minutesFormatted = minutes === 0 ? '00' : minutes; // no single digit minute values
+  const minutesFormatted = minutes < 10 ? '00' : minutes; // no single digit minute values
 
   return `${month}/${day}, ${hoursFormatted}:${minutesFormatted}${ampm}`;
 };
 
 exports.processAlert = processAlert;
-exports.getCoordsFromZip = getCoordsFromZip;
-exports.getAlertFromCode = getAlertFromCode;
 exports.getAlertFields = getAlertFields;
-exports.getCodeFromCoords = getCodeFromCoords;
 exports.isSevereEnough = isSevereEnough;
+exports.getAlertFromZip = getAlertFromZip;
 
