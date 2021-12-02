@@ -1,4 +1,5 @@
 const axios = require('axios');
+const config = require('../config.js').config;
 
 /**
  * Accesses weather data from weatherbit API for zip code.
@@ -6,11 +7,10 @@ const axios = require('axios');
  * @param {string} zip - A zip code.
  */
 const getWeatherFromZip = async zip => {
-  // const API_KEY = config.API_KEY;
-  // const URL = `https://api.weatherbit.io/v2.0/current?postal_code=${zip}&country=US&key=${API_KEY}`;
+  const API_KEY = config.API_KEY;
+  const URL = `https://api.weatherbit.io/v2.0/current?postal_code=${zip}&country=US&key=${API_KEY}`;
 
-  const API_KEY = 'f136c24d087d4390a933db6a89e244c8';
-  const resp = await axios.get(`https://api.weatherbit.io/v2.0/current?postal_code=${zip}&country=US&key=${API_KEY}`);
+  const resp = await axios.get(URL);
   const data = await resp.data;
   const weatherData = data.data[0];
 
