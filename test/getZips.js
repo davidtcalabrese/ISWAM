@@ -68,9 +68,9 @@ const getZipFromCoords = async function (coords) {
  * the file. Just copy over how ever many you want. 
  */
 const UGCs = [
-  'PRZ010', 
-  'VIZ001', 
-  'VIZ002',   
+  'AKZ206', 
+  'WAC009', 
+  'ORZ031', 
 ];
 
 /**
