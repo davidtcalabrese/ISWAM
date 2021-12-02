@@ -17,6 +17,8 @@ router.post('/', async (req, res, next) => {
   
   const alertData = await processAlert(zip, 1);
 
+  console.log(alertData);
+
   if (alertData === -1) {
     var weatherAndAlertData = weatherData;
   } else {
