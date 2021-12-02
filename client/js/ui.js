@@ -40,7 +40,7 @@
       <h2 class="display-5 text-center small" id="alert-header">Alerts</h2>
       <div class="container d-flex align-items-center justify-content-center flex-column">
           <div class="card mt-2" id="alert-card"  style="width: 19rem;">
-            <img src="../images/alert-icon.png" id="triangle" class="card-img-top" alt="alert">
+            <img src="./images/alert-icon.png" id="triangle" class="card-img-top" alt="alert">
             <div class="card-body">
               <h5 class="card-title text-danger" id="alert-title" 
                   title="${description}"> ${event} <i class="fas fa-mouse-pointer"></i></h5>
