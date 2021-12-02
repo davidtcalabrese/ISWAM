@@ -8,7 +8,12 @@
  * @author David Calabrese <david.thomas.calabrese@gmail.com>
  */
  const init = async () => {
+  // get zip from form
   const zip = getZip();
+  // check local storage for severity option
+  const severity = getSeverity();
+
+  console.log(severity);
 
   const data = await postData("http://localhost:3300/", {zip: zip, severity: 1});
   if (data.length === 5) { // No alert for zip code
