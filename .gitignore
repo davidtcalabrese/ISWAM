@@ -1,3 +1,10 @@
 config.js
 node_modules
 .vscode
+
+# tests
+*.txt
+client_test.js
+test.js
+
+
