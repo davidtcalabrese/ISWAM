@@ -1,13 +1,13 @@
 /**
  * Takes all of the parameters fetched by API to display a a weather in DOM
- * 
+ *
  * @param {string} description - short (2-5 words) summary of current weather
  * @param {string} city - city corresponding to zip code
  * @param {string} state - state corresponding to zip code
  * @param {string} temperature - current temperature in zip code in degrees Fahrenheit
- * @param {string} humidity - current relative humidity in zip code as percentage 
+ * @param {string} humidity - current relative humidity in zip code as percentage
  */
- const displayWeather = (description, city, state, temperature, humidity) => {
+const displayWeather = (description, city, state, temperature, humidity) => {
   const iconPath = getIconFromDescription(description.toLowerCase());
   const weatherDisplay = `
       <h2 class="display-5 text-center small" id="weather-header">Weather</h2>
@@ -28,14 +28,14 @@
 
 /**
  * Accesses alert object properties and inserts them into HTML template to display to DOM.
- * 
- * @param {string} event - type of alert (eg tropical storm, wind advisory, etc) 
- * @param {string} severity - seriousness of event (minor > moderate > extreme > severe)  
- * @param {string} description - details about event 
- * @param {string} starts - time alert takes effect 
+ *
+ * @param {string} event - type of alert (eg tropical storm, wind advisory, etc)
+ * @param {string} severity - seriousness of event (minor > moderate > extreme > severe)
+ * @param {string} description - details about event
+ * @param {string} starts - time alert takes effect
  * @param {string} ends - time until alert expires
  */
- const displayAlert = (event, severity, description, starts, ends) => {
+const displayAlert = (event, severity, description, starts, ends) => {
   const alertDisplay = `
       <h2 class="display-5 text-center small" id="alert-header">Alerts</h2>
       <div class="container d-flex align-items-center justify-content-center flex-column">
@@ -57,7 +57,7 @@
 /**
  * Displays an "all good" HTML template element to DOM.
  */
- const displayNoAlert = () => {
+const displayNoAlert = () => {
   const noAlertDisplay = `
   <h2 class="display-5 text-center small" id="alert-header">No Alerts</h2>
   <div class="container d-flex align-items-center justify-content-center flex-column">
@@ -83,4 +83,4 @@ const getZip = () => {
   return zip;
 };
 
-document.querySelector("#submit").addEventListener('click', getZip);
+document.querySelector('#submit').addEventListener('click', getZip);
