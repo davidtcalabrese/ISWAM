@@ -21,6 +21,10 @@ const getCoordsFromUGC = async function (UGC) {
   const data = await response.json();
   let long, lat;
 
+  if (typeof data.geometry === 'undefined') {
+    return;
+  }
+
   if (data.geometry.type == 'MultiPolygon') {
     [long, lat] = data.geometry.coordinates[0][0][0];
   } else {
@@ -50,6 +54,10 @@ const getZipFromCoords = async function (coords) {
   const response = await fetch(URL, requestOptions).catch(error => console.log('error', error));
   const data = await response.json();
 
+  if (typeof data.results[0] === 'undefined') {
+    return;
+  }
+
   const address_components = data.results[0].address_components;
   for (const component of address_components) {
     if (component.types[0] === 'postal_code') {
@@ -68,10 +76,34 @@ const getZipFromCoords = async function (coords) {
  * the file. Just copy over how ever many you want. 
  */
 const UGCs = [
-  'AKZ206', 
-  'WAC009', 
-  'ORZ031', 
-];
+  'CAZ548', 
+  'VAZ503', 
+  'SCZ016', 
+  'GUZ003', 
+  'MTZ112', 
+  'CAZ034', 
+  'CAZ039', 
+  'CAZ043', 
+  'MIZ006', 
+  'MDZ003', 
+  'MDZ501', 
+  'VAZ503', 
+  'MDZ001', 
+  'NYZ001', 
+  'NYZ002', 
+  'NYZ019', 
+  'NYZ003', 
+  'NYZ005', 
+  'SCZ016', 
+  'MTZ065', 
+  'AKZ213', 
+  'AKZ017', 
+  'AKZ025', 
+  'WAC057', 
+  'WAC057', 
+  'MDZ003',   
+] 
+
 
 /**
  * Takes in a UGC, calls API to get coordinates, passes those coordinates

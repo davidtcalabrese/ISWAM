@@ -1238,3 +1238,1156 @@ https://www.wrh.noaa.gov/map/?wfo=mfr"
           }
       }
     
+        {
+          "properties": {
+            "onset": "2021-12-02T11:09:00-05:00",
+            "ends": "null",
+            "severity": "Moderate",
+            "event": "Special Weather Statement",
+            "description": "Light wintry precipitation will continue through the remainder of
+the morning before warmer air turns all remaining precipitation
+over to plain rain. Even where the air temperature rises a few
+degrees above freezing, locally icy spots may remain until ground
+temperatures rise later today. In addition, areas of fog may
+become locally dense at times before winds increase behind an
+advancing coastal front."
+          }
+      }
+    
+        {
+          "properties": {
+            "onset": "2021-12-02T10:07:00-06:00",
+            "ends": "null",
+            "severity": "Moderate",
+            "event": "Special Weather Statement",
+            "description": "Dense fog is gradually dissipating across the region, but remains
+patchy across inland areas from Beeville to Victoria. Expect
+visibilities generally 1 to 3 miles or less with a few locations
+seeing visibilities 1/4 mile or less. The fog should dissipate
+by 11am.
+
+Use caution if traveling as visibility may change rapidly
+in a short amount of time. Use low beam headlights and leave
+extra distance between your vehicle and others on the road."
+          }
+      }
+    
+        {
+          "properties": {
+            "onset": "2021-12-02T10:07:00-05:00",
+            "ends": "null",
+            "severity": "Moderate",
+            "event": "Special Weather Statement",
+            "description": "A period of gusty winds is forecast mainly between the Allegheny
+Front and Blue Ridge Mountains through Friday afternoon. The
+strongest winds are most likely along and within several miles
+east of higher mountain ridges. The winds are expected to peak in
+two rounds: one late this morning through early afternoon, and
+another tonight. Breezy conditions are expected to persist until
+mid afternoon Friday. As this occurs, relative humidity values
+will drop sharply tonight into Friday. The best chance for overlap
+between very low relative humidity and stronger winds will be
+over the higher terrain, though very dry antecedent conditions
+have caused fuels to become very dry which could result in a
+heightened risk for a more widespread risk of wildfire spread."
+          }
+      }
+    
+        {
+          "properties": {
+            "onset": "2021-12-02T04:31:00-10:00",
+            "ends": "null",
+            "severity": "Unknown",
+            "event": "Hydrologic Outlook",
+            "description": "A large low pressure system is forecast to develop late this week
+over the central North Pacific with a strong potential to produce
+very heavy rainfall across the main Hawaiian Islands. The rainfall
+duration and intensity is likely to produce numerous flooding
+impacts, possibly as early as Saturday, but more likely from Sunday
+into early next week.
+
+It is too soon to know exactly where the main rain bands will set
+up, but the areas with the greatest current potential for flooding
+include the Big Island and Maui County. Additional rain bands may
+also develop and affect Oahu and Kauai County as the event
+progresses into next week.
+
+Keep up to date with the latest forecast information through the
+Internet (weather.gov/hfo), local media, social media, or NOAA
+Weather Radio broadcasts.
+
+An updated outlook will be issued by 5 PM HST this afternoon, or
+sooner if necessary."
+          }
+      }
+    
+        {
+          "properties": {
+            "onset": "2021-12-03T05:00:00-09:00",
+            "ends": "2021-12-03T16:00:00-09:00",
+            "severity": "Moderate",
+            "event": "Winter Weather Advisory",
+            "description": "* WHAT...Blowing snow expected. Total snow accumulations of 2 to 4
+inches. Southeast winds 15 to 30 mph with gusts as high as 40
+mph, especially along the western coast.
+
+* WHERE...From Bethel west.
+
+* WHEN...From 5 AM to 4 PM AKST Friday.
+
+* IMPACTS...Plan on slippery road conditions. Areas of blowing
+snow will reduce visibility to as low as one half mile at times.
+
+* ADDITIONAL DETAILS...Steady snowfall will begin along the coast
+from Kipnuk to Hooper Bay during the morning hours on Friday
+and combine with southeasterly winds produce blowing snow.
+Although winds away from the coast are expected to be weaker,
+low visibilities may extend as far inland as Bethel by midday
+Friday as the front sweeps eastward. Snow and wind will decrease
+in intensity as the front pushes further inland and weakens,
+decreasing the threat of blowing snow by Friday afternoon."
+          }
+      }
+    
+        {
+          "properties": {
+            "onset": "2021-12-03T18:00:00-10:00",
+            "ends": "2021-12-05T06:00:00-10:00",
+            "severity": "Severe",
+            "event": "Winter Storm Watch",
+            "description": "* WHAT...Heavy snow possible. Total snow accumulations of up to 4
+inches possible. Winds could gust higher than 100 mph.
+
+* WHERE...Big Island Summits.
+
+* WHEN...From Friday evening through late Saturday night.
+
+* IMPACTS...Travel could be very difficult. Blowing snow will
+significantly reduce visibility at times, with periods of zero
+visibility."
+          }
+      }
+    
+        {
+          "properties": {
+            "onset": "2021-12-03T18:00:00-10:00",
+            "ends": "2021-12-06T06:00:00-10:00",
+            "severity": "Severe",
+            "event": "High Wind Watch",
+            "description": "* WHAT...Southwest winds 50 to 80 mph with localized gusts over
+100 mph possible.
+
+* WHERE...Big Island Summits.
+
+* WHEN...From Friday evening through late Sunday night.
+
+* IMPACTS...Travel could be difficult, especially for high profile
+vehicles. Serious injury could result from slamming doors and
+flying objects."
+          }
+      }
+    
+        {
+          "properties": {
+            "onset": "2021-12-02T04:15:00-09:00",
+            "ends": "null",
+            "severity": "Moderate",
+            "event": "Special Weather Statement",
+            "description": "Strong northwesterly winds gusting 45 to 70 mph across the Alaska
+Peninsula are resuspending ash created from the 1912 Katmai
+eruption. The ash is being transported across Shelikof Strait to
+Kodiak Island. While much of the ash will remain suspended in the
+air, trace amounts of ash may fall to the surface, especially
+across the western side of Kodiak Island. Communities which may be
+be impacted include Karluk and Larsen Bay.
+
+Those in sensitive groups and with respiratory ailments may want
+avoid or significantly reduce time outdoors to reduce the amount
+of ash inhaled.
+
+Winds will gradually diminish overnight tonight, bringing an end
+to the resuspension of ash."
+          }
+      }
+    
+        {
+          "properties": {
+            "onset": "2021-12-02T03:17:00-09:00",
+            "ends": "null",
+            "severity": "Moderate",
+            "event": "Special Weather Statement",
+            "description": "A major winter storm is expected to impact the West Coast and
+Western Interior late this weekend into early next week, right on
+the heels of a leading front which will impact the West
+Coast/Bering Strait today through Saturday. The second much larger
+storm will pose the threat for heavy snowfall, significant
+blowing and drifting snow with 35 to 60 mph south to east winds,
+and hazardous travel conditions.
+
+In addition, coastal areas along the West Coast from the Bering
+Strait southward may see sea ice pushing up on the beaches where
+there is limited shorefast ice and who are prone to southeast
+winds, through Sunday night. Another surge of west winds as the
+low shifts inland may present issues on Monday, as well, but the
+details are still very muddy at this juncture. Currently, the
+latest forecasts are indicating 3-4 feet above the normal high
+tide line (MHHW) for parts of Norton Sound, beginning late
+Saturday night and into Sunday.
+
+Stay tuned to www.weather.gov/fairbanks as we continue to monitor
+this storm."
+          }
+      }
+    
+        {
+          "properties": {
+            "onset": "2021-12-02T04:03:00-09:00",
+            "ends": "null",
+            "severity": "Moderate",
+            "event": "Special Weather Statement",
+            "description": "Another strong arctic high will bring bitterly cold temperatures
+to the Interior beginning Thursday night and persisting through
+Sunday morning, with the coldest temps likely on Saturday morning.
+Expect lows to drop into the -30 F to -45 F range for lower
+elevations, with some cold valley spots in the Yukon Flats
+dropping to near -50 F Saturday morning.
+
+Interested parties should take necessary precautions, wear extra
+layers, and protect outdoor motor equipment."
+          }
+      }
+    
+        {
+          "properties": {
+            "onset": "2021-12-02T18:00:00-09:00",
+            "ends": "2021-12-03T18:00:00-09:00",
+            "severity": "Moderate",
+            "event": "Wind Chill Advisory",
+            "description": "* WHAT...Very cold wind chills expected. The cold wind chills will
+cause frostbite in as little as 10 minutes to exposed skin.
+Expect wind chills to range from 45 below zero to 59 below zero
+in conjunction with 40 to 60 mph easterly winds.
+
+* WHERE...Baldwin Peninsula and Selawik Valley.
+
+* WHEN...6 PM this evening to 6 PM Friday.
+
+* ADDITIONAL DETAILS...The dangerously cold wind chills will
+cause frostbite in as little as 10 minutes to exposed skin."
+          }
+      }
+    
+        {
+          "properties": {
+            "onset": "2021-12-02T22:00:00-09:00",
+            "ends": "2021-12-03T18:00:00-09:00",
+            "severity": "Moderate",
+            "event": "Wind Chill Advisory",
+            "description": "* WHAT...Very cold wind chills expected. The cold wind chills will
+cause frostbite in as little as 10 minutes to exposed skin.
+Expect wind chills to range from 40 below zero to 50 below zero
+in conjunction with 20 to 35 mph easterly winds.
+
+* WHERE...Lower Kobuk and Noatak Valleys.
+
+* WHEN...10 PM this evening to 6 PM Friday.
+
+* ADDITIONAL DETAILS...The dangerously cold wind chills will
+cause frostbite in as little as 10 minutes to exposed skin."
+          }
+      }
+    
+        {
+          "properties": {
+            "onset": "2021-12-02T18:00:00-09:00",
+            "ends": "2021-12-03T21:00:00-09:00",
+            "severity": "Extreme",
+            "event": "Blizzard Warning",
+            "description": "* WHAT...Blizzard conditions expected. Travel will be very
+difficult to impossible. Total snow accumulations of up to 2
+inches, with localized amounts up to 4 inches, are expected.
+
+* WHERE...St Lawrence Island and Bering Strait Coast.
+
+* WHEN...6 PM today to 9 PM Friday, beginning at Saint Lawrence
+Island and then moving to the Bering Strait Coast Friday morning.
+
+* ADDITIONAL DETAILS...Winds gusting as high as 60 mph will cause
+whiteout conditions in blowing snow. Significant drifting of
+the snow is likely. Cold wind chills as low as 45 below zero
+will cause frostbite in as little as 10 minutes to exposed skin."
+          }
+      }
+    
+        {
+          "properties": {
+            "onset": "2021-12-03T06:00:00-09:00",
+            "ends": "2021-12-04T03:00:00-09:00",
+            "severity": "Moderate",
+            "event": "Winter Weather Advisory",
+            "description": "* WHAT...Snow and blowing snow expected. Visibility reduced to one
+half miles or less at times. Total snow accumulations of up to
+two inches, are expected.
+
+* WHERE...Yukon Delta.
+
+* WHEN...6 AM Friday to 3 AM Saturday.
+
+* ADDITIONAL DETAILS...Winds gusting as high as 40 mph will cause
+areas of blowing and drifting snow. Cold wind chills as low as
+45 below zero will cause frostbite in as little as 10 minutes
+to exposed skin."
+          }
+      }
+    
+        {
+          "properties": {
+            "onset": "2021-12-02T21:00:00-09:00",
+            "ends": "2021-12-04T09:00:00-09:00",
+            "severity": "Moderate",
+            "event": "Wind Chill Advisory",
+            "description": "* WHAT...Very cold wind chills expected. The cold wind chills will
+cause frostbite in as little as 10 minutes to exposed skin.
+Expect wind chills to range from 45 below zero to 59 below zero
+in conjunction with 30 to 45 mph easterly winds.
+
+* WHERE...Across the Upper Noatak Valley, mainly near Shungnak.
+
+* WHEN...9 PM this evening to 9 AM Saturday.
+
+* ADDITIONAL DETAILS...The dangerously cold wind chills will
+cause frostbite in as little as 10 minutes to exposed skin."
+          }
+      }
+    
+        {
+          "properties": {
+            "onset": "2021-12-02T03:00:00-09:00",
+            "ends": "2021-12-02T12:00:00-09:00",
+            "severity": "Severe",
+            "event": "Wind Chill Warning",
+            "description": "* WHAT...Dangerously cold wind chills to 60 below expected. The
+dangerously cold wind chills will cause frostbite in as little
+as 10 minutes to exposed skin.
+
+* WHERE...Prudhoe Bay.
+
+* WHEN...3 AM to noon.
+
+* ADDITIONAL DETAILS...The dangerously cold wind chills will
+cause frostbite in as little as 10 minutes to exposed skin."
+          }
+      }
+    
+        {
+          "properties": {
+            "onset": "2021-12-02T05:06:00-05:00",
+            "ends": "null",
+            "severity": "Moderate",
+            "event": "Special Weather Statement",
+            "description": "Continued dry conditions will prevail today, which will lead to
+an increased risk of dangerous fire growth. Very low fuel
+moisture, relative humidities between 30 to 40 percent, and gusty
+winds out of the southwest around 20 mph will all contribute to
+the danger. Thus, the environment will be favorable for fires to
+develop easily and spread rapidly if fires are started.
+
+Please refer to your local burn permitting authorities on whether
+you can burn Thursday. If you do burn, use extreme caution since
+fires can quickly get out of hand under these conditions."
+          }
+      }
+    
+        {
+          "properties": {
+            "onset": "2021-12-02T00:08:00-08:00",
+            "ends": "2021-12-02T10:00:00-08:00",
+            "severity": "Moderate",
+            "event": "Dense Fog Advisory",
+            "description": "* WHAT...Visibility one quarter mile or less in dense fog.
+
+* WHERE...San Gabriel Valley.
+
+* WHEN...Until 10 AM PST Thursday.
+
+* IMPACTS...Very low visibility will create dangerous driving
+conditions. Roadways may be affected by dense fog. This includes
+Interstate 5 and the 101, 118, 170, 210, and 405 freeways."
+          }
+      }
+    
+        {
+          "properties": {
+            "onset": "2021-12-02T10:00:00-05:00",
+            "ends": "2021-12-03T06:00:00-05:00",
+            "severity": "Severe",
+            "event": "High Wind Warning",
+            "description": "* WHAT...West winds 25 to 35 mph with gusts up to 60 mph
+expected.
+
+* WHERE...Western Highland and Eastern Highland Counties.
+
+* WHEN...From 10 AM this morning to 6 AM EST Friday.
+
+* IMPACTS...Damaging winds will blow down trees and power lines.
+Widespread power outages are expected. Travel will be
+difficult, especially for high profile vehicles."
+          }
+      }
+    
+        {
+          "properties": {
+            "onset": "2021-12-02T02:12:00-05:00",
+            "ends": "null",
+            "severity": "Moderate",
+            "event": "Special Weather Statement",
+            "description": "Elevated fire danger conditions are expected to occur this
+afternoon. Minimum relative humidities around 30%, very dry fuels,
+and wind gusts over 20 mph are likely. This will yield elevated
+fire danger conditions.
+
+Please refer to your local officials on whether you should burn
+Thursday. If you do burn, please use extra caution."
+          }
+      }
+    
+        {
+          "properties": {
+            "onset": "2021-12-02T03:00:00-08:00",
+            "ends": "2021-12-02T10:00:00-08:00",
+            "severity": "Moderate",
+            "event": "Dense Fog Advisory",
+            "description": "* WHAT...Visibility one quarter mile or less in dense fog.
+
+* WHERE...Portions of the Central Sacramento Valley, Southern
+Sacramento Valley, Northern San Joaquin Valley and Carquinez
+Strait and Delta.
+
+* WHEN...Until 10 AM PST this morning.
+
+* IMPACTS...Hazardous driving conditions due to low visibility."
+          }
+      }
+    
+        {
+          "properties": {
+            "onset": "2021-12-02T18:00:00+10:00",
+            "ends": "2021-12-03T06:00:00+10:00",
+            "severity": "Moderate",
+            "event": "Rip Current Statement",
+            "description": "* WHAT...Dangerous rip currents.
+
+* WHERE...East facing reefs of Tinian and Saipan.
+
+* WHEN...Through late tonight.
+
+* IMPACTS...Rip currents can sweep even the best swimmers away
+from shore into deeper water.
+
+* ADDITIONAL DETAILS...A large northeast swell is producing surf
+between 7 and 9 feet for east facing reefs of Tinian and Saipan. As
+the northeast swell will start to weaken, the risk of rip currents
+will drop down to moderate tomorrow morning."
+          }
+      }
+    
+        {
+          "properties": {
+            "onset": "2021-12-01T17:05:00-08:00",
+            "ends": "2021-12-02T10:00:00-08:00",
+            "severity": "Moderate",
+            "event": "Dense Fog Advisory",
+            "description": "* WHAT...Visibility one quarter mile or less in dense fog.
+
+* WHERE...San Luis Obispo County Central Coast and Santa Barbara
+County Central Coast.
+
+* WHEN...Until 10 AM PST Thursday.
+
+* IMPACTS...Very low visibility will create dangerous driving
+conditions.
+
+* ADDITIONAL DETAILS...Dense fog will start at the immediate
+coast this afternoon and spread inland overnight."
+          }
+      }
+    
+        {
+          "properties": {
+            "onset": "2021-12-01T22:24:00-07:00",
+            "ends": "2021-12-02T17:00:00-07:00",
+            "severity": "Severe",
+            "event": "Red Flag Warning",
+            "description": "The National Weather Service in Great Falls has issued a Red Flag
+Warning for strong gusty winds, which is in effect until 5 PM MST
+Thursday.
+
+* AFFECTED AREA...Eastern Glacier/Toole/Central/Eastern
+Pondera/Liberty and Lewis and Clark National Forest Rocky
+Mountain District-Rocky Mountain Front.
+
+* WINDS...West 30 to 40 mph, with gusts up to 60 mph.
+
+* IMPACTS...The strong winds will make any new fire starts
+difficult to contain."
+          }
+      }
+    
+        {
+          "properties": {
+            "onset": "2021-12-01T14:28:00-09:00",
+            "ends": "2021-12-02T12:00:00-09:00",
+            "severity": "Severe",
+            "event": "Wind Chill Warning",
+            "description": "* WHAT...Dangerously cold wind chills to 65 below expected.
+
+* WHERE...Eastern Beaufort Sea Coast.
+
+* WHEN...Until noon Thursday.
+
+* ADDITIONAL DETAILS...The dangerously cold wind chills will cause
+frostbite in as little as 10 minutes to exposed skin."
+          }
+      }
+    
+        {
+          "properties": {
+            "onset": "2021-12-03T03:00:00-09:00",
+            "ends": "2021-12-04T03:00:00-09:00",
+            "severity": "Severe",
+            "event": "Winter Storm Watch",
+            "description": "* WHAT...Blizzard conditions in snow and blowing snow possible.
+Travel could be very difficult to impossible. Total snow
+accumulations of up to two inches are possible.
+
+* WHERE...Yukon Delta.
+
+* WHEN...From late Thursday night through late Friday night.
+
+* ADDITIONAL DETAILS...Winds gusting as high as 55 mph could cause
+whiteout conditions in blowing snow. Significant drifting of the
+snow is also possible."
+          }
+      }
+    
+        {
+          "properties": {
+            "onset": "2021-12-02T18:00:00-09:00",
+            "ends": "2021-12-04T15:00:00-09:00",
+            "severity": "Severe",
+            "event": "Winter Storm Watch",
+            "description": "* WHAT...Blizzard conditions in blowing snow possible. Travel
+could be very difficult to impossible.
+
+* WHERE...Chukchi Sea Coast.
+
+* WHEN...From Thursday evening through Saturday afternoon.
+
+* ADDITIONAL DETAILS...Winds gusting as high as 55 mph could cause
+whiteout conditions in blowing snow."
+          }
+      }
+    
+        {
+          "properties": {
+            "onset": "2021-12-01T13:54:00-08:00",
+            "ends": "2021-12-02T10:00:00-08:00",
+            "severity": "Moderate",
+            "event": "Dense Fog Advisory",
+            "description": "* WHAT...Visibility one quarter mile or less in dense fog.
+
+* WHERE...Coastal areas of Los Angeles, Ventura, and southern
+Santa Barbara Counties.
+
+* WHEN...Until 10 AM PST Thursday.
+
+* IMPACTS...Very low visibility will create dangerous driving
+conditions.
+
+* ADDITIONAL DETAILS...Dense fog will start at the immediate coast
+this afternoon and spread inland overnight."
+          }
+      }
+    
+        {
+          "properties": {
+            "onset": "2021-12-01T20:00:00-08:00",
+            "ends": "2021-12-02T10:00:00-08:00",
+            "severity": "Moderate",
+            "event": "Dense Fog Advisory",
+            "description": "* WHAT...Visibility one quarter mile or less in dense fog.
+
+* WHERE...San Diego County Coastal Areas, San Diego County
+Valleys, Orange County Coastal Areas and Orange County Inland
+Areas.
+
+* WHEN...From 8 PM this evening to 10 AM PST Thursday.
+
+* IMPACTS...Hazardous driving conditions due to low visibility.
+
+* ADDITIONAL DETAILS...Locally dense fog at the beaches this
+afternoon will become more widespread along the coast and spread further
+inland tonight into Thursday morning."
+          }
+      }
+    
+        {
+          "properties": {
+            "onset": "2021-12-02T12:00:00-05:00",
+            "ends": "2021-12-03T06:00:00-05:00",
+            "severity": "Moderate",
+            "event": "Wind Advisory",
+            "description": "* WHAT...West winds 20 to 35 mph with gusts up to 55 mph.
+
+* WHERE...In Maryland, Washington County. In Virginia, Augusta,
+Rockingham, Shenandoah, and Frederick Counties. In West
+Virginia, Hampshire, Morgan, Berkeley, and Hardy Counties. The
+highest winds are most likely along and east of taller
+ridgetops, mainly west of Interstate 81.
+
+* WHEN...From noon Thursday to 6 AM EST Friday. The strongest
+winds are most likely in two rounds: one around midday into
+early Thursday afternoon, and another one Thursday evening.
+
+* IMPACTS...Gusty winds could blow around unsecured objects. Tree
+limbs could be blown down. A few power outages may result."
+          }
+      }
+    
+        {
+          "properties": {
+            "onset": "2021-12-02T05:00:00-05:00",
+            "ends": "2021-12-02T15:00:00-05:00",
+            "severity": "Minor",
+            "event": "Lakeshore Flood Advisory",
+            "description": "* WHAT...Waves building to 14 to 17 feet leading to minor
+lakeshore flooding.
+
+* WHERE...Alger and Luce Counties.
+
+* WHEN...From 5 AM to 3 PM EST Thursday.
+
+* IMPACTS...Some water on low lying roads and property along the
+lakeshore."
+          }
+      }
+    
+        {
+          "properties": {
+            "onset": "2021-12-02T10:00:00-05:00",
+            "ends": "2021-12-03T06:00:00-05:00",
+            "severity": "Severe",
+            "event": "High Wind Warning",
+            "description": "* WHAT...West winds 25 to 35 mph with gusts up to 65 mph.
+
+* WHERE...In Maryland, Allegany County. In West Virginia, Grant,
+Mineral, and Pendleton Counties. The highest winds are most
+likely along and east of taller ridgetops.
+
+* WHEN...From 10 AM Thursday to 6 AM EST Friday. The strongest
+winds are most likely in two rounds: one around midday into
+early Thursday afternoon, and another one Thursday evening.
+
+* IMPACTS...Damaging winds will blow down trees and power lines.
+Widespread power outages are possible. Travel will be difficult,
+especially for high profile vehicles."
+          }
+      }
+    
+        {
+          "properties": {
+            "onset": "2021-12-02T10:00:00-05:00",
+            "ends": "2021-12-02T19:00:00-05:00",
+            "severity": "Moderate",
+            "event": "Wind Advisory",
+            "description": "* WHAT...West winds 25 to 35 mph with gusts up to 50 mph
+expected.
+
+* WHERE...Niagara and Northern Erie counties.
+
+* WHEN...From 10 AM to 7 PM EST Thursday.
+
+* IMPACTS...Gusty winds could blow around unsecured objects.
+Tree limbs could be blown down and a few power outages may
+result."
+          }
+      }
+    
+        {
+          "properties": {
+            "onset": "2021-12-02T10:00:00-05:00",
+            "ends": "2021-12-03T06:00:00-05:00",
+            "severity": "Moderate",
+            "event": "Wind Advisory",
+            "description": "* WHAT...West winds 20 to 35 mph with gusts up to 55 mph.
+
+* WHERE...Highland County. The highest winds are most likely along
+and east of taller ridgetops.
+
+* WHEN...From 10 AM Thursday to 6 AM EST Friday. The strongest
+winds are most likely in two rounds: one around midday into
+early Thursday afternoon, and another one Thursday evening.
+
+* IMPACTS...Gusty winds could blow around unsecured objects. Tree
+limbs could be blown down. A few power outages may result."
+          }
+      }
+    
+        {
+          "properties": {
+            "onset": "2021-12-02T10:00:00-05:00",
+            "ends": "2021-12-03T06:00:00-05:00",
+            "severity": "Moderate",
+            "event": "Wind Advisory",
+            "description": "* WHAT...West winds 20 to 30 mph with gusts up to 50 mph.
+
+* WHERE...Garrett County. The highest winds are most likely along
+and east of taller ridgetops.
+
+* WHEN...From 10 AM Thursday to 6 AM EST Friday. The strongest
+winds are most likely in two rounds: one around midday into
+early Thursday afternoon, and another one Thursday evening.
+
+* IMPACTS...Gusty winds could blow around unsecured objects. Tree
+limbs could be blown down and a few power outages may result."
+          }
+      }
+    
+        {
+          "properties": {
+            "onset": "2021-12-02T10:00:00-05:00",
+            "ends": "2021-12-02T19:00:00-05:00",
+            "severity": "Moderate",
+            "event": "Wind Advisory",
+            "description": "* WHAT...West winds 20 to 30 mph with gusts up to 50 mph expected.
+
+* WHERE...Orleans, Genesee, Wyoming, and Cattaraugus counties.
+
+* WHEN...From 10 AM to 7 PM EST Thursday.
+
+* IMPACTS...Gusty winds could blow around unsecured objects.
+Tree limbs could be blown down and a few power outages may
+result."
+          }
+      }
+    
+        {
+          "properties": {
+            "onset": "2021-12-02T10:00:00-05:00",
+            "ends": "2021-12-02T19:00:00-05:00",
+            "severity": "Moderate",
+            "event": "Wind Advisory",
+            "description": "* WHAT...Southwest winds 20 to 30 mph with gusts up to 50 mph
+expected. The strongest winds will occur near the Lake Ontario
+shoreline.
+
+* WHERE...Monroe and Wayne counties.
+
+* WHEN...From 10 AM to 7 PM EST Thursday.
+
+* IMPACTS...Gusty winds could blow around unsecured objects.
+Tree limbs could be blown down and a few power outages may
+result."
+          }
+      }
+    
+        {
+          "properties": {
+            "onset": "2021-12-02T07:00:00-05:00",
+            "ends": "2021-12-02T19:00:00-05:00",
+            "severity": "Moderate",
+            "event": "Wind Advisory",
+            "description": "* WHAT...Southwest winds 25 to 35 mph with gusts up to 50 mph
+expected. Strongest winds are expected along the Lake Erie
+shoreline.
+
+* WHERE...Chautauqua and Southern Erie counties.
+
+* WHEN...From 7 AM to 7 PM EST Thursday.
+
+* IMPACTS...Gusty winds could blow around unsecured objects.
+Tree limbs could be blown down and a few power outages may
+result."
+          }
+      }
+    
+        {
+          "properties": {
+            "onset": "2021-12-01T13:05:00-05:00",
+            "ends": "null",
+            "severity": "Moderate",
+            "event": "Special Weather Statement",
+            "description": "Elevated fire danger conditions are expected to occur Thursday
+afternoon. Minimum relative humidities around 30%, very dry fuels,
+and wind gusts over 20 mph are likely. This will yield elevated
+fire danger conditions throughout Thursday afternoon.
+
+Please refer to your local officials on whether you should burn
+Thursday. If you do burn, please use extra caution."
+          }
+      }
+    
+        {
+          "properties": {
+            "onset": "2021-12-01T07:29:00-07:00",
+            "ends": "2021-12-02T11:00:00-07:00",
+            "severity": "Severe",
+            "event": "High Wind Warning",
+            "description": "* WHAT...Southwest winds 50 to 60 mph with gusts up to 80 mph
+occurring.
+
+* WHERE...Beartooth Foothills and Livingston Area.
+
+* WHEN...Until 11 AM MST Thursday.
+
+* IMPACTS...Strong crosswinds will make travel difficult along
+Interstate 90 from Livingston to Big Timber and roads along the
+Beartooth Foothills.
+
+* ADDITIONAL DETAILS...It will also be very warm and dry, so take
+care not to spark a grass fire."
+          }
+      }
+    
+        {
+          "properties": {
+            "onset": "2021-12-02T13:00:00-05:00",
+            "ends": "2021-12-02T22:00:00-05:00",
+            "severity": "Moderate",
+            "event": "Wind Advisory",
+            "description": "* WHAT...West winds 25 to 35 mph with gusts up to 50 mph expected.
+The strongest winds will occur near the Lake Ontario shoreline.
+
+* WHERE...Northern Cayuga, Oswego, and Jefferson counties.
+
+* WHEN...From 1 PM to 10 PM EST Thursday.
+
+* IMPACTS...Gusty winds could blow around unsecured objects.
+Tree limbs could be blown down and a few power outages may
+result."
+          }
+      }
+    
+        {
+          "properties": {
+            "onset": "2021-12-02T18:00:00-09:00",
+            "ends": "2021-12-03T12:00:00-09:00",
+            "severity": "Severe",
+            "event": "Winter Storm Watch",
+            "description": "* WHAT...Blizzard conditions possible. Travel could be very
+difficult to impossible. Total snow accumulations of up to two
+inches, with localized amounts up to 4 inches, are possible.
+
+* WHERE...St Lawrence Island and Bering Strait Coast.
+
+* WHEN...From Thursday evening through Friday morning.
+
+* ADDITIONAL DETAILS...Winds gusting as high as 55 mph could cause
+whiteout conditions in blowing snow. Significant drifting of the
+snow is also possible. Cold wind chills as low as 40 below zero
+will cause frostbite in as little as 10 minutes to exposed
+skin."
+          }
+      }
+    
+        {
+          "properties": {
+            "onset": "2021-12-01T15:00:00-09:00",
+            "ends": "2021-12-02T15:00:00-09:00",
+            "severity": "Moderate",
+            "event": "Winter Weather Advisory",
+            "description": "* WHAT...Snow expected. Total snow accumulations of 4 to 9 inches.
+
+* WHERE...Yakutat, Gustavus, Elfin Cove, Pelican, Sitka, Port
+Alexander, Petersburg, Hyder and surrounding areas.
+
+* WHEN...From 3 PM Wednesday to 3 PM AKST Thursday.
+
+* IMPACTS...Plan on slippery road conditions. The hazardous
+conditions could impact the Wednesday evening and Thursday morning
+commute.
+
+* ADDITIONAL DETAILS...Greatest snowfall rates expected overnight
+Wednesday into Thursday. Accumulation will be highly variable
+in snow showers."
+          }
+      }
+    
+        {
+          "properties": {
+            "onset": "2021-12-01T15:00:00-09:00",
+            "ends": "2021-12-02T15:00:00-09:00",
+            "severity": "Moderate",
+            "event": "Winter Weather Advisory",
+            "description": "* WHAT...For the first Winter Weather Advisory, snow. Additional
+snow accumulations of 1 to 3 inches. For the second Winter
+Weather Advisory, snow expected. Total snow accumulations of 4
+to 6 inches.
+
+* WHERE...Juneau Borough and Northern Admiralty Island.
+
+* WHEN...For the first Winter Weather Advisory, until 11 PM AKST
+this evening. For the second Winter Weather Advisory, from 3
+PM Wednesday to 3 PM AKST Thursday.
+
+* IMPACTS...Travel could be very difficult. The hazardous
+conditions could impact the evening and morning commute.
+
+* ADDITIONAL DETAILS...For the first Winter Weather Advisory, a
+change over to rain is expected around the time snow tapers off.
+For the second Winter Weather Advisory, greatest snowfall rates
+expected overnight Wednesday into Thursday."
+          }
+      }
+    
+        {
+          "properties": {
+            "onset": "2021-11-30T21:43:00-08:00",
+            "ends": "2021-12-02T09:06:00-08:00",
+            "severity": "Severe",
+            "event": "Flood Warning",
+            "description": "* WHAT...Minor flooding is forecast.
+
+* WHERE...Skagit River Near Concrete.
+
+* WHEN...From this evening to late Thursday morning.
+
+* IMPACTS...At 28.0 feet, the Skagit River will flood low areas and
+sections of roads along the river from Rockport downstream to
+Sedro Woolley. This level for this location on the Skagit
+corresponds to a Phase 3 flood in the Skagit County flood system.
+
+* ADDITIONAL DETAILS...
+- At 3:30 PM PST Tuesday the stage was 26.7 feet.
+- Forecast...The river is expected to rise above flood stage
+late this evening to a crest of 29.4 feet late tomorrow
+morning. It will then fall below flood stage late tomorrow
+evening.
+- Flood stage is 28.0 feet.
+- Flood History...This crest compares to a previous crest of
+29.4 feet on 02/08/1945.
+- http://www.weather.gov/safety/flood"
+          }
+      }
+    
+        {
+          "properties": {
+            "onset": "2021-12-01T08:40:00-08:00",
+            "ends": "2021-12-03T01:33:00-08:00",
+            "severity": "Severe",
+            "event": "Flood Warning",
+            "description": "* WHAT...Minor flooding is forecast.
+
+* WHERE...Skagit River Near Mt. Vernon.
+
+* WHEN...From Wednesday morning to early Friday morning.
+
+* IMPACTS...At 28.0 feet, the Skagit River will cause minor flooding
+from Sedro Woolley downstream through Mount Vernon to the mouth...
+with shallow flooding in low pasture lands and over a few
+low-lying roads near the river. This level for this location on
+the Skagit corresponds to a Phase 3 flood in the Skagit County
+flood system.
+
+* ADDITIONAL DETAILS...
+- At 3:15 PM PST Tuesday the stage was 26.8 feet.
+- Forecast...The river is expected to rise above flood stage
+tomorrow morning to a crest of 29.6 feet late tomorrow
+evening. It will then fall below flood stage early Thursday
+afternoon.
+- Flood stage is 28.0 feet.
+- Flood History...This crest compares to a previous crest of
+29.5 feet on 03/20/1997.
+- http://www.weather.gov/safety/flood"
+          }
+      }
+    
+        {
+          "properties": {
+            "onset": "2021-12-02T12:00:00-05:00",
+            "ends": "2021-12-03T06:00:00-05:00",
+            "severity": "Severe",
+            "event": "High Wind Watch",
+            "description": "* WHAT...West to northwest winds 20 to 30 mph with gusts up to 60
+mph possible.
+
+* WHERE...Along and east of ridgelines between the Allegheny
+Front and Interstate 81.
+
+* WHEN...From Thursday afternoon through late Thursday night.
+
+* IMPACTS...Damaging winds could blow down trees and power
+lines. Widespread power outages are possible. Travel could be
+difficult, especially for high profile vehicles.
+
+* ADDITIONAL DETAILS...The strongest winds are most likely
+Thursday evening."
+          }
+      }
+    
+        {
+          "properties": {
+            "onset": "2021-11-30T11:00:00-07:00",
+            "ends": "2021-12-02T11:00:00-07:00",
+            "severity": "Severe",
+            "event": "High Wind Warning",
+            "description": "* WHAT...West winds 35 to 45 mph with gusts up to 65 mph expected.
+
+* WHERE...Judith Gap, Melville Foothills and Northern Sweet Grass.
+
+* WHEN...From 11 AM this morning to 11 AM MST Thursday.
+
+* IMPACTS...Travel on US-191 from Big Timber through Harlowton and
+Judith Gap will be difficult, especially for high profile vehicles.
+
+* ADDITIONAL DETAILS...It will also be very warm and dry, so take
+care not to spark a grass fire."
+          }
+      }
+    
+        {
+          "properties": {
+            "onset": "2021-11-30T00:00:00-09:00",
+            "ends": "2021-12-02T12:00:00-09:00",
+            "severity": "Severe",
+            "event": "Wind Chill Warning",
+            "description": "* WHAT...Dangerously cold wind chills to 70 below expected. The
+dangerously cold wind chills will cause frostbite in as little
+as 10 minutes to exposed skin.
+
+* WHERE...In passes of the Eastern Brooks Range.
+
+* WHEN...Midnight Tuesday night until noon Thursday.
+
+* ADDITIONAL DETAILS...North winds will increase late tonight
+through passes and remain into Thursday. This will cause
+dangerously low wind chills in passes from late tonight through
+Thursday morning."
+          }
+      }
+    
+        {
+          "properties": {
+            "onset": "2021-12-02T18:00:00-05:00",
+            "ends": "2021-12-03T18:00:00-05:00",
+            "severity": "Severe",
+            "event": "Fire Weather Watch",
+            "description": "The National Weather Service in Baltimore MD/Washington DC has
+issued a Fire Weather Watch for low humidity and strong gusty
+winds, which is in effect from Thursday evening through Friday
+afternoon.
+
+* WINDS...West to northwest 20 to 30 mph with gusts up to 60 mph
+possible.
+
+* RELATIVE HUMIDITY...As low as around 25 percent possible.
+
+* IMPACTS...The combination of dry conditions, low humidity, and
+strong gusty winds may result in favorable conditions for the
+rapid spread of fires.
+
+* FUEL MOISTURE...Possibly dropping to around 8 percent."
+          }
+      }
+    
+        {
+          "properties": {
+            "onset": "2021-11-30T03:00:00-08:00",
+            "ends": "2021-12-03T10:00:00-08:00",
+            "severity": "Moderate",
+            "event": "Air Stagnation Advisory",
+            "description": "* WHAT...Degraded air quality due to poor mixing expected.
+
+* WHERE...Valleys in central and eastern Lake County. This
+includes Lakeview, Summer Lake, and Valley Falls
+
+* WHEN...From 3 AM Tuesday to 10 AM PST Friday.
+
+* IMPACTS...Air stagnation is likely to result in diminishing
+air quality with time, especially in and near areas with
+significant sources of air pollution. Diminished air quality
+is likely to cause health issues for people with respiratory
+problems if precautions are not taken.
+
+* View the hazard area in detail at
+https://www.wrh.noaa.gov/map/?wfo=mfr"
+          }
+      }
+    
+        {
+          "properties": {
+            "onset": "2021-11-29T11:00:00-08:00",
+            "ends": "2021-12-02T12:00:00-08:00",
+            "severity": "Moderate",
+            "event": "Air Stagnation Advisory",
+            "description": "* WHAT...Air quality is expected to gradually deteriorate this
+week due to a prolonged period of light winds and reduced
+vertical mixing.
+
+* WHERE...South Willamette Valley, Cascade Foothills in Lane
+County and Cascades in Lane County.
+
+* WHEN...Until noon PST Thursday.
+
+* IMPACTS...Poor air quality may cause issues for people with
+respiratory problems."
+          }
+      }
+    
+        {
+          "properties": {
+            "onset": "2021-11-28T13:00:00-08:00",
+            "ends": "2021-12-02T10:00:00-08:00",
+            "severity": "Moderate",
+            "event": "Air Stagnation Advisory",
+            "description": "* WHAT...Degraded air quality due to poor mixing expected.
+
+* WHERE...The Rogue Valley including Medford, Grants Pass, Ashland,
+Eagle Point, and Shady Cove.
+
+* WHEN...Until 10 AM PST Thursday.
+
+* IMPACTS...Air stagnation is likely to result in diminishing air
+quality with time, especially in and near areas with significant
+sources of air pollution. Diminished air quality is likely to
+cause health issues for people with respiratory problems if
+precautions are not taken.
+
+* ADDITIONAL DETAILS...A weak disturbance may produce enough mixing
+to improve air quality on Monday, but the air should stagnate
+quickly once it passes.
+
+* View the hazard area in detail at
+https://www.wrh.noaa.gov/map/?wfo=mfr"
+          }
+      }
+    
+        {
+          "properties": {
+            "onset": "2021-11-28T13:00:00-08:00",
+            "ends": "2021-12-03T10:00:00-08:00",
+            "severity": "Moderate",
+            "event": "Air Stagnation Advisory",
+            "description": "* WHAT...Degraded air quality due to poor mixing expected.
+
+* WHERE...The Klamath Valley and the Highway 97 corridor. This
+includes Klamath Falls, Sprague River, Chiloquin, Beatty, Keno,
+Bonanza, and Chemult.
+
+* WHEN...Until 10 AM PST Friday.
+
+* IMPACTS...Air stagnation is likely to result in diminishing air
+quality with time, especially in and near areas with significant
+sources of air pollution. Diminished air quality is likely to
+cause health issues for people with respiratory problems if
+precautions are not taken.
+
+* ADDITIONAL DETAILS...A weak disturbance may create just enough
+mixing to briefly improve air quality on Monday, but the air
+should stagnate again quickly.
+
+* View the hazard area in detail at
+https://www.wrh.noaa.gov/map/?wfo=mfr"
+          }
+      }
+    
