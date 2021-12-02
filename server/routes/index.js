@@ -8,8 +8,9 @@ router.get('/', function(req, res, next) {});
 
 router.post('/', async (req, res, next) => {
   const zip = req.body.zip;
+  const severity = req.body.severity;
   const weatherData = await processWeather(zip); 
-  const alertData = await processAlert(zip, 1);
+  const alertData = await processAlert(zip, severity);
 
   if (alertData === -1) {
     var weatherAndAlertData = weatherData;
