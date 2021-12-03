@@ -1,5 +1,6 @@
 const axios = require('axios');
 const config = require('../config.js').config;
+const { postDataLCD, postDataLED } = require('../controllers/puckFunctions');
 
 /**
  * Checks if there is an alert for entered zip code and that the alert's severity surpasses severity threshold
@@ -24,31 +25,49 @@ const processAlert = async (zip, severityThreshold, color) => {
 
   const data = getAlertFields(alertData);
 
-  const [redHex, greenHex, blueHex] = parseColor(color);
-  const LEDPost = buildLEDPost(redHex, greenHex, blueHex);
+  const [red, green, blue] = parseColor(color);
+  const LEDPost = buildLEDPost(red, green, blue);
   const LCDPost = buildLCDPost(data);
-  // todo: function to send POST to puck
+  postDataLCD(LCDPost);
+  postDataLED(LEDPost);
+  setTimeout(clearLEDs, 5000);
+
   return data;
 };
 
 /**
  * Creates an object that will become the POST request sent to the Puck's LEDs.
  * 
- * @param {string} redHex - The hex value of red color component.
- * @param {string} greenHex - The hex value of green color component.
- * @param {string} blueHex - The hex value of blue color component.
+ * @param {string} red - The value of red color component.
+ * @param {string} green - The value of green color component.
+ * @param {string} blue - The value of blue color component.
  * @returns object which will be sent to Puck as body of POST request.
  */
-const buildLEDPost = (redHex, greenHex, blueHex) => {
+const buildLEDPost = (red, green, blue) => {
   return `{ 
-    "red": ${redHex},
-    "green": ${greenHex},
-    "blue": ${blueHex},
+    "red": ${red},
+    "green": ${green},
+    "blue": ${blue},
     "effect": 0,
     "onTime": 250,
     "offTime": 250
   }
 `;
+}
+
+const clearLEDs = () => {
+  const body = `
+        { 
+          "red": 0,
+          "green": 0,
+          "blue": 0,
+          "effect":0,
+          "onTime": 0,
+          "offTime": 0
+        }
+  `;
+
+  postDataLED(body);
 }
 
 /**
@@ -61,31 +80,29 @@ const buildLEDPost = (redHex, greenHex, blueHex) => {
  * @returns - An object to be sent to Puck as body of POST request.
  */
  const buildLCDPost = data => {
-  const alertMsg = `Alert: ${data[0]}`;
+  const alertMsg = `${data[0]}`;
   const startString = `Starts: ${data[3]}`;
   const endString = `Ends: ${data[4]}`;
 
   return `{ 
-    "text1": ${alertMsg},
-    "text2": ${startString},
-    "text3": ${endString},
+    "text1": "${alertMsg}",
+    "text2": "${startString}",
+    "text3": "${endString}",
     "text4": ""
   }
 `;
 };
 
 /**
- * Takes a six digit hex color and returns an array of individual
+ * Takes a six digit color and returns an array of individual
  * colors for red, green and blue.
  *
  * @param {string} color - Six digit hex value for alert LED color.
  */
 const parseColor = color => {
-  const red = color.substring(0, 2);
-  const green = color.substring(2, 4);
-  const blue = color.substring(4);
+  const colorArr = color.split(',');
 
-  return [red, green, blue];
+  return colorArr;
 };
 
 /**
@@ -120,7 +137,7 @@ const getAlertFields = alertProperties => {
   alertProps.push(alertProperties.severity);
   alertProps.push(alertProperties.description);
   const startTime = alertProperties.onset_local;
-  const endTime = alertProperties.expires_local;
+  const endTime = alertProperties.ends_local;
   // format date and time nicer
   alertProps.push(formatDateTime(new Date(startTime)));
   alertProps.push(formatDateTime(new Date(endTime)));
