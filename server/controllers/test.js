@@ -1,6 +1,6 @@
 // const { processAlert, isSevereEnough, getCodeFromCoords, getCoordsFromZip, getAlertFromCode, getAlertFields } = require('../controllers/alertFunctions.js');
 const { getWeatherFromZip } = require('../controllers/weatherFunctions.js');
-const { processAlert, getAlertFromZip, getAlertFields } = require('../controllers/alertFunctionsNew.js');
+const { processAlert, getAlertFromZip, getAlertFields } = require('../controllers/alertFunctions.js');
 
 
 const testAlertCalls = async () => {
@@ -12,7 +12,7 @@ const testAlertCalls = async () => {
   console.log(`code: ${code}`);
 
   const alertData = await getAlertFromCode("PRZ001");
-  // const alertData = await getAlertFromCode("WIZ060");
+  const alertData = await getAlertFromCode("WIZ060");
   console.log(`alert: ${alertData}`);
 
   const alertFields = await getAlertFields(alertData);
@@ -44,5 +44,4 @@ const testNewAlertCalls = async () => {
 testNewAlertCalls();
 // testAlertCalls();
 // testWeatherCalls();
-
 
