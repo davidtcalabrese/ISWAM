@@ -70,13 +70,11 @@ h2, h3 {font-family: 'Raleway', sans-serif; }
   margin: 1rem;
 }
 
-select[data-chosen='FF0000'], select > option[value="FF0000"] {background-color: rgba(214, 0, 0, 0.6);}
-select[data-chosen='FFFF00'], select > option[value="FFFF00"] {background-color: rgba(232, 248, 9, 0.5);}
-select[data-chosen='00FF00'], select > option[value="00FF00"] {background-color: rgba(17, 248, 9, 0.5);}
-select[data-chosen='0000FF'], select > option[value="0000FF"] {background-color: rgba(9, 53, 248, 0.5);}
-select[data-chosen='FF9933'], select > option[value="FF9933"] {background-color: rgba(241, 160, 8, 0.555);}
-select[data-chosen='80080'], select > option[value="80080"] {background-color: rgba(90, 10, 182, 0.5);}
-select[data-chosen='FF00FF'], select > option[value="FF00FF"] {background-color: rgba(240, 13, 228, 0.5);}
+select[data-chosen='255,0,0'], select > option[value="255,0,0"] {background-color: rgba(214, 0, 0, 0.6);}
+select[data-chosen='255,255,0'], select > option[value="255,255,0"] {background-color: rgba(232, 248, 9, 0.5);}
+select[data-chosen='0,255,0'], select > option[value="0,255,0"] {background-color: rgba(17, 248, 9, 0.5);}
+select[data-chosen='0,0,255'], select > option[value="0,0,255"] {background-color: rgba(9, 53, 248, 0.5);}
+select[data-chosen='255,0,255'], select > option[value="255,0,255"] {background-color: rgba(240, 13, 228, 0.5);}
 
 
 @media screen and (max-width: 576px) {
