@@ -70,13 +70,14 @@ h2, h3 {font-family: 'Raleway', sans-serif; }
   margin: 1rem;
 }
 
-select[data-chosen='red'] {background-color: rgba(233, 7, 7, 0.5);}
-select[data-chosen='yellow'] {background-color: rgba(232, 248, 9, 0.5);}
-select[data-chosen='green'] {background-color: rgba(9, 248, 41, 0.5);}
-select[data-chosen='blue'] {background-color: rgba(9, 53, 248, 0.5);}
-select[data-chosen='orange'] {background-color: rgba(248, 192, 9, 0.5);}
-select[data-chosen='purple'] {background-color: rgba(90, 10, 182, 0.5);}
-select[data-chosen='pink'] {background-color: rgba(240, 13, 228, 0.5);}
+select[data-chosen='red'], select > option[value="red"] {background-color: rgba(214, 0, 0, 0.6);}
+select[data-chosen='yellow'], select > option[value="yellow"] {background-color: rgba(232, 248, 9, 0.5);}
+select[data-chosen='green'], select > option[value="green"] {background-color: rgba(17, 248, 9, 0.5);}
+select[data-chosen='blue'], select > option[value="blue"] {background-color: rgba(9, 53, 248, 0.5);}
+select[data-chosen='orange'], select > option[value="orange"] {background-color: rgba(241, 160, 8, 0.555);}
+select[data-chosen='purple'], select > option[value="purple"] {background-color: rgba(90, 10, 182, 0.5);}
+select[data-chosen='pink'], select > option[value="pink"] {background-color: rgba(240, 13, 228, 0.5);}
+
 
 @media screen and (max-width: 576px) {
   #filler {display: none; }
