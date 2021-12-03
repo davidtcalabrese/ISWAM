@@ -39,7 +39,9 @@ uint8_t LEDBlue;
 WebServer server(80);
  
 // Sensor
-//Adafruit_BME280 bme;
+Adafruit_BME280 bme;
+// Set true if we intialized the sensor properly
+uint8_t UsingBME;
 
 // Neopixel LEDs strip
 Adafruit_NeoPixel pixels(NUM_OF_LEDS, PIN, NEO_GRB + NEO_KHZ800);
@@ -171,10 +173,18 @@ void add_json_object(char *tag, float value, char *unit) {
 
 void read_sensor_data(void * parameter) {
    for (;;) {
-     //temperature = bme.readTemperature();
-     //humidity = bme.readHumidity();
-     //pressure = bme.readPressure() / 100;
-     Serial.println("Read sensor data");
+     if (UsingBME) {
+      temperature = bme.readTemperature();
+      humidity = bme.readHumidity();
+      pressure = bme.readPressure() / 100;
+     }
+     Serial.print("Read sensor data: ");
+     Serial.print(temperature);
+     Serial.print(" deg F ");
+     Serial.print(humidity);
+     Serial.print(" %RH ");
+     Serial.print(pressure);
+     Serial.println(" mmHg");
  
      // delay the task
      vTaskDelay(60000 / portTICK_PERIOD_MS);
@@ -221,9 +231,10 @@ void getEnv() {
   server.send(200, "application/json", buffer);
 }
 
-void handlePost() {
+void handlePostLED() {
   if (server.hasArg("plain") == false) {
     //handle error here
+    return;
   }
 
   String body = server.arg("plain");
@@ -237,15 +248,20 @@ void handlePost() {
   int effect = jsonDocument["blink"];
   int onTime = jsonDocument["onTime"];
   int offTime = jsonDocument["offTime"];
-  const char* text1 = jsonDocument["text1"];
-  const char* text2 = jsonDocument["text2"];
-  const char* text3 = jsonDocument["text3"];
-  const char* text4 = jsonDocument["text4"];
 
-  Serial.println(text1);
-  Serial.println(text2);
-  Serial.println(text3);
-  Serial.println(text4);
+  Serial.println("LED Packet:");
+  Serial.print("Red: ");
+  Serial.print(red);
+  Serial.print(" Green: ");
+  Serial.print(green);
+  Serial.print(" Blue: ");
+  Serial.print(blue);
+  Serial.print(" Effect: ");
+  Serial.print(effect);
+  Serial.print(" onTime: ");
+  Serial.print(onTime);
+  Serial.print(" offTime: ");
+  Serial.println(offTime);
 
   changeLEDEffect(red, green, blue, effect, onTime, offTime);
 
@@ -253,14 +269,84 @@ void handlePost() {
   server.send(200, "application/json", "{}");
 }
  
+
+void handlePostLCD() {
+  if (server.hasArg("plain") == false) {
+    //handle error here
+    return;
+  }
+
+  String body = server.arg("plain");
+  Serial.println(body);
+  deserializeJson(jsonDocument, body);
+  
+  // Get RGB components
+  const char* text1 = jsonDocument["text1"];
+  const char* text2 = jsonDocument["text2"];
+  const char* text3 = jsonDocument["text3"];
+  const char* text4 = jsonDocument["text4"];
+
+  Serial.println("LCD Text Packet:");
+  Serial.print("text1: ");
+  Serial.println(text1);
+  Serial.print("text2: ");
+  Serial.println(text2);
+  Serial.print("text3: ");
+  Serial.println(text3);
+  Serial.print("text4: ");
+  Serial.println(text4);
+
+  // Actually print the lines of text out on the LCD
+  tft.fillScreen(TFT_BLACK);
+  tft.setTextFont(4);
+  tft.setTextColor(TFT_YELLOW, TFT_BLACK);
+#define LINE_HEIGHT 36
+  tft.setCursor (1, 1);
+  tft.print(text1);
+  tft.setCursor (1, LINE_HEIGHT);
+  tft.print(text2);
+  tft.setCursor (1, 2 * LINE_HEIGHT);
+  tft.print(text3);
+  tft.setCursor (1, 3 * LINE_HEIGHT);
+  tft.print(text4);
+
+  // Respond to the client
+  server.send(200, "application/json", "{}");
+}
+
+
+void handlePostIcon() {
+  if (server.hasArg("plain") == false) {
+    //handle error here
+    return;
+  }
+
+  String body = server.arg("plain");
+  Serial.println(body);
+  deserializeJson(jsonDocument, body);
+  
+  // Get RGB components
+  const char* iconName = jsonDocument["icon"];
+  int xCoord = jsonDocument["x"];
+  int yCoord = jsonDocument["y"];
  
+  // To be filled in later:
+  // Use iconName, x and y coordinates to draw a grpahic on the screen
+//  tft.pushImage(1, 60, 64, 64, a02d_smoke_64);
+
+  // Respond to the client
+  server.send(200, "application/json", "{}");
+}
+
 // setup API resources
 void setup_routing() {
   server.on("/temperature", getTemperature);
   server.on("/pressure", getPressure);
   server.on("/humidity", getHumidity);
   server.on("/env", getEnv);
-  server.on("/led", HTTP_POST, handlePost);
+  server.on("/led", HTTP_POST, handlePostLED);
+  server.on("/lcd", HTTP_POST, handlePostLCD);
+  server.on("/icon", HTTP_POST, handlePostIcon);
  
   // start server
   server.begin();
@@ -268,20 +354,22 @@ void setup_routing() {
 
 
 void setup_task() {
-  xTaskCreate(
-    read_sensor_data,    
-    "Read sensor data",   // Name of the task (for debugging)
-    1000,            // Stack size (bytes)
-    NULL,            // Parameter to pass
-    1,               // Task priority
-    NULL             // Task handle
-  );
+  if (UsingBME) {
+    xTaskCreate(
+      read_sensor_data,    
+      "Read sensor data",   // Name of the task (for debugging)
+      4000,            // Stack size (bytes)
+      NULL,            // Parameter to pass
+      1,               // Task priority
+      NULL             // Task handle
+    );
+  }
   xTaskCreate(
     runLEDEffects,    
     "LED Effects",   // Name of the task (for debugging)
     1000,            // Stack size (bytes)
     NULL,            // Parameter to pass
-    1,               // Task priority
+    2,               // Task priority
     NULL             // Task handle
   );
 }
@@ -290,19 +378,23 @@ void setup()
 {
    Serial.begin(9600);
  
-   // Sensor setup
-//  if (!bme.begin(0x76)) {
-//    Serial.println("Problem connecting to BME280");
-//  }
+  // Sensor setup
+  if (!bme.begin(0x76)) {
+    Serial.println("Problem connecting to BME280");
+    UsingBME = false;
+  }
+  else {
+    UsingBME = true;
+  }
+
   tft.init();
   tft.setRotation(1);
   tft.fillScreen(TFT_BLACK);
 
-#if 0
   tft.setTextColor(TFT_YELLOW, TFT_BLACK); // Note: the new fonts do not draw the background colour
   tft.setTextFont(4);
   tft.setCursor (8, 40);
-  tft.print("Connecting to WiFi ...");
+  tft.print("Connecting to WiFi");
   connectToWiFi();
   setup_task();
   setup_routing();  
@@ -318,43 +410,13 @@ void setup()
   tft.setCursor (8, 70);
   tft.print(WiFi.localIP());
   delay(4000);
-#endif
-  tft.fillScreen(TFT_WHITE);
-  tft.setTextColor(TFT_BLACK, TFT_WHITE);
-  tft.drawString("1 ABCDabcd1234", 1, 1, 1);
-  tft.drawString("2 ABCDabcd1234", 1, 20, 2);
-  tft.drawString("4 ABCDabcd1234", 1, 40, 4);
-//  tft.drawString("8 ABCD 1234", 10, 80, 8);
-//  tft.drawString("7 ABCDabcd1234", 1, 80, 7);
-//  tft.drawString("8 ABCDabcd1234", 1, 100, 8);
+
+  tft.fillScreen(TFT_BLACK);
+  tft.setCursor (8, 40);
+  tft.print("Waiting for data");
 
   // Swap the colour byte order when rendering
   tft.setSwapBytes(true);
-
-  // Draw the icons
-  tft.pushImage(1, 60, 64, 64, a02d_smoke_64);
-
-
-//  tft.setTextFont(2);
-//  tft.fillRect(1,1,240,20, TFT_MAGENTA);
-//  tft.setCursor (4, 3);
-//  tft.setTextColor(TFT_YELLOW, TFT_MAGENTA); // Note: the new fonts do not draw the background colour
-//  tft.print("Local Weather:");
-//  tft.setTextColor(TFT_GREEN, TFT_BLACK); // Note: the new fonts do not draw the background colour
-//  tft.setCursor (1, 24);
-#define LINE_HEIGHT 20
-#if 0
-  tft.print("Text line 1. Abcdefg 1234567890 ab");
-  tft.setCursor (1, 24 + LINE_HEIGHT);
-  tft.print("Text line 2. Abcdefg 1234567890 ab");
-  tft.setCursor (1, 24 + 2 * LINE_HEIGHT);
-  tft.print("Text line 3. Abcdefg 1234567890 ab");
-  tft.setCursor (1, 24 + 3 * LINE_HEIGHT);
-  tft.print("Text line 4. Abcdefg 1234567890 ab");
-  tft.setCursor (1, 24 + 4 * LINE_HEIGHT);
-  tft.print("Text line 5. Abcdefg 1234567890 ab");
-#endif
-  delay(4000);
 }
  
 void loop() 
