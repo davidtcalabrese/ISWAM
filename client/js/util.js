@@ -279,7 +279,7 @@ async function postData(url = '', data = {}) {
  * @returns {string} String representing a color.
  */
  const getColor = () => {
-  const color = sessionStorage.getItem('color') || "FFFFFF";
+  const color = sessionStorage.getItem('color') || "255,255,255";
 
   return color;
 };
