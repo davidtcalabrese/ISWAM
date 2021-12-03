@@ -10,10 +10,12 @@
  const init = async () => {
   // get zip from form
   const zip = getZip();
-  // check local storage for severity option
+  // check local storage for severity and color options
   const severityThreshold = getSeverity();
+  const color = getColor();
 
-  const data = await postData("http://localhost:3300/", {zip: zip, severity: severityThreshold});
+  const data = await postData("http://localhost:3300/", 
+      {zip: zip, severity: severityThreshold, color: color});
   if (data.length === 5) { // No alert for zip code
     var [description, city, state, temp, humidity] = data;
     displayNoAlert();
