@@ -7,9 +7,10 @@ const config = require('../config.js').config;
  * displayNoAlert, which adds thumbs up sign to DOM.
  *
  * @param {string} zip - The zip code of user.
- * @param {string} severityThreshold desired severity threshold (default is all levels).
+ * @param {string} severityThreshold - Desired severity threshold (default is all levels).
+ * @param {string} color - Color of alert lights (default white).
  */
- const processAlert = async (zip, severityThreshold) => {
+ const processAlert = async (zip, severityThreshold, color) => {
   // get data needed for requests
   const alertData = await getAlertFromZip(zip);
 
@@ -22,8 +23,24 @@ const config = require('../config.js').config;
   }
   
   const data = getAlertFields(alertData);
+
+  const [redHex, greenHex, blueHex] = parseColor(color); 
   return data;
 };
+
+/**
+ * Takes a six digit hex color and returns an array of individual 
+ * colors for red, green and blue. 
+ * 
+ * @param {string} color - Six digit hex value for alert LED color. 
+ */
+const parseColor = color => {
+  const red = color.substring(0, 2);
+  const green = color.substring(2, 4);
+  const blue = color.substring(4);
+
+  return [red, green, blue];
+}
 
 /**
  * Accesses the Weatherbit API, retrieves alert for area or -1 if no alert.
@@ -125,4 +142,3 @@ exports.processAlert = processAlert;
 exports.getAlertFields = getAlertFields;
 exports.isSevereEnough = isSevereEnough;
 exports.getAlertFromZip = getAlertFromZip;
-
