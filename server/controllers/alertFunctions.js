@@ -25,8 +25,14 @@ const config = require('../config.js').config;
   const data = getAlertFields(alertData);
 
   const [redHex, greenHex, blueHex] = parseColor(color); 
+  const LEDPost = buildLEDPost(redHex, greenHex, blueHex);
+
   return data;
 };
+
+const buildLEDPost = (redHex, greenHex, blueHex) => {
+  const POSTRequest = `{}`
+}
 
 /**
  * Takes a six digit hex color and returns an array of individual 
