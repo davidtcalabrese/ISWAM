@@ -1,5 +1,6 @@
 const axios = require('axios');
 const config = require('../config.js').config;
+const { postDataLCD } = require('../controllers/puckFunctions');
 
 /**
  * Accesses weather data from weatherbit.io API, creates weather object
@@ -77,23 +78,5 @@ const buildPuckPost = (city, state, tempInF, humidity, description) => {
           }
   `;
 };
-
-/**
- * A function for sending POST requests to the Puck via fetch.
- * 
- * @param {object} data - Object version of what will be the 
- *                        body of the POST request.  
- */
- const postDataLCD = async data => {
-  // Default options are marked with *
-  const options = {
-    headers: {
-      'Accept': 'application/json, text/plain, */*',
-      'Content-Type': 'text/plain',
-      'Connection': 'keep-alive'
-    }
-  };
-  axios.post('http://192.168.1.178/lcd', data, options);
-} 
 
 exports.processWeather = processWeather;
