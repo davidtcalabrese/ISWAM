@@ -13,10 +13,11 @@ const processWeather = async zip => {
   const weatherData = await getWeatherFields(weatherDataRaw);
   // weatherData format is [description, city, state, temp, rh];
 
+  // create body of POST request to PUCK
   const LCDPost = buildPuckPost(weatherData[1], weatherData[2], weatherData[3], weatherData[4], weatherData[0]);
-  console.log(LCDPost);
-  console.log(typeof LCDPost);
+  // send POST request
   postDataLCD(LCDPost);
+  // return weatherData to browser 
   return weatherData;
 };
 
@@ -80,10 +81,8 @@ const buildPuckPost = (city, state, tempInF, humidity, description) => {
 /**
  * A function for sending POST requests to the Puck via fetch.
  * 
- * @param {string} url - address to which request is being sent.
  * @param {object} data - Object version of what will be the 
  *                        body of the POST request.  
- * @returns 
  */
  const postDataLCD = async data => {
   // Default options are marked with *
@@ -97,7 +96,4 @@ const buildPuckPost = (city, state, tempInF, humidity, description) => {
   axios.post('http://192.168.1.178/lcd', data, options);
 } 
 
-
-exports.getWeatherFromZip = getWeatherFromZip;
-exports.getWeatherFields = getWeatherFields;
 exports.processWeather = processWeather;
