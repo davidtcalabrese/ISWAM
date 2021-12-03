@@ -55,6 +55,9 @@ const buildLEDPost = (red, green, blue) => {
 `;
 }
 
+/**
+ * Sends POST request to PUCK to turn off LEDs.
+ */
 const clearLEDs = () => {
   const body = `
         { 
