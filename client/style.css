@@ -70,6 +70,14 @@ h2, h3 {font-family: 'Raleway', sans-serif; }
   margin: 1rem;
 }
 
+select[data-chosen='red'] {background-color: rgba(233, 7, 7, 0.5);}
+select[data-chosen='yellow'] {background-color: rgba(232, 248, 9, 0.5);}
+select[data-chosen='green'] {background-color: rgba(9, 248, 41, 0.5);}
+select[data-chosen='blue'] {background-color: rgba(9, 53, 248, 0.5);}
+select[data-chosen='orange'] {background-color: rgba(248, 192, 9, 0.5);}
+select[data-chosen='purple'] {background-color: rgba(90, 10, 182, 0.5);}
+select[data-chosen='pink'] {background-color: rgba(240, 13, 228, 0.5);}
+
 @media screen and (max-width: 576px) {
   #filler {display: none; }
   body { background-color: #fff; }
