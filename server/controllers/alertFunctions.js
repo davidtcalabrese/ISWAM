@@ -10,35 +10,75 @@ const config = require('../config.js').config;
  * @param {string} severityThreshold - Desired severity threshold (default is all levels).
  * @param {string} color - Color of alert lights (default white).
  */
- const processAlert = async (zip, severityThreshold, color) => {
+const processAlert = async (zip, severityThreshold, color) => {
   // get data needed for requests
   const alertData = await getAlertFromZip(zip);
 
-  if (alertData == -1  ) {
+  if (alertData == -1) {
     return -1;
-  } 
+  }
   const severity = alertData.severity;
   if (!isSevereEnough(severity, severityThreshold)) {
     return -1;
   }
-  
+
   const data = getAlertFields(alertData);
 
-  const [redHex, greenHex, blueHex] = parseColor(color); 
+  const [redHex, greenHex, blueHex] = parseColor(color);
   const LEDPost = buildLEDPost(redHex, greenHex, blueHex);
-
+  const LCDPost = buildLCDPost(data);
+  // todo: function to send POST to puck
   return data;
 };
 
+/**
+ * Creates an object that will become the POST request sent to the Puck's LEDs.
+ * 
+ * @param {string} redHex - The hex value of red color component.
+ * @param {string} greenHex - The hex value of green color component.
+ * @param {string} blueHex - The hex value of blue color component.
+ * @returns object which will be sent to Puck as body of POST request.
+ */
 const buildLEDPost = (redHex, greenHex, blueHex) => {
-  const POSTRequest = `{}`
+  return `{ 
+    "red": ${redHex},
+    "green": ${greenHex},
+    "blue": ${blueHex},
+    "effect": 0,
+    "onTime": 250,
+    "offTime": 250
+  }
+`;
 }
 
 /**
- * Takes a six digit hex color and returns an array of individual 
- * colors for red, green and blue. 
- * 
- * @param {string} color - Six digit hex value for alert LED color. 
+ * Creates an object out of data retrieved from API that will 
+ * become the POST request sent to the Puck's LCD screen.
+ *
+ * @param {string} event - name of alert.
+ * @param {string} start - time alert takes effect.
+ * @param {string} end -  time to which alert is in effect.
+ * @returns - An object to be sent to Puck as body of POST request.
+ */
+ const buildLCDPost = data => {
+  const alertMsg = `Alert: ${data[0]}`;
+  const startString = `Starts: ${data[3]}`;
+  const endString = `Ends: ${data[4]}`;
+
+  return `{ 
+    "text1": ${alertMsg},
+    "text2": ${startString},
+    "text3": ${endString},
+    "text4": ""
+  }
+`;
+};
+
+/**
+ * Takes a six digit hex color and returns an array of individual
+ * colors for red, green and blue.
+ *
+ * @param {string} color - Six digit hex value for alert LED color.
  */
 const parseColor = color => {
   const red = color.substring(0, 2);
@@ -46,7 +86,7 @@ const parseColor = color => {
   const blue = color.substring(4);
 
   return [red, green, blue];
-}
+};
 
 /**
  * Accesses the Weatherbit API, retrieves alert for area or -1 if no alert.
@@ -90,14 +130,14 @@ const getAlertFields = alertProperties => {
 
 /**
  * Takes a long string containing event title and grabs just the title.
- * 
+ *
  * @param {string} event - Type of alert, corresponds to reponse.alerts.title .
  * @returns {string} - The title of the event.
  */
 const parseEvent = event => {
-    const endIndex = event.indexOf('issued');
-    return event.substr(0, endIndex - 1);
-}
+  const endIndex = event.indexOf('issued');
+  return event.substr(0, endIndex - 1);
+};
 
 /**
  * Determines if alert should be displayed by checking severity level against severity threshold.
@@ -130,7 +170,7 @@ const isSevereEnough = (severity, severityThreshold) => {
  * @param {Datetime} datetime - A datetime object.
  * @returns {string} - Date and time formatted as MM/dd, hh:mm am/pm.
  */
- const formatDateTime = datetime => {
+const formatDateTime = datetime => {
   const day = datetime.getDate();
   const month = datetime.getMonth() + 1;
   const hours24 = datetime.getHours();
@@ -145,6 +185,3 @@ const isSevereEnough = (severity, severityThreshold) => {
 };
 
 exports.processAlert = processAlert;
-exports.getAlertFields = getAlertFields;
-exports.isSevereEnough = isSevereEnough;
-exports.getAlertFromZip = getAlertFromZip;
