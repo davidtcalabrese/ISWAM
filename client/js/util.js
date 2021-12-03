@@ -271,3 +271,15 @@ async function postData(url = '', data = {}) {
 
   return severity;
 };
+
+/**
+ *  Checks if a color has been saved to session storage. If it has 
+ *  it returns the value. Otherwise gets default color (white).
+ *
+ * @returns {string} String representing a color.
+ */
+ const getColor = () => {
+  const color = sessionStorage.getItem('color') || 1;
+
+  return color;
+};
