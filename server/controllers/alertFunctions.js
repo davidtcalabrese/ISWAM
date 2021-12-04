@@ -14,7 +14,6 @@ const { postDataLCD, postDataLED } = require('./puckFunctions');
 const processAlert = async (zip, severityThreshold, color) => {
   // get json data needed from API
   const alertData = await getAlertFromZip(zip);
-  console.log(`alertData: ${alertData}`);
 
   if (!alertShouldBeDisplayed(alertData, severityThreshold)) {
     return -1;
