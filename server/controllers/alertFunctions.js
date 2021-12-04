@@ -1,11 +1,11 @@
 const axios = require('axios');
 const config = require('../config.js').config;
-const { postDataLCD, postDataLED } = require('../controllers/puckFunctions');
+const { postDataLCD, postDataLED } = require('./puckFunctions');
 
 /**
- * Checks if there is an alert for entered zip code and that the alert's severity surpasses severity threshold
- * set by user, if it does it calls displayAlert to add alert to DOM, otherwise, calls
- * displayNoAlert, which adds thumbs up sign to DOM.
+ * Checks if there is an alert for entered zip code and that the alert's severity 
+ * surpasses severity threshold set by user, if it does it calls displayAlert to 
+ * add alert to DOM, otherwise, calls displayNoAlert, which adds thumbs up sign to DOM.
  *
  * @param {string} zip - The zip code of user.
  * @param {string} severityThreshold - Desired severity threshold (default is all levels).
@@ -15,24 +15,24 @@ const processAlert = async (zip, severityThreshold, color) => {
   // get data needed for requests
   const alertData = await getAlertFromZip(zip);
 
-  if (alertData == -1) {
+  if (alertData == -1) { // check if there's an alert
     return -1;
   }
   const severity = alertData.severity;
   if (!isSevereEnough(severity, severityThreshold)) {
-    return -1;
+    return -1; // make sure its severe enough
   }
-
+  // get desired values from JSON response
   const data = getAlertFields(alertData);
 
   const [red, green, blue] = parseColor(color);
   const LEDPost = buildLEDPost(red, green, blue);
   const LCDPost = buildLCDPost(data);
-  postDataLCD(LCDPost);
-  postDataLED(LEDPost);
-  setTimeout(clearLEDs, 5000);
+  postDataLCD(LCDPost); // send data to Puck's LCD
+  postDataLED(LEDPost); // send data to Puck's LEDs
+  setTimeout(clearLEDs, 5000); // clear LEDs after 5 seconds
 
-  return data;
+  return data;  // to be sent back to browser to render
 };
 
 /**
@@ -49,12 +49,15 @@ const buildLEDPost = (red, green, blue) => {
     "green": ${green},
     "blue": ${blue},
     "effect": 0,
-    "onTime": 250,
-    "offTime": 250
+    "onTime": 1000,
+    "offTime": 1000
   }
 `;
 }
 
+/**
+ * Turns off lights by sending POST to Puck resetting LEDs. 
+ */
 const clearLEDs = () => {
   const body = `
         { 
@@ -94,10 +97,10 @@ const clearLEDs = () => {
 };
 
 /**
- * Takes a six digit color and returns an array of individual
- * colors for red, green and blue.
+ * Takes three comma-separated numbers representing the rgb color
+ * values and returns an array of individual colors.
  *
- * @param {string} color - Six digit hex value for alert LED color.
+ * @param {string} color - Three RGB decimal values (0-255) for alert LED color.
  */
 const parseColor = color => {
   const colorArr = color.split(',');
@@ -133,12 +136,11 @@ const getAlertFields = alertProperties => {
   const alertProps = [];
   const event = alertProperties.title;
   const eventParsed = parseEvent(event);
+  const startTime = alertProperties.onset_local;
+  const endTime = alertProperties.ends_local;
   alertProps.push(eventParsed);
   alertProps.push(alertProperties.severity);
   alertProps.push(alertProperties.description);
-  const startTime = alertProperties.onset_local;
-  const endTime = alertProperties.ends_local;
-  // format date and time nicer
   alertProps.push(formatDateTime(new Date(startTime)));
   alertProps.push(formatDateTime(new Date(endTime)));
 
