@@ -30,7 +30,7 @@ const processAlert = async (zip, severityThreshold, color) => {
  * One controls the LEDs and the other controls the LCD.
  * 
  * @param {array} data - Contains fields of alert values. 
- * @param {*} color - Desired color of alert LEDs.
+ * @param {string} color - Desired color of alert LEDs.
  */
 const sendAlertToPuck = (data, color) => {
   const [red, green, blue] = parseColor(color);
@@ -48,7 +48,7 @@ const sendAlertToPuck = (data, color) => {
  *   - alert severity is equal to or exceeds severity set by user.
  * @param {string} alertData - The JSON response containing alert data. 
  * @param {string} severityThreshold -  Desired severity threshold.
- * @returns 
+ * @returns {boolean} - If alert should be displayed, true, else false. 
  */
 const alertShouldBeDisplayed = (alertData, severityThreshold) => {
   if (alertData == -1) { // check if there's an alert
@@ -68,7 +68,7 @@ const alertShouldBeDisplayed = (alertData, severityThreshold) => {
  * @param {string} red - The value of red color component.
  * @param {string} green - The value of green color component.
  * @param {string} blue - The value of blue color component.
- * @returns object which will be sent to Puck as body of POST request.
+ * @returns {object} which will be sent to Puck as body of POST request.
  */
 const buildLEDPost = (red, green, blue) => {
   return `{ 
@@ -109,7 +109,7 @@ const clearLEDs = () => {
  * @param {string} event - name of alert.
  * @param {string} start - time alert takes effect.
  * @param {string} end -  time to which alert is in effect.
- * @returns - An object to be sent to Puck as body of POST request.
+ * @returns {object} - An object to be sent to Puck as body of POST request.
  */
  const buildLCDPost = data => {
   const alertMsg = `${(data[0]).substring(0, 19)}`;
@@ -140,8 +140,8 @@ const parseColor = color => {
 /**
  * Accesses the Weatherbit API, retrieves alert for area or -1 if no alert.
  *
- * @param {string} zip a zip code identifying a region
- * @returns alert object from api or -1 if no alert
+ * @param {string} zip - A zip code identifying a region.
+ * @returns {object} - Alert object from api or -1 if no alert.
  */
 const getAlertFromZip = async zip => {
   const API_KEY = config.API_KEY;
