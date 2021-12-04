@@ -32,6 +32,7 @@ const sendWeatherToPuck = props => {
  * Accesses weather data from weatherbit API for zip code.
  *
  * @param {string} zip - A zip code.
+ * @returns {Object} - JSON data from API response.
  */
 const getWeatherFromZip = async zip => {
   const API_KEY = config.API_KEY;
@@ -47,7 +48,8 @@ const getWeatherFromZip = async zip => {
 /**
  * Creates object of weather properties from JSON response.
  *
- * @param {object} response - Bulk of NWS API response.
+ * @param {Object} response - Bulk of NWS API response.
+ * @returns {Object} - An object will all relevant weather properties.
  */
 const getWeatherFields = response => {
   const tempInF = +((response.temp * 9) / 5 + 32).toFixed(0);
@@ -70,7 +72,7 @@ const getWeatherFields = response => {
  * @param {string} tempInF - The temperature in fahrenheit.
  * @param {string} humidity - The relative humidity in degrees.
  * @param {string} description - A short description of the current weather.
- * @returns
+ * @returns {Object} - JSON object which will be body of POST request.
  */
 const buildPuckPost = (city, state, tempInF, humidity, description) => {
   const location = `${city}, ${state}`;
