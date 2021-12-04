@@ -11,20 +11,20 @@ const { postDataLCD } = require('../controllers/puckFunctions');
 const processWeather = async zip => {
   const weatherDataRaw = await getWeatherFromZip(zip);
 
-  const weatherData = await getWeatherFields(weatherDataRaw);
-  sendWeatherToPuck(weatherData); // send to puck
+  const weatherProps = await getWeatherFields(weatherDataRaw);
+  sendWeatherToPuck(weatherProps); // send to puck
 
-  return weatherData; // send to browser
+  return weatherProps; // send to browser
 };
 
 /**
  * Creates the body of the POST request to the PUCK and then sends it. 
  * 
- * @param {array} weatherData - The values to be included in POST body. 
+ * @param {array} props - The values to be included in POST body. 
  */
-const sendWeatherToPuck = weatherData => {
-  // create body of POST request to PUCK, format is [desc, city, state, temp, rh]
-  const LCDPost = buildPuckPost(weatherData[1], weatherData[2], weatherData[3], weatherData[4], weatherData[0]);
+const sendWeatherToPuck = props => {
+  // create body of POST request to PUCK
+  const LCDPost = buildPuckPost(props.city, props.state, props.temp, props.humidity, props.description);
   postDataLCD(LCDPost); // send POST request
 };
 
@@ -45,19 +45,20 @@ const getWeatherFromZip = async zip => {
 };
 
 /**
- * Sets Weather object properties from JSON response.
+ * Creates object of weather properties from JSON response.
  *
- * @param {object} properties - Corresponds to response.data.
+ * @param {object} response - Bulk of NWS API response.
  */
-const getWeatherFields = properties => {
-  const propArr = [];
-  propArr.push(properties.weather.description);
-  propArr.push(properties.city_name);
-  propArr.push(properties.state_code);
-  propArr.push(+((properties.temp * 9) / 5 + 32).toFixed(0)); // conver to deg F
-  propArr.push(properties.rh);
-
-  return propArr;
+const getWeatherFields = response => {
+  const tempInF = +((response.temp * 9) / 5 + 32).toFixed(0);
+  const weatherProps = {
+    description: response.weather.description, 
+    city: response.city_name,
+    state: response.state_code,
+    temp: tempInF, 
+    humidity: response.rh
+  }
+  return weatherProps;
 };
 
 /**

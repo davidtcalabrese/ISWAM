@@ -15,11 +15,13 @@ router.post('/', async (req, res, next) => {
   const alertData = await processAlert(zip, severity, color);
 
   if (alertData === -1) {
-    var weatherAndAlertData = weatherData;
+    var response = weatherData;
+    response.alertPresent = false;
   } else {
-    weatherAndAlertData = [...alertData, ...weatherData];
+    response = {...weatherData, ...alertData};
+    response.alertPresent = true;
   }
-  res.json(weatherAndAlertData);
+  res.json(response);
 });
 
 module.exports = router;

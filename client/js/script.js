@@ -16,14 +16,14 @@
 
   const data = await postData("http://localhost:3300/", 
       {zip: zip, severity: severityThreshold, color: color});
-  if (data.length === 5) { // No alert for zip code
-    var [description, city, state, temp, humidity] = data;
+    
+  if (data.alertPresent) { // if there's an alert, build alert card and display it
+    displayAlert(data.event, data.severity, data.alertDescription, data.start, data.end);
+  } else { // otherwise display the green check for 
     displayNoAlert();
-  } else {
-    var [event, severity, desc, starts, ends, description, city, state, temp, humidity] = data;
-    displayAlert(event, severity, desc, starts, ends);
-  }
-  displayWeather(description, city, state, temp, humidity);
+  } 
+  // display the current weather either way
+  displayWeather(data.description, data.city, data.state, data.temp, data.humidity);
 };
 
 document.querySelector('#submit').addEventListener('click', init);
