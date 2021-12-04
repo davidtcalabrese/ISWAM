@@ -2,8 +2,8 @@
  * Initializes app by accessing form fields and passing them to
  * node app through a post request.
  * 
- * It receives back the variables that are interpolated in HTML
- * elements and pushed to DOM.
+ * It receives back an object containing all of the variables that 
+ * will be interpolated into HTML and pushed to DOM.
  *
  * @author David Calabrese <david.thomas.calabrese@gmail.com>
  */
@@ -19,7 +19,7 @@
     
   if (data.alertPresent) { // if there's an alert, build alert card and display it
     displayAlert(data.event, data.severity, data.alertDescription, data.start, data.end);
-  } else { // otherwise display the green check for 
+  } else { // otherwise display the green check 
     displayNoAlert();
   } 
   // display the current weather either way
