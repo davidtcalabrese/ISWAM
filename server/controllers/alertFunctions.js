@@ -15,13 +15,10 @@ const processAlert = async (zip, severityThreshold, color) => {
   // get data needed for requests
   const alertData = await getAlertFromZip(zip);
 
-  if (alertData == -1) { // check if there's an alert
+  if (!alertShouldBeDisplayed(alertData, severityThreshold)) {
     return -1;
   }
-  const severity = alertData.severity;
-  if (!isSevereEnough(severity, severityThreshold)) {
-    return -1; // make sure its severe enough
-  }
+
   // get desired values from JSON response
   const data = getAlertFields(alertData);
 
@@ -34,6 +31,28 @@ const processAlert = async (zip, severityThreshold, color) => {
 
   return data;  // to be sent back to browser to render
 };
+
+/**
+ * Returns true if an alert should be displayed. 
+ * Must meet two conditions:
+ *   - alert is active for area, and
+ *   - alert severity is equal to or exceeds severity set by user.
+ * @param {string} alertData - The JSON response containing alert data. 
+ * @param {string} severityThreshold -  Desired severity threshold.
+ * @returns 
+ */
+const alertShouldBeDisplayed = (alertData, severityThreshold) => {
+  if (alertData == -1) { // check if there's an alert
+    return false;
+  }
+  const severity = alertData.severity;
+  if (!isSevereEnough(severity, severityThreshold)) {
+    return false; // make sure its severe enough
+  }
+
+  return true;
+}
+
 
 /**
  * Creates an object that will become the POST request sent to the Puck's LEDs.
