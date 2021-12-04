@@ -21,6 +21,10 @@ const getCoordsFromUGC = async function (UGC) {
   const data = await response.json();
   let long, lat;
 
+  if (typeof data.geometry === 'undefined') {
+    return;
+  }
+
   if (data.geometry.type == 'MultiPolygon') {
     [long, lat] = data.geometry.coordinates[0][0][0];
   } else {
@@ -50,6 +54,10 @@ const getZipFromCoords = async function (coords) {
   const response = await fetch(URL, requestOptions).catch(error => console.log('error', error));
   const data = await response.json();
 
+  if (typeof data.results[0] === 'undefined') {
+    return;
+  }
+
   const address_components = data.results[0].address_components;
   for (const component of address_components) {
     if (component.types[0] === 'postal_code') {
@@ -68,23 +76,76 @@ const getZipFromCoords = async function (coords) {
  * the file. Just copy over how ever many you want. 
  */
 const UGCs = [
-  // 'MIZ060', 
-  // 'AKZ220', 
-  // 'WYZ110', 
-  // 'MIZ086', 
-  // 'MIZ006', 
-  // 'MTZ022', 
-  // 'MTZ016', 
-  // 'MTZ017', 
-  // 'GAZ010', 
-  // 'PAZ003', 
-  // 'OHZ013', 
-  // 'PAZ002', 
-  // 'PAZ004', 
-  // 'NYZ020', 
-  // 'NYZ019', 
+  'WYZ010', 
+  'WYZ019', 
+  'WYZ015', 
+  'WYZ002', 
+  'WYZ016', 
+  'WYZ017', 
+  'NDC015', 
+  'WYZ010', 
+  'HIC009', 
+  'AKZ209', 
+  'MEZ007', 
+  'AKZ152', 
+  'AKZ219', 
+  'AKZ207', 
+  'CAZ103', 
+  'NDZ017', 
+  'WYZ108', 
+  'NDZ004', 
+  'NDZ001', 
+  'MTZ021', 
+  'MTZ060', 
+  'MTZ018', 
+  'MTZ016', 
+  'MTZ059', 
+  'MTZ017', 
+  'MNZ010', 
+  'MNZ011', 
+  'MNZ001', 
+  'MTZ010', 
   'MTZ012', 
-];
+  'PRZ005', 
+  'PRZ001', 
+  'AKZ201', 
+  'AKZ027', 
+  'HIZ001', 
+  'HIZ028', 
+  'HIZ022', 
+  'HIZ028', 
+  'AKZ155', 
+  'HIZ001', 
+  'AKZ222', 
+  'AKZ210', 
+  'AKZ214', 
+  'AKZ212', 
+  'AKZ211', 
+  'AKZ207', 
+  'AKZ209', 
+  'CAZ034', 
+  'MTZ009', 
+  'MTZ008', 
+  'CAZ006', 
+  'MTZ016', 
+  'MTZ018', 
+  'WYZ107', 
+  'WYZ106', 
+  'WYZ116', 
+  'AKZ155', 
+  'HIZ028', 
+  'HIZ028', 
+  'AKZ209', 
+  'AKZ208', 
+  'AKZ213', 
+  'AKZ214', 
+  'AKZ217', 
+  'AKZ214', 
+  'AKZ207', 
+  'AKZ213', 
+  'MDZ003'    
+] 
+
 
 /**
  * Takes in a UGC, calls API to get coordinates, passes those coordinates

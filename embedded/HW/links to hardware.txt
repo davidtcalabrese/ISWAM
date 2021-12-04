@@ -32,3 +32,5 @@ https://www.digikey.com/en/products/detail/texas-instruments/SN74LV1T125DBVR/455
 Power switch:
 https://www.amazon.com/gp/product/B086L2GPGX/ref=ppx_yo_dt_b_asin_title_o00_s01?ie=UTF8&psc=1
 
+Sharable link to Tinkercad source of 3D parts:
+https://www.tinkercad.com/things/iGqdxWUjVDv-iswam/edit?sharecode=hKKIgDCYZXO6Xq_zXvjSbqxMwdsn1iEWJBv4jDXOVn4

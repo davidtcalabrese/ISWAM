@@ -13,8 +13,8 @@
 
 #include "a02d_smoke_64.h"
 
-const char *SSID = "SchmalzHaus-KickAss";
-const char *PWD = "bac4bac4ac";
+const char *SSID = "casa calabrese";
+const char *PWD = "calabre4";
 
 #define NUM_OF_LEDS 16
 #define PIN 27
