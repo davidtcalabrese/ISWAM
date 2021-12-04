@@ -1,7 +1,14 @@
 import fetch from 'node-fetch';
 import * as fs from 'fs';
+import readline from 'readline';
 import { config } from './test_config.js';
 
+/**
+ * This file contains functions for getting every zip code for 
+ * which there is an active alert. 
+ * 
+ * Run `node getZips` to get a list of zips written to text file.
+ */
 
 /**
  * Given a Universal Geographic Code (UGC), returns geographic coordinates.
@@ -69,108 +76,26 @@ const getZipFromCoords = async function (coords) {
   return 'none';
 };
 
-/** 
- * list of UGCs to for which to get zip codes 
- * etAllAlerts.js will print a list of these to a file called alert_UGCs.txt.
- * Each request costs .05 cents so that's why they are not read directly from
- * the file. Just copy over how ever many you want. 
- */
-const UGCs = [
-  'AKZ226', 
-  'AKZ223', 
-  'AKZ225', 
-  'AKZ224', 
-  'MTZ065', 
-  'MIZ086', 
-  'MNZ003', 
-  'WYZ004', 
-  'MTZ005', 
-  'MTZ008', 
-  'MTZ012', 
-  'MTZ007', 
-  'PRZ008', 
-  'PRZ013', 
-  'PRZ002', 
-  'MTZ001', 
-  'MTZ003', 
-  'MTZ002', 
-  'ALZ051', 
-  'MTZ009', 
-  'WYZ107', 
-  'WYZ101', 
-  'WYZ115', 
-  'WYZ106', 
-  'WYZ116', 
-  'WYZ115', 
-  'WYZ106', 
-  'WYZ116', 
-  'NYZ001', 
-  'NYZ019', 
-  'HIZ001', 
-  'HIZ003', 
-  'CAZ034', 
-  'WYZ010', 
-  'WYZ002', 
-  'WYZ019', 
-  'WYZ015', 
-  'WYZ017', 
-  'WYZ016', 
-  'WYZ010', 
-  'AKZ209', 
-  'AKZ219', 
-  'AKZ207', 
-  'WYZ108', 
-  'NDZ004', 
-  'NDZ001', 
-  'MTZ021', 
-  'MTZ060', 
-  'MTZ018', 
-  'MTZ016', 
-  'MTZ017', 
-  'MTZ059', 
-  'MNZ010', 
-  'MNZ011', 
-  'MNZ001', 
-  'MTZ010', 
-  'MTZ012', 
-  'PRZ005', 
-  'PRZ001', 
-  'HIZ028', 
-  'HIZ022', 
-  'HIZ028', 
-  'HIZ001', 
-  'AKZ207', 
-  'AKZ209', 
-  'CAZ034', 
-  'MTZ009', 
-  'MTZ008', 
-  'CAZ006', 
-  'MTZ016', 
-  'MTZ018', 
-  'WYZ107', 
-  'WYZ106', 
-  'WYZ116', 
-  'HIZ028', 
-  'HIZ028', 
-  'AKZ217', 
-  'AKZ207',   
-] 
-
-
 /**
  * Takes in a UGC, calls API to get coordinates, passes those coordinates
- * to another API to get zip code. Prints out all three to a file called
- * UGC_coords_zip_CSV.txt.
+ * to another API to get zip code. Prints zip codes to file named zips.txt.
  * 
  * @param {string} UGC 
  */
-const printUGCCoordsAndZipAsCSV = async function (UGC) {
+const printZips = async function (UGC) {
   const coords = await getCoordsFromUGC(UGC);
   const zip = await getZipFromCoords(coords);
 
-  const line = `${UGC}\t${coords}\t${zip}\n`;
+  if (typeof zip === 'undefined') {
+    return;
+  }
+  if (zip.length !== 5) {
+    return;
+  } 
 
-  fs.appendFile('UGC_coords_zip_CSV.txt', line, err => {
+  const line = `${zip}\n`;
+
+  fs.appendFile('zips.txt', line, err => {
     if (err) {
       console.log(err);
     } else {
@@ -183,21 +108,50 @@ const printUGCCoordsAndZipAsCSV = async function (UGC) {
  * Prints header row for CSV file single time. Then loops through 
  * UGC array, passing each to printUGCCoordsAndZipAsCSV
  */
-const printCSVPrep = async function () {
-  const header = "UGC\tCoordinates\tZip \n";
+const readUGCs = async function () {
+  // read in all UGCs line by line
+  const fileStream = fs.createReadStream('alert_UGCs.txt');
 
-  fs.appendFile('UGC_coords_zip_CSV.txt', header, err => {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log('Header row added.');
-    }
+  const rl = readline.createInterface({
+    input: fileStream,
+    crlfDelay: Infinity
   });
 
-  UGCs.forEach(UGC => {
-    printUGCCoordsAndZipAsCSV(UGC);
-  });
+  for await (const UGC of rl) {
+    printZips(UGC);
+  }
 };
 
-printCSVPrep();
+/**
+ * Accesses every active NWS alert (on land), parses each into a simplified json format, 
+ * and writes to alert_data.txt for test data. 
+ */
+ const getAllAlerts = async function () {
+  const URL = `https://api.weather.gov/alerts/active?status=actual&message_type=alert&region_type=land`;
+  
+  const requestOptions = {
+    method: 'GET',
+    redirect: 'follow',
+  };
+
+  const response = await fetch(URL, requestOptions).catch(error => console.log('error', error));
+  const data = await response.json();
+  const alertArray = data.features;
+
+  // grab props: event, severity, description, onset, ends
+  for (let alert of alertArray) {
+
+    const code = alert.properties.geocode.UGC[0] + " \n";
+
+    fs.appendFile('alert_UGCs.txt', code, err => {
+      if (err) { console.log(err); } 
+      else { console.log('UGC added'); }
+    });
+  }
+
+  readUGCs();
+};
+
+getAllAlerts();
+
 
