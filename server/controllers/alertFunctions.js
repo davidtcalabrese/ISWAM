@@ -14,6 +14,7 @@ const { postDataLCD, postDataLED } = require('./puckFunctions');
 const processAlert = async (zip, severityThreshold, color) => {
   // get json data needed from API
   const alertData = await getAlertFromZip(zip);
+  console.log(`alertData: ${alertData}`);
 
   if (!alertShouldBeDisplayed(alertData, severityThreshold)) {
     return -1;
@@ -30,7 +31,7 @@ const processAlert = async (zip, severityThreshold, color) => {
  * One controls the LEDs and the other controls the LCD.
  * 
  * @param {array} data - Contains fields of alert values. 
- * @param {*} color - Desired color of alert LEDs.
+ * @param {string} color - Desired color of alert LEDs.
  */
 const sendAlertToPuck = (data, color) => {
   const [red, green, blue] = parseColor(color);
@@ -54,8 +55,8 @@ const alertShouldBeDisplayed = (alertData, severityThreshold) => {
   if (alertData == -1) { // check if there's an alert
     return false;
   }
-  const severity = alertData.severity;
-  if (!isSevereEnough(severity, severityThreshold)) {
+  const alertSeverity = alertData.severity;
+  if (!isSevereEnough(alertSeverity, severityThreshold)) {
     return false; // make sure its severe enough
   }
 
@@ -112,9 +113,9 @@ const clearLEDs = () => {
  * @returns - An object to be sent to Puck as body of POST request.
  */
  const buildLCDPost = data => {
-  const alertMsg = `${(data[0]).substring(0, 19)}`;
-  const startString = `Starts: ${data[3]}`;
-  const endString = `Ends: ${data[4]}`;
+  const alertMsg = `${(data.event).substring(0, 19)}`;
+  const startString = `Starts: ${data.start}`;
+  const endString = `Ends: ${data.end}`;
 
   return `{ 
     "text1": "${alertMsg}",
@@ -157,23 +158,23 @@ const getAlertFromZip = async zip => {
 };
 
 /**
- * Pulls alert object properties from JSON response, pushes into array.
+ * Creates object out of alert properties from JSON response.
  *
- * @param {object} alertProperties - Object from API, corresponds to response.features.
+ * @param {object} alertProperties - JSON from API, corresponds to response.features.
  */
 const getAlertFields = alertProperties => {
-  const alertProps = [];
-  const event = alertProperties.title;
-  const eventParsed = parseEvent(event);
-  const startTime = alertProperties.onset_local;
-  const endTime = alertProperties.ends_local;
-  alertProps.push(eventParsed);
-  alertProps.push(alertProperties.severity);
-  alertProps.push(alertProperties.description);
-  alertProps.push(formatDateTime(new Date(startTime)));
-  alertProps.push(formatDateTime(new Date(endTime)));
+  const startTime = formatDateTime(new Date(alertProperties.onset_local));
+  const endTime = formatDateTime(new Date(alertProperties.ends_local));
+  const eventParsed = parseEvent(alertProperties.title);
+  const props = {
+    event: eventParsed,
+    start: startTime, 
+    end: endTime,
+    alertDescription: alertProperties.description,
+    severity: alertProperties.severity
+  }
 
-  return alertProps;
+ return props;
 };
 
 /**
