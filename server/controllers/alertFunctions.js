@@ -76,6 +76,8 @@ const clearLEDs = () => {
 /**
  * Creates an object out of data retrieved from API that will 
  * become the POST request sent to the Puck's LCD screen.
+ * alertMsg string limited to 19 characters becaues that's all 
+ * that will fit on Puck LCD.
  *
  * @param {string} event - name of alert.
  * @param {string} start - time alert takes effect.
@@ -83,7 +85,7 @@ const clearLEDs = () => {
  * @returns - An object to be sent to Puck as body of POST request.
  */
  const buildLCDPost = data => {
-  const alertMsg = `${data[0]}`;
+  const alertMsg = `${(data[0]).substring(0, 19)}`;
   const startString = `Starts: ${data[3]}`;
   const endString = `Ends: ${data[4]}`;
 
