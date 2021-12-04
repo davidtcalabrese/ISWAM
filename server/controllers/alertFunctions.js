@@ -20,7 +20,7 @@ const processAlert = async (zip, severityThreshold, color) => {
   }
   // get desired values from JSON response
   const data = getAlertFields(alertData);
-  sendPostsToPuck(data, color);
+  sendAlertToPuck(data, color);
 
   return data;  // to be sent back to browser to render
 };
@@ -32,7 +32,7 @@ const processAlert = async (zip, severityThreshold, color) => {
  * @param {array} data - Contains fields of alert values. 
  * @param {*} color - Desired color of alert LEDs.
  */
-const sendPostsToPuck = (data, color) => {
+const sendAlertToPuck = (data, color) => {
   const [red, green, blue] = parseColor(color);
   const LEDPost = buildLEDPost(red, green, blue);
   const LCDPost = buildLCDPost(data);
