@@ -12,14 +12,20 @@ const processWeather = async zip => {
   const weatherDataRaw = await getWeatherFromZip(zip);
 
   const weatherData = await getWeatherFields(weatherDataRaw);
-  // weatherData format is [description, city, state, temp, rh];
+  sendWeatherToPuck(weatherData); // send to puck
 
-  // create body of POST request to PUCK
+  return weatherData; // send to browser
+};
+
+/**
+ * Creates the body of the POST request to the PUCK and then sends it. 
+ * 
+ * @param {array} weatherData - The values to be included in POST body. 
+ */
+const sendWeatherToPuck = weatherData => {
+  // create body of POST request to PUCK, format is [desc, city, state, temp, rh]
   const LCDPost = buildPuckPost(weatherData[1], weatherData[2], weatherData[3], weatherData[4], weatherData[0]);
-  // send POST request
-  postDataLCD(LCDPost);
-  // return weatherData to browser 
-  return weatherData;
+  postDataLCD(LCDPost); // send POST request
 };
 
 /**
@@ -67,7 +73,7 @@ const getWeatherFields = properties => {
  */
 const buildPuckPost = (city, state, tempInF, humidity, description) => {
   const location = `${city}, ${state}`;
-  const tempHumidity = `${tempInF}°F - ${humidity}% humidity`;
+  const tempHumidity = `${tempInF}F - ${humidity}% humidity`;
   const summary = `${description}`;
 
   return `{ 
