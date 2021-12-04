@@ -12,25 +12,34 @@ const { postDataLCD, postDataLED } = require('./puckFunctions');
  * @param {string} color - Color of alert lights (default white).
  */
 const processAlert = async (zip, severityThreshold, color) => {
-  // get data needed for requests
+  // get json data needed from API
   const alertData = await getAlertFromZip(zip);
 
   if (!alertShouldBeDisplayed(alertData, severityThreshold)) {
     return -1;
   }
-
   // get desired values from JSON response
   const data = getAlertFields(alertData);
+  sendPostsToPuck(data, color);
 
+  return data;  // to be sent back to browser to render
+};
+
+/**
+ * Prepares and sends two different POST requests to Puck. 
+ * One controls the LEDs and the other controls the LCD.
+ * 
+ * @param {array} data - Contains fields of alert values. 
+ * @param {*} color - Desired color of alert LEDs.
+ */
+const sendPostsToPuck = (data, color) => {
   const [red, green, blue] = parseColor(color);
   const LEDPost = buildLEDPost(red, green, blue);
   const LCDPost = buildLCDPost(data);
   postDataLCD(LCDPost); // send data to Puck's LCD
   postDataLED(LEDPost); // send data to Puck's LEDs
   setTimeout(clearLEDs, 5000); // clear LEDs after 5 seconds
-
-  return data;  // to be sent back to browser to render
-};
+}
 
 /**
  * Returns true if an alert should be displayed. 
@@ -52,7 +61,6 @@ const alertShouldBeDisplayed = (alertData, severityThreshold) => {
 
   return true;
 }
-
 
 /**
  * Creates an object that will become the POST request sent to the Puck's LEDs.
