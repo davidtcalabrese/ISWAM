@@ -43,7 +43,7 @@ with the PC (for programming and serial I/O while running as a debug output).
 
 Before the Puck mechanicals were worked out, a breadboard was used for software development and electrical circuit checkout.
 
-![Fully assembled Puck](/embedded/images/PuckBreadboard.png)
+![Fully assembled Puck](/embedded/images/PuckBreadboard.jpg)
 
 ## Mecanical Construction
 
