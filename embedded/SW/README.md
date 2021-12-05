@@ -71,7 +71,7 @@ PlatformIO is used a an extension within Visual Studio Code to compile and downl
 are used for standard ESP32 WiFi, networking, JSON parsing, sensor communication and display communication. The default ESP32 FreeRTOS is used
 by the libraries to manage system resources.
 
-![Puck embedded software flowchart](/embdded/images/PuckSoftwareFlowchart.png)
+![Puck embedded software flowchart](/embedded/images/PuckSoftwareFlowchart.png)
 
 Using the Webserver library, the Puck code presents sevarl URL endpoints on its webserver interface for any client to connect to as it's API.
 The endpoints that display information on the LEDs or screen (/led, /lcd, /icon) are used with HTTP POST requests, where simple JSON data
