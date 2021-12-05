@@ -17,7 +17,7 @@ The ESP32 processor from Espressif fit the bill and so was chosen for the proces
 functionality to what was needed for ISWAM was used as a starting point. A compact develompent board was bought on Amazon for rapid
 shipment, as well as a ring of addressable LEDs, battery and other components.
 
-- Picture of finished Puck -
+![Fully assembled Puck](/embedded/images/FullPuckBoot.png)
 
 ## Block Diagram
 
@@ -25,7 +25,7 @@ The Puck consists of the TTGO board (continaing ESP32 processor, Flash, battery 
 display and USB C connector for charging, programming ande debug), a ring of 16 WS2812 LEDs, BME280 digital pressure/temperature/humidity
 sensor, small LiPo battery pack, on/off switch, DC-DC power supply and level shifter.
 
-- Block diagram showing all of the above pieces-
+![Hardware Block Diagram of Puck](/embedded/images/PuckHardwareBlockDiagram.png)
 
 The DC-DC boost board is required because the WS2812 LEDs need 5V, and when under battery power 5V pin from the TTGO board only supplies
 about 3.7V (from the battery). So the battery voltage is run through the boost converter before powering the LEDs so they will always get
@@ -41,9 +41,21 @@ with the PC (for programming and serial I/O while running as a debug output).
 
 - Simple schematic showing connection of all of the hardware -
 
+Before the Puck mechanicals were worked out, a breadboard was used for software development and electrical circuit checkout.
+
+![Fully assembled Puck](/embedded/images/PuckBreadboard.jpg)
+
 ## Mecanical Construction
 
-All of the electronics in the Puck were soldered to a protoboard using point to point wiring. The stack of components then sit down inside a 3D printed housing. 
+All of the electronics in the Puck were soldered to a protoboard using point to point wiring. 
+
+All Puck electrical components:
+![Top view of Puck electronics](/embedded/images/PuckElectronicsSeparate.jpg)
+
+Bottom view of just the protoboard, with level shifter and point to point wiring visible:
+![Bottom view of Puck electronics](/embedded/images/PuckElectronicsBottom.jpg)
+
+The stack of components then sit down inside a 3D printed housing. 
 The housing consists of two parts - a top and bottom piece. The IPS screen was separated from the TTGO and a 3D printed spacer was
 added between it and the board. This allows the display pannel to sit almost flush with the top of the Puck, increasing readability.
 
@@ -100,6 +112,8 @@ PlatformIO should be able to find the serial port that the Puck has created and 
 baud. Be sure to disconnect from that serial port before attempting to upload to the Puck again.
 
 ### Hardware
+
+![3D Printable Parts for Puck](/embedded/images/3DPrintedPieces.png)
 
 * In the embedded/HW directory are all of the .stl files for the four 3D printed pieces. Slice them with
 your choice of slicer and print on a 3D printer.
