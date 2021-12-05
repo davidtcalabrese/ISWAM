@@ -3,7 +3,7 @@ const axios = require('axios');
 /**
  * A function for sending POST requests to the Puck via axios
  *
- * @param {object} data - Object version of what will be the
+ * @param bject} data - Object version of what will be the
  *                        body of the POST request.
  */
 const postDataLCD = async data => {
@@ -22,8 +22,7 @@ const postDataLCD = async data => {
  * A function for sending POST requests to the Puck via axios.
  * The /led endpoint controls the behavior of the Puck's LEDs.
  *
- * @param {object} data - Object version of what will be the
- *                        body of the POST request.
+ * @param data - Data that will be body of POST request.
  */
 const postDataLED = async data => {
   // Default options are marked with *
