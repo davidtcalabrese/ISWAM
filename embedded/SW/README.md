@@ -17,7 +17,7 @@ The ESP32 processor from Espressif fit the bill and so was chosen for the proces
 functionality to what was needed for ISWAM was used as a starting point. A compact develompent board was bought on Amazon for rapid
 shipment, as well as a ring of addressable LEDs, battery and other components.
 
-- Picture of finished Puck -
+![Fully assembled Puck](/embedded/images/FullPuckBoot.png)
 
 ## Block Diagram
 
