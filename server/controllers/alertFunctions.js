@@ -10,6 +10,7 @@ const { postDataLCD, postDataLED } = require('./puckFunctions');
  * @param {string} zip - The zip code of user.
  * @param {string} severityThreshold - Desired severity threshold (default is all levels).
  * @param {string} color - Color of alert lights (default white).
+ * @returns {Object} - Contains the alert values to send back to user.  
  */
 const processAlert = async (zip, severityThreshold, color) => {
   // get json data needed from API
@@ -29,12 +30,13 @@ const processAlert = async (zip, severityThreshold, color) => {
  * Prepares and sends two different POST requests to Puck. 
  * One controls the LEDs and the other controls the LCD.
  * 
- * @param {array} data - Contains fields of alert values. 
+ * @param {Array} data - Contains fields of alert values. 
  * @param {string} color - Desired color of alert LEDs.
  */
 const sendAlertToPuck = (data, color) => {
   const [red, green, blue] = parseColor(color);
-  const LEDPost = buildLEDPost(red, green, blue);
+  const LEDPost = buildLEDPost(red, green, blue, data.severity);
+  console.log(LEDPost);
   const LCDPost = buildLCDPost(data);
   postDataLCD(LCDPost); // send data to Puck's LCD
   postDataLED(LEDPost); // send data to Puck's LEDs
@@ -68,18 +70,49 @@ const alertShouldBeDisplayed = (alertData, severityThreshold) => {
  * @param {string} red - The value of red color component.
  * @param {string} green - The value of green color component.
  * @param {string} blue - The value of blue color component.
- * @returns {object} which will be sent to Puck as body of POST request.
+ * @returns {Object} which will be sent to Puck as body of POST request.
  */
-const buildLEDPost = (red, green, blue) => {
+const buildLEDPost = (red, green, blue, severity) => {
+  const [effect, onTime, offTime] = getEffect(severity);
+  
   return `{ 
     "red": ${red},
     "green": ${green},
     "blue": ${blue},
-    "effect": 0,
-    "onTime": 1000,
-    "offTime": 1000
+    "blink": ${effect},
+    "onTime":  ${onTime},
+    "offTime": ${offTime}
   }
 `;
+}
+
+/**
+ * The behavior of the Puck's LEDs depends upon severity of the alert. This 
+ * function takes in the severity and returns the appropriate values to send 
+ * to the Puck's /led endpoint. 
+ * 
+ * @param {string} severity - The severity level of the alert. In level of
+ *                            increasing severity: Watch, Advisory, Warning. 
+ * @returns {Array} - The effect, onTime and offTime values for the body of 
+ *                    the request to the Puck. 
+ */
+const getEffect = severity => {
+  let effectArgs;
+  switch (severity) {
+    case 'Watch':
+      effectArgs = [0, 0, 0];
+      break;
+    case 'Advisory':
+      effectArgs = [1, 1000, 1000];
+      break;
+    case 'Warning':
+      effectArgs = [1, 150, 150];
+      break;
+    default:
+      effectArgs = [0, 0, 0];
+  }
+
+  return effectArgs;
 }
 
 /**
@@ -141,7 +174,7 @@ const parseColor = color => {
  * Accesses the Weatherbit API, retrieves alert for area or -1 if no alert.
  *
  * @param {string} zip - A zip code identifying a region.
- * @returns {object} - Alert object from api or -1 if no alert.
+ * @returns {Object} - Alert object from api or -1 if no alert.
  */
 const getAlertFromZip = async zip => {
   const API_KEY = config.API_KEY;
