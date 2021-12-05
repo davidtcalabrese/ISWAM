@@ -47,7 +47,15 @@ Before the Puck mechanicals were worked out, a breadboard was used for software 
 
 ## Mecanical Construction
 
-All of the electronics in the Puck were soldered to a protoboard using point to point wiring. The stack of components then sit down inside a 3D printed housing. 
+All of the electronics in the Puck were soldered to a protoboard using point to point wiring. 
+
+All Puck electrical components:
+![Top view of Puck electronics](/embedded/images/PuckElectroncicsSeparate.png)
+
+Bottom view of just the protoboard, with level shifter and point to point wiring visible:
+![Bottom view of Puck electronics](/embedded/images/PuckElectronicsBottom.png)
+
+The stack of components then sit down inside a 3D printed housing. 
 The housing consists of two parts - a top and bottom piece. The IPS screen was separated from the TTGO and a 3D printed spacer was
 added between it and the board. This allows the display pannel to sit almost flush with the top of the Puck, increasing readability.
 
