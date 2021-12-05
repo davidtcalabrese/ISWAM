@@ -25,7 +25,7 @@ The Puck consists of the TTGO board (continaing ESP32 processor, Flash, battery 
 display and USB C connector for charging, programming ande debug), a ring of 16 WS2812 LEDs, BME280 digital pressure/temperature/humidity
 sensor, small LiPo battery pack, on/off switch, DC-DC power supply and level shifter.
 
-- Block diagram showing all of the above pieces-
+![Hardware Block Diagram of Puck](/embedded/images/PuckHardwareBlockDiagram.png)
 
 The DC-DC boost board is required because the WS2812 LEDs need 5V, and when under battery power 5V pin from the TTGO board only supplies
 about 3.7V (from the battery). So the battery voltage is run through the boost converter before powering the LEDs so they will always get
@@ -40,6 +40,10 @@ with the PC (for programming and serial I/O while running as a debug output).
 ## Schematic
 
 - Simple schematic showing connection of all of the hardware -
+
+Before the Puck mechanicals were worked out, a breadboard was used for software development and electrical circuit checkout.
+
+![Fully assembled Puck](/embedded/images/PuckBreadboard.png)
 
 ## Mecanical Construction
 
@@ -100,6 +104,8 @@ PlatformIO should be able to find the serial port that the Puck has created and 
 baud. Be sure to disconnect from that serial port before attempting to upload to the Puck again.
 
 ### Hardware
+
+![3D Printable Parts for Puck](/embedded/images/3DPrintedPieces.png)
 
 * In the embedded/HW directory are all of the .stl files for the four 3D printed pieces. Slice them with
 your choice of slicer and print on a 3D printer.
