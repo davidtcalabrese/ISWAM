@@ -39,7 +39,7 @@ with the PC (for programming and serial I/O while running as a debug output).
 
 ## Schematic
 
-- Simple schematic showing connection of all of the hardware -
+![Schematic of Puck electronics](/embedded/images/PuckSchematic.png)
 
 Before the Puck mechanicals were worked out, a breadboard was used for software development and electrical circuit checkout.
 
