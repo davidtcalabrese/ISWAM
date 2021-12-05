@@ -15,3 +15,6 @@ ISWAM consists of two parts, a fullstack JavaScript application and The Puck™,
   * Alert from zip codehttps://api.weatherbit.io/v2.0/alerts?country=US&postal_code={zip}
 * [Google Maps Geocoding API](https://developers.google.com/maps/documentation/geocoding/start)
   * Used the reverse geocoding API for testing purposes, zip code from coordinates: https://maps.googleapis.com/maps/api/geocode/json?latlng={lat},{long}
+
+### Flowchart
+![ISWAM Flowchart](/client/images/flowchart.png)
