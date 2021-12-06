@@ -1,3 +1,38 @@
+/**
+  ******************************************************************************
+  * @file    lcd.cpp
+  * @author  Brian Schmalz
+  * @brief   LCD control/display module
+  * 
+  * See https://github.com/davidtcalabrese/ISWAM for full information
+  *
+  ******************************************************************************
+  * @attention
+  * 
+  * The MIT License (MIT)
+  * Copyright © 2021 Brian Schmalz, David Calabrese
+  * Permission is hereby granted, free of charge, to any person obtaining a 
+  * copy of this software and associated documentation files (the “Software”), 
+  * to deal in the Software without restriction, including without limitation 
+  * the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+  * and/or sell copies of the Software, and to permit persons to whom the 
+  * Software is furnished to do so, subject to the following conditions:
+  *
+  * The above copyright notice and this permission notice shall be included in 
+  * all copies or substantial portions of the Software.
+  *
+  * THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
+  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL 
+  * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
+  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING 
+  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
+  * DEALINGS IN THE SOFTWARE.
+  *
+  ******************************************************************************
+  */ 
+
+/* Includes ------------------------------------------------------------------*/
 #include <Arduino.h>
 #include <WiFi.h>
 #include <FreeRTOS.h>
@@ -8,10 +43,26 @@
 // Include graphic/icon array header files here
 #include "a02d_smoke_64.h"
 
+/* Private typedef -----------------------------------------------------------*/
+
+/* Private define ------------------------------------------------------------*/
+
+/* Private macro -------------------------------------------------------------*/
+
+/* Private variables ---------------------------------------------------------*/
 
 TFT_eSPI tft = TFT_eSPI();  // Invoke library, pins defined in User_Setup.h
 
+/* Public variables ----------------------------------------------------------*/
 
+/* Private function prototypes -----------------------------------------------*/
+
+
+/* Private functions ---------------------------------------------------------*/
+
+/* Public functions ---------------------------------------------------------*/
+
+// See header file for documentation block
 void lcd_DisplayIP(void)
 {
   tft.fillScreen(TFT_BLACK);
@@ -22,6 +73,7 @@ void lcd_DisplayIP(void)
   tft.print(WiFi.localIP());
 }
 
+// See header file for documentation block
 void lcd_DisplayWaiting(void)
 {
   tft.fillScreen(TFT_BLACK);
@@ -32,6 +84,8 @@ void lcd_DisplayWaiting(void)
   tft.setSwapBytes(true);
 }
 
+
+// See header file for documentation block
 void lcd_printTextLines(const char * text1, const char * text2, const char * text3, const char * text4)
 {
   tft.fillScreen(TFT_BLACK);
@@ -48,6 +102,7 @@ void lcd_printTextLines(const char * text1, const char * text2, const char * tex
   tft.print(text4);
 }
 
+// See header file for documentation block
 void lcd_Init(void)
 {
   tft.init();

@@ -1,3 +1,38 @@
+/**
+  ******************************************************************************
+  * @file    handlers.cpp
+  * @author  Brian Schmalz
+  * @brief   Webserver hanlder callback functions
+  * 
+  * See https://github.com/davidtcalabrese/ISWAM for full information
+  *
+  ******************************************************************************
+  * @attention
+  * 
+  * The MIT License (MIT)
+  * Copyright © 2021 Brian Schmalz, David Calabrese
+  * Permission is hereby granted, free of charge, to any person obtaining a 
+  * copy of this software and associated documentation files (the “Software”), 
+  * to deal in the Software without restriction, including without limitation 
+  * the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+  * and/or sell copies of the Software, and to permit persons to whom the 
+  * Software is furnished to do so, subject to the following conditions:
+  *
+  * The above copyright notice and this permission notice shall be included in 
+  * all copies or substantial portions of the Software.
+  *
+  * THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
+  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL 
+  * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
+  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING 
+  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
+  * DEALINGS IN THE SOFTWARE.
+  *
+  ******************************************************************************
+  */ 
+
+/* Includes ------------------------------------------------------------------*/
 #include <Arduino.h>
 #include <WiFi.h>
 #include <FreeRTOS.h>
@@ -7,6 +42,14 @@
 #include "led.h"
 #include "lcd.h"
 
+/* Private typedef -----------------------------------------------------------*/
+
+/* Private define ------------------------------------------------------------*/
+
+/* Private macro -------------------------------------------------------------*/
+
+/* Private variables ---------------------------------------------------------*/
+
 // Web server running on port 80
 WebServer server(80);
 
@@ -14,6 +57,19 @@ WebServer server(80);
 StaticJsonDocument<500> jsonDocument;
 char buffer[500];
 
+/* Public variables ----------------------------------------------------------*/
+
+/* Private function prototypes -----------------------------------------------*/
+
+/* Private functions ---------------------------------------------------------*/
+
+/**
+  * @brief  Creates JSON data in buffer from one piece ofsensor data
+  * @param  tag : string name for tag element
+  * @param  value : numerical value element
+  * @param  unit : string name for units element
+  * @retval none
+  */
 void create_json(char *tag, float value, char *unit) 
 { 
   jsonDocument.clear(); 
@@ -25,6 +81,13 @@ void create_json(char *tag, float value, char *unit)
   Serial.println(buffer);  
 }
  
+/**
+  * @brief  Add one new sensor value into existing JSON document
+  * @param  tag : string name for tag element
+  * @param  value : numerical value element
+  * @param  unit : string name for units element
+  * @retval none
+  */
 void add_json_object(char *tag, float value, char *unit) 
 {
   JsonObject obj = jsonDocument.createNestedObject();
@@ -33,6 +96,11 @@ void add_json_object(char *tag, float value, char *unit)
   obj["unit"] = unit; 
 }
 
+/**
+  * @brief  Called when /temperature endpoint is accessed. Return temp JSON
+  * @param  none
+  * @retval none
+  */
 void getTemperature(void) 
 {
   char tag[] = "temperature";
@@ -42,6 +110,11 @@ void getTemperature(void)
   server.send(200, "application/json", buffer);
 }
  
+/**
+  * @brief  Called when /humidity endpoint is accessed. Return humidity JSON
+  * @param  none
+  * @retval none
+  */
 void getHumidity(void) 
 {
   char tag[] = "humidity";
@@ -51,6 +124,11 @@ void getHumidity(void)
   server.send(200, "application/json", buffer);
 }
  
+/**
+  * @brief  Called whne /pressure endpoint is accessed. Return pressure JSON
+  * @param  none
+  * @retval none
+  */
 void getPressure(void) 
 {
   char tag[] = "pressure";
@@ -60,6 +138,11 @@ void getPressure(void)
   server.send(200, "application/json", buffer);
 }
  
+/**
+  * @brief  Called when /env endpoint is accessed. Return all three values in JSON response
+  * @param  none
+  * @retval none
+  */
 void getEnv(void) 
 {
   char tag1[] = "temperature";
@@ -77,6 +160,11 @@ void getEnv(void)
   server.send(200, "application/json", buffer);
 }
 
+/**
+  * @brief  Called when JSON data is sent to /post endpoint. Parse JSON and update LED state
+  * @param  none
+  * @retval none
+  */
 void handlePostLED(void) 
 {
   if (server.hasArg("plain") == false) 
@@ -116,8 +204,12 @@ void handlePostLED(void)
   // Respond to the client
   server.send(200, "application/json", "{}");
 }
- 
 
+/**
+  * @brief  Called when data POSTed to /lcd endpoint. Parse JSON and update screen with text.
+  * @param  none
+  * @retval none
+  */
 void handlePostLCD(void) 
 {
   if (server.hasArg("plain") == false) 
@@ -153,7 +245,11 @@ void handlePostLCD(void)
   server.send(200, "application/json", "{}");
 }
 
-
+/**
+  * @brief  Called when data POSTed to /icon endpoint. Parse JSON and draw icon on screen
+  * @param  none
+  * @retval none
+  */
 void handlePostIcon(void) 
 {
   if (server.hasArg("plain") == false) 
@@ -171,7 +267,7 @@ void handlePostIcon(void)
   int xCoord = jsonDocument["x"];
   int yCoord = jsonDocument["y"];
  
-  // To be filled in later:
+  /// TODO: Actually draw the icon 
   // Use iconName, x and y coordinates to draw a grpahic on the screen
 //  tft.pushImage(1, 60, 64, 64, a02d_smoke_64);
 
@@ -179,7 +275,9 @@ void handlePostIcon(void)
   server.send(200, "application/json", "{}");
 }
 
-// setup API resources
+/* Public functions ---------------------------------------------------------*/
+
+// See header file for documentation block
 void handlers_Init(void) 
 {
   server.on("/temperature", getTemperature);
@@ -194,6 +292,7 @@ void handlers_Init(void)
   server.begin();
 }
 
+// See header file for documentation block
 void handlers_Run(void)
 {
   server.handleClient();
