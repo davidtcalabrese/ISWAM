@@ -37,8 +37,8 @@ const displayAlert = data => {
               <h5 class="card-title text-danger" id="alert-title" 
                   title="${data.alertDescription}"> ${data.event} <i class="fas fa-mouse-pointer"></i></h5>
               <p class="card-text mb-0">Severity: ${data.severity}</p>
-              <p class="card-text mb-0">Starts: ${data.starts}</p>
-              <p class="card-text">Ends: ${data.ends}</p>
+              <p class="card-text mb-0">Starts: ${data.start}</p>
+              <p class="card-text">Ends: ${data.end}</p>
             </div>
           </div>
         </div>
