@@ -2,27 +2,6 @@ const { processWeather } = require('../controllers/weatherFunctions.js');
 const { processAlert } = require('../controllers/alertFunctions.js');
 
 /**
- * Takes a function to be executed at a regular interval for a set amount of time. 
- * 
- * @param {Function} fn - A callback function to be executed at specified interval until timeout. 
- * @param {number} timeout - Duration in seconds for which function should called at intervals. 
- * @param {number} interval - The number of seconds between function calls.
- * @param {Object} req - The POST request sent from client.  
- */
-const pollFunc = (fn, timeout, interval, req) => {
-  var startTime = (new Date()).getTime();
-  interval = (interval * 1000) || 1000;
-  timeout = (timeout * 1000);
-
-  (function p() {
-      fn(req);
-      if (((new Date).getTime() - startTime ) <= timeout)  {
-          setTimeout(p, interval);
-      }
-  })();
-}
-
-/**
  * Passes weather and alert API parameters (in form of request object) to the functions which
  * control the process of fetching the data, processing it and returning it to be displayed. 
  * 
@@ -48,5 +27,4 @@ const callApis = async req => {
   return response;
 }
 
-exports.pollFunc = pollFunc;
 exports.callApis = callApis;
