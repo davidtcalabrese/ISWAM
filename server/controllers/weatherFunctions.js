@@ -38,15 +38,15 @@ const getWeatherFromZip = async zip => {
   const API_KEY = config.API_KEY;
   const URL = `https://api.weatherbit.io/v2.0/current?postal_code=${zip}&country=US&key=${API_KEY}`;
 
-  const resp = await axios.get(URL);
-  const data = await resp.data;
-
-  let weatherData;
-  if (data.data !== undefined) {
-    weatherData = data.data[0];
-  }
+  try {
+    const resp = await axios.get(URL);
+    const data = await resp.data;
   
-  return weatherData;
+    const weatherData = data.data[0];
+    return weatherData;
+  } catch (error) {
+    console.log(error.response);
+  }
 };
 
 /**
@@ -56,6 +56,7 @@ const getWeatherFromZip = async zip => {
  * @returns {Object} - An object will all relevant weather properties.
  */
 const getWeatherFields = response => {
+  try {
   const tempInF = +((response.temp * 9) / 5 + 32).toFixed(0);
   const weatherProps = {
     description: response.weather.description, 
@@ -65,6 +66,10 @@ const getWeatherFields = response => {
     humidity: response.rh
   }
   return weatherProps;
+
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 /**
