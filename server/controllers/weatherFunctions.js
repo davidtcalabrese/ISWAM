@@ -40,8 +40,12 @@ const getWeatherFromZip = async zip => {
 
   const resp = await axios.get(URL);
   const data = await resp.data;
-  const weatherData = data.data[0];
 
+  let weatherData;
+  if (data.data !== undefined) {
+    weatherData = data.data[0];
+  }
+  
   return weatherData;
 };
 
