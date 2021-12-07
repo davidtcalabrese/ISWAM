@@ -44,6 +44,45 @@ const sendAlertToPuck = (data, color) => {
 }
 
 /**
+ * Accesses the Weatherbit API, retrieves alert for area or -1 if no alert.
+ *
+ * @param {string} zip - A zip code identifying a region.
+ * @returns {Object} - Alert object from api or -1 if no alert.
+ */
+ const getAlertFromZip = async zip => {
+  const API_KEY = config.API_KEY;
+  const resp = await axios.get(`https://api.weatherbit.io/v2.0/alerts?country=US&postal_code=${zip}&key=${API_KEY}`);
+  const data = await resp.data;
+  const alert = data.alerts[0];
+
+  // return -1 if no alert for zip
+  if (typeof alert === 'undefined') {
+    return -1;
+  } // otherwise return the alert
+  return alert;
+};
+
+/**
+ * Creates object out of alert properties from JSON response.
+ *
+ * @param {object} alertProperties - JSON from API, corresponds to response.features.
+ */
+const getAlertFields = alertProperties => {
+  const startTime = formatDateTime(new Date(alertProperties.onset_local));
+  const endTime = formatDateTime(new Date(alertProperties.ends_local));
+  const eventParsed = parseEvent(alertProperties.title);
+  const props = {
+    event: eventParsed,
+    start: startTime, 
+    end: endTime,
+    alertDescription: alertProperties.description,
+    severity: alertProperties.severity
+  }
+
+ return props;
+};
+
+/**
  * Returns true if an alert should be displayed. 
  * Must meet two conditions:
  *   - alert is active for area, and
@@ -168,45 +207,6 @@ const parseColor = color => {
   const colorArr = color.split(',');
 
   return colorArr;
-};
-
-/**
- * Accesses the Weatherbit API, retrieves alert for area or -1 if no alert.
- *
- * @param {string} zip - A zip code identifying a region.
- * @returns {Object} - Alert object from api or -1 if no alert.
- */
-const getAlertFromZip = async zip => {
-  const API_KEY = config.API_KEY;
-  const resp = await axios.get(`https://api.weatherbit.io/v2.0/alerts?country=US&postal_code=${zip}&key=${API_KEY}`);
-  const data = await resp.data;
-  const alert = data.alerts[0];
-
-  // return -1 if no alert for zip
-  if (typeof alert === 'undefined') {
-    return -1;
-  } // otherwise return the alert
-  return alert;
-};
-
-/**
- * Creates object out of alert properties from JSON response.
- *
- * @param {object} alertProperties - JSON from API, corresponds to response.features.
- */
-const getAlertFields = alertProperties => {
-  const startTime = formatDateTime(new Date(alertProperties.onset_local));
-  const endTime = formatDateTime(new Date(alertProperties.ends_local));
-  const eventParsed = parseEvent(alertProperties.title);
-  const props = {
-    event: eventParsed,
-    start: startTime, 
-    end: endTime,
-    alertDescription: alertProperties.description,
-    severity: alertProperties.severity
-  }
-
- return props;
 };
 
 /**
