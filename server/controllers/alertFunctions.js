@@ -34,13 +34,14 @@ const processAlert = async (zip, severityThreshold, color) => {
  * @param {string} color - Desired color of alert LEDs.
  */
 const sendAlertToPuck = (data, color) => {
+  const secondsToDispayAlert = 5;
   const [red, green, blue] = parseColor(color);
   const LEDPost = buildLEDPost(red, green, blue, data.severity);
   console.log(LEDPost);
   const LCDPost = buildLCDPost(data);
   postDataLCD(LCDPost); // send data to Puck's LCD
   postDataLED(LEDPost); // send data to Puck's LEDs
-  setTimeout(clearLEDs, 5000); // clear LEDs after 5 seconds
+  setTimeout(clearLEDs, secondsToDispayAlert * 1000); // clear LEDs 
 }
 
 /**
