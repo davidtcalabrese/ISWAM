@@ -18,12 +18,12 @@
       {zip: zip, severity: severityThreshold, color: color});
     
   if (data.alertPresent) { // if there's an alert, build alert card and display it
-    displayAlert(data.event, data.severity, data.alertDescription, data.start, data.end);
+    displayAlert(data);
   } else { // otherwise display the green check 
     displayNoAlert();
   } 
   // display the current weather either way
-  displayWeather(data.description, data.city, data.state, data.temp, data.humidity);
+  displayWeather(data);
 };
 
 document.querySelector('#submit').addEventListener('click', init);

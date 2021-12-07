@@ -1,24 +1,20 @@
 /**
- * Takes all of the parameters fetched by API to display a a weather in DOM
- *
- * @param {string} description - short (2-5 words) summary of current weather
- * @param {string} city - city corresponding to zip code
- * @param {string} state - state corresponding to zip code
- * @param {string} temperature - current temperature in zip code in degrees Fahrenheit
- * @param {string} humidity - current relative humidity in zip code as percentage
+ * Takes all of the parameters fetched by API to display weather in DOM.
+ * 
+ * @param {Object} data - Contains all of the variables to be interpolated into the HTML.
  */
-const displayWeather = (description, city, state, temperature, humidity) => {
-  const iconPath = getIconFromDescription(description.toLowerCase());
+const displayWeather = data => {
+  const iconPath = getIconFromDescription(data.description.toLowerCase());
   const weatherDisplay = `
       <h2 class="display-5 text-center small" id="weather-header">Weather</h2>
       <div class="container d-flex align-items-center justify-content-center flex-column">
         <div class="card mt-2 p-2" id="weather-card" style="width: 19rem;">
           <img src="images/${iconPath}" class="card-img-top" alt="">
           <div class="card-body">
-            <h5 class="card-title">${city}, ${state}</h5>
-            <p class="card-text">${temperature}°F </p>
-            <p class="card-text">${humidity}% humidity</p>
-            <p class="card-text">${description}</p>
+            <h5 class="card-title">${data.city}, ${data.state}</h5>
+            <p class="card-text">${data.temp}°F </p>
+            <p class="card-text">${data.humidity}% humidity</p>
+            <p class="card-text">${data.description}</p>
           </div>
         </div>
       </div>
@@ -28,14 +24,10 @@ const displayWeather = (description, city, state, temperature, humidity) => {
 
 /**
  * Accesses alert object properties and inserts them into HTML template to display to DOM.
- *
- * @param {string} event - type of alert (eg tropical storm, wind advisory, etc)
- * @param {string} severity - seriousness of event (minor > moderate > extreme > severe)
- * @param {string} description - details about event
- * @param {string} starts - time alert takes effect
- * @param {string} ends - time until alert expires
+ * 
+ * @param {Object} data - Contains all of the variables to be interpolated into the HTML.
  */
-const displayAlert = (event, severity, description, starts, ends) => {
+const displayAlert = data => {
   const alertDisplay = `
       <h2 class="display-5 text-center small" id="alert-header">Alerts</h2>
       <div class="container d-flex align-items-center justify-content-center flex-column">
@@ -43,10 +35,10 @@ const displayAlert = (event, severity, description, starts, ends) => {
             <img src="./images/alert-icon.png" id="triangle" class="card-img-top" alt="alert">
             <div class="card-body">
               <h5 class="card-title text-danger" id="alert-title" 
-                  title="${description}"> ${event} <i class="fas fa-mouse-pointer"></i></h5>
-              <p class="card-text mb-0">Severity: ${severity}</p>
-              <p class="card-text mb-0">Starts: ${starts}</p>
-              <p class="card-text">Ends: ${ends}</p>
+                  title="${data.alertDescription}"> ${data.event} <i class="fas fa-mouse-pointer"></i></h5>
+              <p class="card-text mb-0">Severity: ${data.severity}</p>
+              <p class="card-text mb-0">Starts: ${data.starts}</p>
+              <p class="card-text">Ends: ${data.ends}</p>
             </div>
           </div>
         </div>
