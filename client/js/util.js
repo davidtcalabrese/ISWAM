@@ -15,7 +15,8 @@ async function postData(url = '', data = {}) {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(data)  
-  });
+  }).catch(err => console.log(error));
+  
   return response.json();
 } 
 
