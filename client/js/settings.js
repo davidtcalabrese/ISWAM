@@ -5,11 +5,9 @@
  const updateUserSettings = () => {
   const severity = document.querySelector('#severity').value;
   const color = document.querySelector('#light-color').value;
-  const interval = document.querySelector('input[name="interval"]:checked').value;
 
   sessionStorage.setItem('severity', severity);
   sessionStorage.setItem('color', color);
-  sessionStorage.setItem('interval', interval);
 
   const confirmationMsg = `
       <div class="col">
