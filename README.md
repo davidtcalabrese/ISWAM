@@ -1,7 +1,9 @@
 # ISWAM
 ## IoT Severe Weather Alert Monitor ⛈️ 🚨 🌪️ 🚨 🌊
 
-ISWAM consists of two parts, a fullstack JavaScript application and The Puck™, an ESP32 microcontroller which provides current weather information as well as NWS alerts via a small LCD screen and a ring of LEDs. The JavaScript application has a front end which receives a zip code from the user, sends it to a node application for processing, receives the response and displays it to the page. The node application receives the parameters from the user, and consumes various REST APIs to collect data on current weather conditions as well as any potential safety alerts. It then processes and formats the data, sending the results back to the front end as well as to The Puck which exposes its own API.   
+ISWAM's purpose is to inform users in real time about current weather conditions as well as any possible alerts. It consists of a full stack node  application that accesses and processes NWS alerts and live weather data, and then broadcasts it to the browser  as well as on an IoT device I'm calling "The Puck". The Puck is an ESP32 microcontroller with integrated  WiFi attached to a small LCD screen and a ring of colorful LEDs. It's enclosed in a 3d-printed plastic case that resembles a hockey puck. 
+
+The front end receives a zip code from the user, sends it to a node application for processing, receives the response and displays it to the page. The node application receives the parameters from the user, and consumes various REST APIs to collect data on current weather conditions as well as any potential safety alerts. It then processes and formats the data, sending the results back to the front end as well as to The Puck which exposes its own API.   
  
 ### APIs used
 * [National Weather Service API ](https://www.weather.gov/documentation/services-web-api)
