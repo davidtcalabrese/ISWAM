@@ -20,3 +20,14 @@ The front end receives a zip code from the user, sends it to a node application 
 
 ### Flowchart
 ![ISWAM Flowchart](/client/images/flowchart.png)
+
+### Images
+![Puck Weather Display](/client/images/puck_milwaukee_weather.jpg)
+![Puck Weather Display](/client/images/puck_nyc_weather.jpg)
+![Puck Alert Display](/client/images/puck_winter_storm_alert.jpg)
+![Puck Alert Red](/client/images/puck_red_alert.jpg)
+![Puck Pink Red](/client/images/puck_pink_alert.jpg)
+
+
+### Hardware
+[Link to Embedded Code README](/embedded/SW/README.md)
