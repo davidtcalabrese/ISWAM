@@ -1,8 +1,21 @@
 import fetch from 'node-fetch';
 import * as fs from 'fs';
-import readline from 'readline';
-import { config } from './test_config.js';
 import axios from 'axios';
+
+import { config } from './test_config.js';
+
+let zipHasNoAlert = 0;
+let zipIsUndefined = 0;
+let totalAlerts = 0;
+let totalZips = 0;
+
+const printStats = () => {
+  console.log('-------- Stats --------');
+  console.log(`Undefined Zips: ${zipIsUndefined}`);
+  console.log(`Zips with no alert: ${zipHasNoAlert}`);
+  console.log(`Total alerts: ${totalAlerts}`);
+  console.log(`Total zips: ${totalZips}`);
+}
 
 /**
  * This file contains functions for getting every zip code for
@@ -81,28 +94,12 @@ const getZipFromCoords = async function (coords) {
  * Takes in a UGC, calls API to get coordinates, passes those coordinates
  * to another API to get zip code. Prints zip codes to file named zips.txt.
  *
- * @param {string} UGC
+ * @param {array} arr - An array to write to file.
  */
-const printZips = async function (UGC) {
-  const coords = await getCoordsFromUGC(UGC);
-  const zip = await getZipFromCoords(coords);
+const writeArrToFile = arr => {
+  const writeStream = fs.createWriteStream('zips.txt');
 
-  if (typeof zip === 'undefined') {
-    return;
-  }
-  if (zip.length !== 5 || !zipHasAlert()) {
-    return;
-  }
-
-  const line = `${zip}\n`;
-
-  fs.appendFile('zips.txt', line, err => {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log('line added');
-    }
-  });
+  arr.forEach(item => writeStream.write(item + '\n'));
 };
 
 /**
@@ -127,30 +124,47 @@ const zipHasAlert = async zip => {
   return true;
 };
 
-/**
- * Prints header row for CSV file single time. Then loops through
- * UGC array, passing each to printUGCCoordsAndZipAsCSV
- */
-const readUGCs = async function () {
-  // read in all UGCs line by line
-  const fileStream = fs.createReadStream('alert_UGCs.txt');
+const callApis = async function (UGC) {
+  const coords = await getCoordsFromUGC(UGC);
+  const zip = await getZipFromCoords(coords);
 
-  const rl = readline.createInterface({
-    input: fileStream,
-    crlfDelay: Infinity,
-  });
-
-  for await (const UGC of rl) {
-    printZips(UGC);
+  if (typeof zip === 'undefined') {
+    zipIsUndefined++;
+    return;
   }
-  filterDuplicates()
-};
+  if (zip.length !== 5) {
+    zipIsUndefined++;
+    return;
+  }
+  if (!zipHasAlert(zip)) {
+    zipHasNoAlert++;
+    return;
+  }
+  return zip;
+}
 
 /**
- * Accesses every active NWS alert (on land), parses each into a simplified json format,
- * and writes to alert_data.txt for test data.
+ * 
+ * @param {array} ugcArr - An array of Univeral Geographic Codes (UGCs)
+ *                         in which an alert is presently active 
  */
-const getAllAlerts = async function () {
+const getZipArrFromUgcArr = async ugcArr => {
+  const zips = [];
+  for (const UGC of ugcArr) {
+    const zip = await callApis(UGC);
+    zips.push(zip);
+  }
+  console.log('array of zips');
+  console.log('  |');
+  console.log('  V');
+  const uniqueZips = filterDuplicates(zips);
+  console.log('array of unique zips');
+  console.log('  |');
+  console.log('  V');
+  return uniqueZips;
+}
+
+const getAlertsArr = async () => {
   const URL = `https://api.weather.gov/alerts/active?status=actual&message_type=alert&region_type=land`;
 
   const requestOptions = {
@@ -162,42 +176,84 @@ const getAllAlerts = async function () {
   const data = await response.json();
   const alertArray = data.features;
 
+  const alertUGCs = [];
+
   // grab props: event, severity, description, onset, ends
   for (let alert of alertArray) {
-    const code = alert.properties.geocode.UGC[0] + ' \n';
+    const UGC = alert.properties.geocode.UGC[0];
 
-    fs.appendFile('alert_UGCs.txt', code, err => {
-      if (err) {
-        console.log(err);
-      } else {
-        console.log('UGC added');
-      }
-    });
+    alertUGCs.push(UGC);
   }
 
-  readUGCs();
+  return alertUGCs;
+}
+
+/**
+ * Removes duplicates from array. 
+ * 
+ * @param {array} zipArr - Array of zip codes (with duplilcates) 
+ * @returns {array} - Array of zip codes (no duplilcates)
+ */
+const filterDuplicates = zipArr => [...new Set(zipArr)];
+
+/**
+ * Accesses every active NWS alert (on land), parses each into a simplified json format,
+ * and writes to alert_data.txt for test data.
+ */
+const init = async function () {
+  const ugcArr = await getAlertsArr();
+  totalAlerts = ugcArr.length;
+  console.log('array of UGCs');
+  console.log('  |');
+  console.log('  V');
+  const zipArr = await getZipArrFromUgcArr(ugcArr);
+  totalZips = zipArr.length;
+  writeArrToFile(zipArr);
+  printStats();
 };
 
-const filterDuplicates = async function () {
-  try {
-    let data = fs.readFileSync('zips.txt', 'utf8');
-
-    // split data by tabs, newlines and spaces
-    data = data.toString().split(/[\n \t ' ']/);
-
-    // this will remove duplicates from the array
-    const result = data.filter((item, pos) => data.indexOf(item) === pos);
-
-    const file = fs.createWriteStream('zipSet.txt');
-    file.on('error', function(err) { console.log(err); });
-    result.forEach(function(zip) { file.write(zip + '\n'); });
-    file.end();
-  } catch (e) {
-    console.log('Error:', e.stack);
-  }
-};
 
 
+init();
 
+// tests
+// ---------- printStats ----------- 
 
-getAllAlerts();
+// ---------- writeArrToFile -----------
+const writeArrToFileShould = () => {
+  const zipArr = [
+    undefined, '97041',
+    '36456',   '98261',
+    '98363',   '70753',
+    '81055',   '98262',
+    '93535',   '91381',
+    '97523',   '55604'
+  ];
+  
+  writeArrToFile(zipArr);
+}
+// ---------- callApis -----------
+
+// ---------- zipHasAlert -----------
+
+// ---------- getZipArrFromUgcArr -----------
+const getZipArrFromUgcArrShould = async () => {
+  const ugcArr = ['WVC039', 'FLC091', 'ORZ011', 'AKZ025', 'ALZ056', 'AKZ213',
+        'WAZ001', 'WAZ513', 'WAZ567', 'LAZ034', 'COZ074', 'WAZ503',
+        'CAZ059', 'CAZ054', 'CAZ523', 'CAZ102', 'NVZ036', 'MNZ021'];
+
+const zipArr = await getZipArrFromUgcArr(ugcArr);
+
+console.log(zipArr);
+}
+
+// ---------- getAlertsArr -----------
+const getAlertsArrShould = async () => {
+  const alertArr = await getAlertsArr();
+  console.log(alertArr);
+}
+
+// ---------- init -----------
+
+// getZipArrFromUgcArrShould()
+// writeArrToFileShould();
