@@ -26,7 +26,8 @@ The front end receives a zip code from the user, sends it to a node application 
 ![Puck Weather Display](/client/images/puck_nyc_weather.jpg)
 ![Puck Alert Display](/client/images/puck_winter_storm_alert.jpg)
 ![Puck Alert Red](/client/images/puck_red_alert.jpg)
-![Puck Pink Red](/client/images/puck_pink_alert.jpg)
+![Puck Pink Pink](/client/images/puck_pink_alert.jpg)
+![Puck Pink Green](/client/images/puck_green_alert.jpg)
 
 
 ### Hardware
