@@ -41,7 +41,7 @@ const getWeatherFromZip = async zip => {
   try {
     const resp = await axios.get(URL);
     const data = await resp.data;
-  
+    console.log(`sending ${zip} to /current`);
     const weatherData = data.data[0];
     return weatherData;
   } catch (error) {

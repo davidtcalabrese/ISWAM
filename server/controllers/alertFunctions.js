@@ -54,7 +54,7 @@ const sendAlertToPuck = (data, color) => {
   const resp = await axios.get(`https://api.weatherbit.io/v2.0/alerts?country=US&postal_code=${zip}&key=${API_KEY}`);
   const data = await resp.data;
   const alert = data.alerts[0];
-
+  console.log(`sending ${zip} to /alert`);
   // return -1 if no alert for zip
   if (typeof alert === 'undefined') {
     return -1;
@@ -97,6 +97,7 @@ const alertShouldBeDisplayed = (alertData, severityThreshold) => {
   }
   const alertSeverity = alertData.severity;
   if (!isSevereEnough(alertSeverity, severityThreshold)) {
+      console.log(`Severity level not high enough. Alert severity: ${alertData.severity} (1), severity threshold: ${severityThreshold}`);
     return false; // make sure its severe enough
   }
 
@@ -226,24 +227,18 @@ const parseEvent = event => {
  * @param {string} severityThreshold - One of five levels of severity NWS ranks their alerts.
  * @returns {boolean} If alert if as severe or more severe than threshold returns true, else false.
  */
-const isSevereEnough = (severity, severityThreshold) => {
+const isSevereEnough = (severityAsString, severityThreshold) => {
   // default is 1 in case severity doens't come back so alert will display
-  let eventSeverityAsNumber;
-  switch (severity) {
-    case 'Watch':
-      eventSeverityAsNumber = 1;
-      break;
-    case 'Advisory':
-      eventSeverityAsNumber = 2;
-      break;
-    case 'Warning':
-      eventSeverityAsNumber = 3;
-      break;
-    default:
-      eventSeverityAsNumber = 1;
+  const key = {
+    'Watch': 1,
+    'Advisory': 2,
+    'Warning': 3,
   }
-  return eventSeverityAsNumber >= severityThreshold;
+
+  const severityAsNumber = key[severityAsString] || 1;
+  return severityAsNumber >= severityThreshold;
 };
+
 
 /**
  * Formats a date time object.
