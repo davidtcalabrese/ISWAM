@@ -63,7 +63,7 @@ const sendAlertToPuck = (data, color) => {
     } // otherwise return the alert
     return alert;
   } catch (err) {
-    console.log("Unable to connect to Weatherbit API /alert endpoint");
+    console.log("");
     console.log(err.response);
   }
 

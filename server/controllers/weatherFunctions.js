@@ -9,9 +9,9 @@ const { postDataLCD } = require('../controllers/puckFunctions');
  * @param {string} zip - The zip code of user.
  */
 const processWeather = async zip => {
-  const weatherDataRaw = await getWeatherFromZip(zip);
+  const weatherDataRaw = await getWeatherFromZip(zip).catch(error => console.log('Error: ', error));
 
-  const weatherProps = await getWeatherFields(weatherDataRaw);
+  const weatherProps = await getWeatherFields(weatherDataRaw).catch(error => console.log('Error: ', error));
   sendWeatherToPuck(weatherProps); // send to puck
 
   return weatherProps; // send to browser
