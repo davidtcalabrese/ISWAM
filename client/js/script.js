@@ -45,8 +45,9 @@ const init = async () => {
   // check local storage for severity and color options
   const severityThreshold = getSeverity();
   const color = getColor();
-
-  const data = await postData('http://localhost:3300/', { zip: zip, severity: severityThreshold, color: color });
+  
+  try {
+    const data = await postData('http://localhost:3300/', { zip: zip, severity: severityThreshold, color: color });
 
   if (data.alertPresent) {
     // if there's an alert, build alert card and display it
@@ -57,6 +58,9 @@ const init = async () => {
   }
   // display the current weather either way
   displayWeather(data);
-};
-
+  } catch (err) {
+    console.log("Unable to connect to node server.");
+    console.log(err.response);
+  }
+}
 document.querySelector('#submit').addEventListener('click', init);
