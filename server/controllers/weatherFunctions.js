@@ -44,8 +44,9 @@ const getWeatherFromZip = async zip => {
     console.log(`sending ${zip} to /current`);
     const weatherData = data.data[0];
     return weatherData;
-  } catch (error) {
-    console.log(error.response);
+  } catch (err) {
+    console.log("Unable to connect to Weatherbit API /current endpoint");
+    console.log(err.response);
   }
 };
 

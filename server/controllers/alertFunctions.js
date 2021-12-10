@@ -51,15 +51,22 @@ const sendAlertToPuck = (data, color) => {
  */
  const getAlertFromZip = async zip => {
   const API_KEY = config.API_KEY;
-  const resp = await axios.get(`https://api.weatherbit.io/v2.0/alerts?country=US&postal_code=${zip}&key=${API_KEY}`);
-  const data = await resp.data;
-  const alert = data.alerts[0];
-  console.log(`sending ${zip} to /alert`);
-  // return -1 if no alert for zip
-  if (typeof alert === 'undefined') {
-    return -1;
-  } // otherwise return the alert
-  return alert;
+
+  try {
+    const resp = await axios.get(`https://api.weatherbit.io/v2.0/alerts?country=US&postal_code=${zip}&key=${API_KEY}`);
+    const data = await resp.data;
+    const alert = data.alerts[0];
+    console.log(`sending ${zip} to /alert`);
+    // return -1 if no alert for zip
+    if (typeof alert === 'undefined') {
+      return -1;
+    } // otherwise return the alert
+    return alert;
+  } catch (err) {
+    console.log("Unable to connect to Weatherbit API /alert endpoint");
+    console.log(err.response);
+  }
+
 };
 
 /**
