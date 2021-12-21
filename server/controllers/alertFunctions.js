@@ -5,7 +5,7 @@ const { postDataLCD, postDataLED } = require('./puckFunctions');
 /**
  * Checks if there is an alert for entered zip code and that the alert's severity 
  * surpasses severity threshold set by user, if it does it calls displayAlert to 
- * add alert to DOM, otherwise, calls displayNoAlert, which adds thumbs up sign to DOM.
+ * add alert to DOM, otherwise, calls displayNoAlert, which adds green check card to DOM.
  *
  * @param {string} zip - The zip code of user.
  * @param {string} severityThreshold - Desired severity threshold (default is all levels).
