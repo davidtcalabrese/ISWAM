@@ -72,7 +72,7 @@ const sendAlertToPuck = (data, color) => {
 /**
  * Creates object out of alert properties from JSON response.
  *
- * @param {object} alertProperties - JSON from API, corresponds to response.features.
+ * @param {Object} alertProperties - JSON from API, corresponds to response.features.
  */
 const getAlertFields = alertProperties => {
   const startTime = formatDateTime(new Date(alertProperties.onset_local));
@@ -94,6 +94,7 @@ const getAlertFields = alertProperties => {
  * Must meet two conditions:
  *   - alert is active for area, and
  *   - alert severity is equal to or exceeds severity set by user.
+ * 
  * @param {string} alertData - The JSON response containing alert data. 
  * @param {string} severityThreshold -  Desired severity threshold.
  * @returns {boolean} - If alert should be displayed, true, else false. 
@@ -189,7 +190,7 @@ const clearLEDs = () => {
  * @param {string} event - name of alert.
  * @param {string} start - time alert takes effect.
  * @param {string} end -  time to which alert is in effect.
- * @returns {object} - An object to be sent to Puck as body of POST request.
+ * @returns {Object} - An object to be sent to Puck as body of POST request.
  */
  const buildLCDPost = data => {
   const alertMsg = `${(data.event).substring(0, 19)}`;
@@ -209,7 +210,7 @@ const clearLEDs = () => {
  * Takes three comma-separated numbers representing the rgb color
  * values and returns an array of individual colors.
  *
- * @param {string} color - Three RGB decimal values (0-255) for alert LED color.
+ * @param {Array} color - Three RGB decimal values (0-255) for alert LED color.
  */
 const parseColor = color => {
   const colorArr = color.split(',');
@@ -261,7 +262,7 @@ const formatDateTime = datetime => {
 
   const ampm = hours24 >= 12 ? 'pm' : 'am';
   const hours12 = hours24 % 12;
-  const hoursFormatted = hours12 ? hours12 : 12; // if hours evaluates to 0 it should be 12
+  const hoursFormatted = hours12 ? hours12 : 12; // if hours12 evaluates to 0 it should be 12
   const minutesFormatted = minutes < 10 ? '00' : minutes; // no single digit minute values
 
   return `${month}/${day}, ${hoursFormatted}:${minutesFormatted}${ampm}`;
