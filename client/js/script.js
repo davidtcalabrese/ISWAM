@@ -46,6 +46,7 @@ const init = async () => {
   const severityThreshold = getSeverity();
   const color = getColor();
   
+  // send data to node app
   const data = await postData('http://localhost:3300/', 
           { zip: zip, severity: severityThreshold, color: color })
           .catch(error => console.log('error', error));
