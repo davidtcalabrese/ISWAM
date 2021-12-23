@@ -63,7 +63,7 @@ const sendAlertToPuck = (data, color) => {
     } // otherwise return the alert
     return alert;
   } catch (err) {
-    console.log("");
+    console.log("Error fetching alert.");
     console.log(err.response);
   }
 
