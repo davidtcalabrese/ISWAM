@@ -59,14 +59,13 @@ const getWeatherFromZip = async zip => {
 const getWeatherFields = response => {
   try {
   const tempInF = +((response.temp * 9) / 5 + 32).toFixed(0);
-  const weatherProps = {
+  return {
     description: response.weather.description, 
     city: response.city_name,
     state: response.state_code,
     temp: tempInF, 
     humidity: response.rh
   }
-  return weatherProps;
 
   } catch (err) {
     console.log(err);
